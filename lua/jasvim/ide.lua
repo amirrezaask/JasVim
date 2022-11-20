@@ -1,7 +1,6 @@
 local ide = {}
 
-function ide.plugins()
-  return jasvim.append(
+ide.plugins =  jasvim.append(
     require("jasvim.ide.completion").plugins(),
     require("jasvim.ide.git").plugins(),
     require("jasvim.ide.mason").plugins(),
@@ -9,7 +8,6 @@ function ide.plugins()
     require("jasvim.ide.dap").plugins(),
     require("jasvim.ide.terminal").plugins()
   )
-end
 
 function ide.configs()
   require("jasvim.ide.completion").configs()
