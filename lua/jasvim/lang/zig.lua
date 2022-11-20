@@ -1,6 +1,13 @@
-jasvim.plugin "ziglang/zig.vim"
+local M = {}
+function M.plugins()
+  return { "ziglang/zig.vim" }
+end
 
-require("nvim-treesitter.install").ensure_installed "zig"
-require("lspconfig").zls.setup {
-  on_attach = lsp.on_attach,
-}
+function M.configs()
+  require("nvim-treesitter.install").ensure_installed "zig"
+  require("lspconfig").zls.setup {
+    on_attach = lsp.on_attach,
+  }
+end
+
+return M

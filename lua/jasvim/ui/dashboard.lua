@@ -94,5 +94,4 @@ function M.configs()
   }
 end
 
-
 return M

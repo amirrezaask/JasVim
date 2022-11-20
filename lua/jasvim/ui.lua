@@ -15,10 +15,7 @@ function ui.plugins()
         },
         tag = "nightly", -- optional, updated every week. (see issue #1193)
       },
-      {
-        "folke/which-key.nvim",
-      },
-      {
+            {
         "j-hui/fidget.nvim",
       },
     },

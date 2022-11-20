@@ -1,9 +1,19 @@
-require("nvim-treesitter.install").ensure_installed "go"
+local M = {}
 
-require("lspconfig").gopls.setup {
-  on_attach = lsp.on_attach,
-}
+function M.plugins()
+  return {}
+end
 
-jasvim.onsave("*.go", function()
-  vim.lsp.buf.format()
-end)
+function M.configs()
+  require("nvim-treesitter.install").ensure_installed "go"
+
+  require("lspconfig").gopls.setup {
+    on_attach = lsp.on_attach,
+  }
+
+  jasvim.onsave("*.go", function()
+    vim.lsp.buf.format()
+  end)
+end
+
+return M

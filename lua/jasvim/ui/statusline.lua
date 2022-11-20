@@ -51,7 +51,6 @@ function M.configs()
   if vim.version().major >= 0 and vim.version().minor >= 8 then
     vim.opt.laststatus = 3
   end
-
 end
 
 return M

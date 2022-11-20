@@ -33,13 +33,12 @@ end
 -- Enable modules
 -- @param names: table
 function jasvim.modules(names)
-  local plugin_specs = {}
   for _, name in ipairs(names) do
     local mod = require(name)
-    if type(mod) == "table" and mod.plugin then
-      local plugins = mod.plugin()
+    if type(mod) == "table" and mod.plugins then
+      local plugins = mod.plugins()
       for _, spec in ipairs(plugins) do
-        table.insert(plugin_specs, spec)
+        jasvim.plugin(spec)
       end
     end
   end
@@ -53,11 +52,12 @@ end
 
 function jasvim.append(...)
   local out = {}
-  for _, t in ipairs(arg) do
+  for _, t in ipairs { ... } do
     if type(t) == "table" then
       for _, elem in ipairs(t) do
         table.insert(out, elem)
       end
     end
   end
+  return out
 end

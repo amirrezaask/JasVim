@@ -52,5 +52,3 @@ vim.opt.clipboard:append "unnamedplus" -- use system clipboard by default
 if vim.version().major >= 0 and vim.version().minor >= 8 then
   vim.opt.laststatus = 3 -- if supported use global statusline
 end
-
-
