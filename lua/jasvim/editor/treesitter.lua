@@ -1,10 +1,17 @@
-jasvim.plugin {
+local M = {}
+function M.plugins()
+  return {
+{
   "nvim-treesitter/nvim-treesitter",
   requires = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "p00f/nvim-ts-rainbow",
   },
 }
+  }
+end
+
+function M.configs()
 require("nvim-treesitter.configs").setup {
   highlight = {
     enable = true,
@@ -51,3 +58,7 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
+
+
+end
+return M

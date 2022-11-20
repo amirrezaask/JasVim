@@ -1,7 +1,7 @@
 local M = {}
 
 function M.plugins()
-  return {
+  return jasvim.append({
     "pbrisbin/vim-mkdir",
     "sheerun/vim-polyglot",
     "szw/vim-maximizer",
@@ -20,11 +20,11 @@ function M.plugins()
     "windwp/nvim-autopairs",
     { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*", requires = "rafamadriz/friendly-snippets" },
     "junegunn/goyo.vim",
-  }
+  }, require'jasvim.editor.treesitter'.plugins())
 end
 
 function M.configs()
-  jasvim.L "jasvim.editor.treesitter"
+  require "jasvim.editor.treesitter".configs()
   require("todo-comments").setup()
   require("Comment").setup {
     ---Add a space b/w comment and the line
