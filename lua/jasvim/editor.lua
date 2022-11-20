@@ -1,6 +1,4 @@
 -- Integrate Tmux and neovim pane and window switching
-jasvim.plugin "mrjones2014/smart-splits.nvim"
-jasvim.plugin "christoomey/vim-tmux-navigator"
 jasvim.plugin "pbrisbin/vim-mkdir"
 jasvim.plugin "sheerun/vim-polyglot"
 jasvim.plugin "szw/vim-maximizer"
@@ -21,8 +19,8 @@ jasvim.plugin { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*", requires = "rafam
 jasvim.plugin "junegunn/goyo.vim"
 
 jasvim.L "jasvim.editor.treesitter"
-jasvim.L("todo-comments").setup()
-jasvim.L("Comment").setup {
+require("todo-comments").setup()
+require("Comment").setup {
   ---Add a space b/w comment and the line
   padding = true,
   ---Whether the cursor should stay at its position
@@ -61,6 +59,6 @@ jasvim.L("Comment").setup {
 }
 -- ]]
 
-jasvim.L("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
-jasvim.L("nvim-autopairs").setup {}
+require("nvim-autopairs").setup {}

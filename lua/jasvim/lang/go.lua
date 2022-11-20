@@ -1,6 +1,6 @@
-jasvim.L("nvim-treesitter.install").ensure_installed "go"
+require("nvim-treesitter.install").ensure_installed "go"
 
-jasvim.L("lspconfig").gopls.setup {
+require("lspconfig").gopls.setup {
   on_attach = lsp.on_attach,
 }
 

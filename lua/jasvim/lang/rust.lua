@@ -3,7 +3,7 @@ jasvim.plugin "simrat39/rust-tools.nvim"
 
 local rt = jasvim.L "rust-tools"
 
-jasvim.L("nvim-treesitter.install").ensure_installed "rust"
+require("nvim-treesitter.install").ensure_installed "rust"
 
 rt.setup {
   server = {

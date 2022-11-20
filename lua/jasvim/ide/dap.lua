@@ -1,3 +1,3 @@
-jasvim.L("mason-nvim-dap").setup {
+require("mason-nvim-dap").setup {
   automatic_installation = false,
 }

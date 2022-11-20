@@ -1,16 +1,16 @@
 jasvim.plugin { "ckipp01/stylua-nvim", run = "cargo install stylua" }
 jasvim.plugin "folke/neodev.nvim"
 
-jasvim.L("neodev").setup {}
+require("neodev").setup {}
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-jasvim.L("nvim-treesitter.install").ensure_installed "lua"
+require("nvim-treesitter.install").ensure_installed "lua"
 
 jasvim.onsave("*.lua", function()
-  jasvim.L("stylua-nvim").format_file()
+  require("stylua-nvim").format_file()
 end)
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -20,12 +20,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-jasvim.L("lspconfig").sumneko_lua.setup {
+require("lspconfig").sumneko_lua.setup {
   on_attach = lsp.on_attach,
   commands = {
     Format = {
       function()
-        jasvim.L("stylua-nvim").format_file()
+        require("stylua-nvim").format_file()
       end,
     },
   },

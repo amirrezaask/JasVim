@@ -16,7 +16,7 @@ jasvim.plugin "onsails/lspkind.nvim"
 
 _G.lsp = {}
 
-jasvim.L("fidget").setup()
+require("fidget").setup()
 
 function lsp.on_attach(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -37,7 +37,7 @@ function lsp.on_attach(_, bufnr)
       ["<C-s>"] = { vim.lsp.buf.signature_help, desc = "Toggle Signature help", buffer = bufnr },
     },
   }
-  jasvim.L("lsp_signature").on_attach({}, bufnr)
+  require("lsp_signature").on_attach({}, bufnr)
 end
 
 local border = {
@@ -57,7 +57,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = opts.border or border
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
-jasvim.L("lspsaga").init_lsp_saga {
+require("lspsaga").init_lsp_saga {
   symbol_in_winbar = {
     enable = true,
   },

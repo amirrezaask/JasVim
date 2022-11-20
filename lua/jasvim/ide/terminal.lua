@@ -5,7 +5,7 @@ jasvim.plugin {
 
 
 
-jasvim.L("toggleterm").setup {
+require("toggleterm").setup {
   size = function(term)
     if term.direction == "horizontal" then
       return 20

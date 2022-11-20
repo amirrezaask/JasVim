@@ -9,5 +9,5 @@ jasvim.plugin {
   requires = "nvim-lua/plenary.nvim",
 }
 
-jasvim.L("neogit").setup()
-jasvim.L("gitsigns").setup()
+require("neogit").setup()
+require("gitsigns").setup()

@@ -14,11 +14,11 @@ packer_ensure()
 
 -- Now we install plugins
 
-jasvim.plugin = jasvim.L("packer").use
+jasvim.plugin = require("packer").use
 
-jasvim.L("packer").init {
+require("packer").init {
   display = {
-    open_fn = jasvim.L("packer.util").float,
+    open_fn = require("packer.util").float,
   },
 }
 
