@@ -1,0 +1,1 @@
+jasvim.L'mason'.setup{}

@@ -1,0 +1,6 @@
+jasvim.L 'jasvim.ide.git'
+jasvim.L 'jasvim.ide.completion'
+jasvim.L 'jasvim.ide.mason'
+jasvim.L 'jasvim.ide.lsp'
+jasvim.L 'jasvim.ide.dap'
+jasvim.L 'jasvim.ide.terminal'
