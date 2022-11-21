@@ -35,6 +35,10 @@ end
 -- Enable modules
 -- @param names: table
 function jasvim.modules(names)
+  local has_impatient, _ = pcall(require, "impatient")
+  if has_impatient then
+    require "impatient".enable_profile()
+  end
   for _, name in ipairs(names) do
     local mod = require(name)
     if type(mod) == "table" and mod.plugins then
@@ -62,9 +66,10 @@ function jasvim.modules(names)
     if type(mod) == "table" and mod.keymaps then
       if type(mod.keymaps) == "table" then
         jasvim.bind(mod.keymaps)
-      else if type(mod.keymaps) == 'function' then
-        mod.keymaps()
-      end
+      else
+        if type(mod.keymaps) == "function" then
+          mod.keymaps()
+        end
       end
     end
   end
