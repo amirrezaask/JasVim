@@ -18,6 +18,25 @@ jasvim is built around modules,
 modules are normal lua modules that are tables
 and have to attributes, `plugins` function or table that is used for packer spec, `configs` function 
 that configures plugins for respected module
+for example:
+```lua
+local random_module = {}
+function random_module.configs()
+    -- configuring plugin 1
+    -- configuring plugin 2
+end
+
+
+function random_module.plugins()
+    return { -- same syntax as packer.nvim spec
+        "some_author/plugin name",
+        { "some_author/plugin name", requires = "another plugin"},
+    }
+end
+
+return random_module
+
+```
 
 ## Screenshots
 ![Start screen](https://raw.github.com/amirrezaask/jasvim/master/screenshots/0.png)
