@@ -1,6 +1,6 @@
 _G.jasvim = {}
 
-jasvim.version = '0.1.0'
+jasvim.version = "0.1.0"
 
 function jasvim.onsave(pattern, callback)
   local augroup_name = ""
@@ -55,6 +55,17 @@ function jasvim.modules(names)
     local mod = require(name)
     if type(mod) == "table" and mod.configs then
       mod.configs()
+    end
+  end
+  for _, name in ipairs(names) do
+    local mod = require(name)
+    if type(mod) == "table" and mod.keymaps then
+      if type(mod.keymaps) == "table" then
+        jasvim.bind(mod.keymaps)
+      else if type(mod.keymaps) == 'function' then
+        mod.keymaps()
+      end
+      end
     end
   end
 end

@@ -31,6 +31,7 @@ function M.configs()
         vim.schedule(function()
           print "[stylua] Failed to process due to errors"
         end)
+        return
       end
       vim.api.nvim_buf_set_lines(buf, 0, -1, false, output)
     end,

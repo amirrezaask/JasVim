@@ -14,11 +14,15 @@ git clone https://github.com/amirrezaask/jasvim ~/.config/nvim --depth 1
 - Tmux integration
 
 ## How it's built
-jasvim is built around modules,
-modules are normal lua modules that are tables
-and have to attributes, `plugins` function or table that is used for packer spec, `configs` function 
-that configures plugins for respected module
-for example:
+JasVim is built with isolated modules that can be enabled or disabled by the user.
+each module should have following structure:
+```lua
+
+local Module = {}
+Module.plugins = {} -- a table that contains a list of all plugin specs that module needs to install, specs are packer.nvim spec.
+function Module.configs() end -- configs is a function and is called after all plugins are resolved from all modules.
+Module.keymaps = {} -- keymaps is a table that will get passed to `jasvim.bind` function
+```
 ```lua
 local random_module = {}
 function random_module.configs()

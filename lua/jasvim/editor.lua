@@ -18,6 +18,7 @@ end
 
 function M.configs()
   require("jasvim.editor.treesitter").configs()
+  require'jasvim.editor.comment'.configs()
 
   -- ]]
 
