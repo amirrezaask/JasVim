@@ -4,10 +4,8 @@ function M.configs()
   require("which-key").setup()
 end
 
-function M.plugins()
-  return {
-    "folke/which-key.nvim",
-  }
-end
+M.plugins = {
+  "folke/which-key.nvim",
+}
 
 return M
