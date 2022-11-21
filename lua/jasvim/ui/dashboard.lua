@@ -88,7 +88,7 @@ function M.configs()
     },
   }
   require("alpha").setup(myconfig)
-  bind {
+  jasvim.bind {
     n = {
       [",z"] = { "<cmd>MaximizerToggle<cr>", desc = "Toggle zoom on current window" },
     },

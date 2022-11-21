@@ -36,7 +36,7 @@ function ui.configs()
 
   require("dressing").setup {}
   require("nvim-tree").setup()
-  bind {
+  jasvim.bind {
     n = {
       ["<leader>l"] = "<cmd>NvimTreeToggle<CR>",
     },

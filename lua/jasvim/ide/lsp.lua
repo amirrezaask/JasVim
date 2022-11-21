@@ -23,7 +23,7 @@ function M.configs()
 
   function lsp.on_attach(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    bind {
+    jasvim.bind {
       n = {
         gd = { vim.lsp.buf.definition, desc = "Goto definition", buffer = bufnr },
         gi = { vim.lsp.buf.implementation, desc = "Goto implementations", buffer = bufnr },

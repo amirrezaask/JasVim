@@ -70,7 +70,7 @@ function M.configs()
     end
   end
 
-  bind {
+  jasvim.bind {
     n = {
       ["<leader><leader>"] = { telescope_wrap "find_files", desc = "Find Files" },
       ["<leader>ff"] = { telescope_wrap "find_files", desc = "Find Files" },

@@ -8,7 +8,7 @@ function M.configs()
   -- smart split
   require("smart-splits").setup {}
 
-  bind {
+  jasvim.bind {
     n = {
       ["<A-h>"] = require("smart-splits").resize_left,
       ["<A-j>"] = require("smart-splits").resize_down,
