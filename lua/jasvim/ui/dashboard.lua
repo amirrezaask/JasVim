@@ -59,7 +59,8 @@ function M.configs()
       { type = "padding", val = 2 },
       {
         type = "text",
-        val = asciiarts[math.ceil(math.random(1, 100) % 2) + 1],
+        -- val = asciiarts[math.ceil(math.random(1, 100) % 2) + 1],
+        val = asciiarts[1],
         opts = { position = "center", hl = "Type" },
       },
       { type = "padding", val = 2 },

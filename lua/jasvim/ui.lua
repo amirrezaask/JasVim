@@ -15,7 +15,7 @@ function ui.plugins()
         },
         tag = "nightly", -- optional, updated every week. (see issue #1193)
       },
-            {
+      {
         "j-hui/fidget.nvim",
       },
     },
@@ -27,7 +27,7 @@ function ui.plugins()
 end
 
 function ui.configs()
-  vim.cmd [[ colorscheme nightfly ]]
+  vim.cmd ([[ colorscheme  ]] .. jasvim.colorscheme or 'nightfly')
 
   require("jasvim.ui.telescope").configs()
   require("jasvim.ui.statusline").configs()

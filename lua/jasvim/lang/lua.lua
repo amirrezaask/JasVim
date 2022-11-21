@@ -2,7 +2,6 @@ local M = {}
 
 function M.plugins()
   return {
-    { "ckipp01/stylua-nvim", run = "cargo install stylua" },
     "folke/neodev.nvim",
   }
 end

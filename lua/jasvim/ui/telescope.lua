@@ -4,7 +4,7 @@ function M.plugins()
   return {
     {
       "nvim-telescope/telescope.nvim",
-      requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
+      requires = { "nvim-lua/plenary.nvim" },
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -19,45 +19,22 @@ function M.configs()
   local function get_default_telescope_picker_opts()
     return {
       find_files = {
-        preview = false,
         theme = dropdown,
-        layout_config = {
-          height = math.ceil(jasvim.window_height() * 0.7),
-        },
       },
       oldfiles = {
-        preview = false,
         theme = dropdown,
-        layout_config = {
-          height = math.ceil(jasvim.window_height() * 0.7),
-        },
       },
       git_files = {
-        preview = false,
         theme = dropdown,
-        layout_config = {
-          height = math.ceil(jasvim.window_height() * 0.7),
-        },
       },
       live_grep = {
         preview = true,
-        layout_config = {
-          height = math.ceil(jasvim.window_height() * 0.7),
-        },
       },
       help_tags = {
-        preview = false,
         theme = dropdown,
-        layout_config = {
-          height = math.ceil(jasvim.window_height() * 0.7),
-        },
       },
       commands = {
-        preview = false,
         theme = dropdown,
-        layout_config = {
-          height = math.ceil(jasvim.window_height() * 0.7),
-        },
       },
     }
   end
@@ -66,20 +43,13 @@ function M.configs()
     defaults = {
       preview = false,
       prompt_prefix = "🔍 ",
-    },
-    extensions = {
-      file_browser = {
-        -- disables netrw and use telescope-file-browser in its place
-        hijack_netrw = false,
-        mappings = {
-          ["i"] = {
-            -- your custom insert mode mappings
-          },
-          ["n"] = {
-            -- your custom normal mode mappings
-          },
+      layout_config = {
+        center = {
+          height = math.ceil(jasvim.window_height() * 0.8),
         },
       },
+    },
+    extensions = {
       fzf = {
         fuzzy = true, -- false will only do exact matching
         override_generic_sorter = true, -- override the generic sorter
