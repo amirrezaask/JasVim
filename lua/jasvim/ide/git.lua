@@ -1,7 +1,5 @@
 local M = {}
 
-function M.configs() end
-
 function M.plugins()
   return {
     "tpope/vim-fugitive",

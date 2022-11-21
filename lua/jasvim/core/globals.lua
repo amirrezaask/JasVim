@@ -1,5 +1,7 @@
 _G.jasvim = {}
 
+jasvim.version = '0.1.0'
+
 function jasvim.onsave(pattern, callback)
   local augroup_name = ""
   if type(pattern) == "table" then

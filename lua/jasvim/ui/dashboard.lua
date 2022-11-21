@@ -66,7 +66,7 @@ function M.configs()
       { type = "padding", val = 2 },
       { type = "text", val = "JasVim", opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 1 },
-      { type = "text", val = "0.1", opts = { position = "center", hl = "Type" } },
+      { type = "text", val = jasvim.version, opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 2 },
       {
         type = "group",
