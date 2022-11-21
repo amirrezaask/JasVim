@@ -8,10 +8,12 @@ git clone https://github.com/amirrezaask/jasvim ~/.config/nvim --depth 1
 ```
 
 ## Features
-- LSP + Automatic install of 90% of LSP servers
-- Tree file explorer using nvim-tree
-- Telescope fuzzy finders
+- LSP + Automatic install of LSP servers
+- Tree file explorer using `nvim-tree`
+- `Telescope` fuzzy finders
 - Tmux integration
+- DAP debuggers integrated
+- Terminal emulator using `toggleterm`
 
 ## How it's built
 JasVim is built with isolated modules that can be enabled or disabled by the user.
