@@ -5,12 +5,9 @@ function M.configs()
 end
 
 function M.plugins()
-      return {
-        "folke/which-key.nvim",
-      }
-
+  return {
+    "folke/which-key.nvim",
+  }
 end
-
-
 
 return M

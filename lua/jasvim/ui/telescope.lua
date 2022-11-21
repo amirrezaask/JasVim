@@ -83,7 +83,5 @@ function M.configs()
       ["??"] = telescope_wrap "live_grep",
     },
   }
-
-  require("telescope").load_extension "file_browser"
 end
 return M

@@ -15,10 +15,25 @@ function M.configs()
 
   require("nvim-treesitter.install").ensure_installed "lua"
 
-  jasvim.onsave("*.lua", function()
-    require("stylua-nvim").format_file()
-  end)
-
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.lua",
+    callback = function(opts)
+      local buf = opts.buf
+      local Job = require "plenary.job"
+      local j = Job:new {
+        "stylua",
+        "-",
+        writer = vim.api.nvim_buf_get_lines(0, 0, -1, false),
+      }
+      local output = j:sync()
+      if j.code ~= 0 then
+        vim.schedule(function()
+          print "[stylua] Failed to process due to errors"
+        end)
+      end
+      vim.api.nvim_buf_set_lines(buf, 0, -1, false, output)
+    end,
+  })
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.lua",
     callback = function()

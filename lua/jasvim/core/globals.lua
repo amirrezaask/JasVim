@@ -37,11 +37,12 @@ function jasvim.modules(names)
     local mod = require(name)
     if type(mod) == "table" and mod.plugins then
       local plugins = nil
-      if type(mod.plugins) == 'function' then
-          plugins = mod.plugins()
-        else if type(mod.plugins) == 'table' then
-            plugins = mod.plugins
-          end
+      if type(mod.plugins) == "function" then
+        plugins = mod.plugins()
+      else
+        if type(mod.plugins) == "table" then
+          plugins = mod.plugins
+        end
       end
       for _, spec in ipairs(plugins) do
         jasvim.plugin(spec)

@@ -27,7 +27,7 @@ function ui.plugins()
 end
 
 function ui.configs()
-  vim.cmd ([[ colorscheme  ]] .. jasvim.colorscheme or 'nightfly')
+  vim.cmd([[ colorscheme  ]] .. jasvim.colorscheme or "nightfly")
 
   require("jasvim.ui.telescope").configs()
   require("jasvim.ui.statusline").configs()
