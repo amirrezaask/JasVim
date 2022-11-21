@@ -1,6 +1,6 @@
 -- Keymap helper
 -- Set leader to <Space>
-vim.g.mapleader = " "
+vim.g.mapleader = jasvim.leader or " "
 
 function jasvim.bind(spec)
   for mode, keys in pairs(spec) do

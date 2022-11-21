@@ -19,9 +19,12 @@ function M.configs()
     },
   }
 
-  jasvim.onsave("*.rs", function()
-    vim.lsp.buf.format()
-  end)
+  jasvim.onsave {
+    pattern = "*.rs",
+    callback = function()
+      vim.lsp.buf.format()
+    end
+}
 end
 
 function M.plugins()

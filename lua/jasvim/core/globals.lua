@@ -2,20 +2,51 @@ _G.jasvim = {}
 
 jasvim.version = "0.1.0"
 
-function jasvim.onsave(pattern, callback)
-  local augroup_name = ""
-  if type(pattern) == "table" then
-    augroup_name = table.concat(pattern, ",") .. "-onsave"
-  end
-  if type(pattern) == "string" then
-    augroup_name = pattern .. "-onsave"
+function jasvim.onsave(opts)
+  local pattern = opts.pattern
+  local callback = opts.callback
+  local group = opts.group
+  if group == nil then
+    local augroup_name = ""
+    if type(pattern) == "table" then
+      augroup_name = table.concat(pattern, ",") .. "-onsave"
+    end
+    if type(pattern) == "string" then
+      augroup_name = pattern .. "-onsave"
+    end
+    group = vim.api.nvim_create_augroup(augroup_name, {})
   end
   vim.api.nvim_create_autocmd("BufWritePost", {
-    group = vim.api.nvim_create_augroup(augroup_name, {}),
+    group = group,
     pattern = pattern,
     callback = callback,
   })
 end
+
+local function make_mapper(mode, default_opts)
+  return function(lhs, rhs, opts)
+    opts = opts or {}
+    opts = vim.tbl_extend("force", opts, default_opts)
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
+end
+
+jasvim.nnoremap = make_mapper("n", { noremap = true })
+jasvim.inoremap = make_mapper("n", { noremap = true })
+jasvim.vnoremap = make_mapper("n", { noremap = true })
+
+function jasvim.buf_vnoremap(buf, lhs, rhs, opts)
+  jasvim.vnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
+end
+
+function jasvim.buf_inoremap(buf, lhs, rhs, opts)
+  jasvim.inoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
+end
+
+function jasvim.buf_nnoremap(buf, lhs, rhs, opts)
+  jasvim.nnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
+end
+
 jasvim.window_height = function()
   return vim.api.nvim_win_get_height(0)
 end
@@ -35,9 +66,12 @@ end
 -- Enable modules
 -- @param names: table
 function jasvim.modules(names)
+  require "jasvim.core.keymaps"
+  require "jasvim.core.options"
+  require "jasvim.core.plugins"
   local has_impatient, _ = pcall(require, "impatient")
   if has_impatient then
-    require "impatient".enable_profile()
+    require("impatient").enable_profile()
   end
   for _, name in ipairs(names) do
     local mod = require(name)

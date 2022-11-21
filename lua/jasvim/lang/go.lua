@@ -7,12 +7,6 @@ function M.plugins()
   }
 end
 
-M.keymaps = {
-  v = {
-    ["<leader>at"] = "<cmd>GoAddTags<cr>",
-  },
-}
-
 function M.configs()
   require("nvim-treesitter.install").ensure_installed "go"
 
@@ -20,8 +14,22 @@ function M.configs()
     on_attach = lsp.on_attach,
   }
 
-  vim.api.nvim_create_autocmd("BufWritePost", {
+  local go_group = vim.api.nvim_create_augroup("GoModule", {})
+
+  vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.go",
+    callback = function(meta)
+      print("setting keymaps for " .. vim.inspect(meta))
+      -- jasvim.buf_vnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTags<CR>")
+      -- jasvim.vnoremap("<leader>lat", "<cmd>GoAddTags<CR>")
+      -- TODO: investigate why above does not work
+      vim.cmd(string.format([[ vnoremap <buffer> <leader>at <cmd>GoAddTags<CR>]], meta.buffer))
+    end,
+  })
+
+  jasvim.onsave {
+    pattern = "*.go",
+    group = go_group,
     callback = function(meta)
       local Job = require "plenary.job"
       local j = Job:new {
@@ -37,7 +45,7 @@ function M.configs()
         vim.api.nvim_buf_set_lines(meta.buf, 0, -1, false, output)
       end
     end,
-  })
+  }
 end
 
 return M
