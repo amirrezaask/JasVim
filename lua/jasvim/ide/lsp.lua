@@ -2,11 +2,6 @@ local M = {}
 
 function M.plugins()
   return {
-    {
-      "williamboman/mason.nvim",
-    },
-    "williamboman/mason-lspconfig.nvim",
-    "jayp0521/mason-nvim-dap.nvim",
 
     "neovim/nvim-lspconfig",
     {
@@ -17,6 +12,7 @@ function M.plugins()
       branch = "main",
     },
     "onsails/lspkind.nvim",
+    "williamboman/mason-lspconfig.nvim",
   }
 end
 

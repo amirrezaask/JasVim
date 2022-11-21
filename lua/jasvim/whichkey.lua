@@ -1,7 +1,6 @@
 local M = {}
 
 function M.configs()
-
   require("which-key").setup()
 end
 

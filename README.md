@@ -13,6 +13,12 @@ git clone https://github.com/amirrezaask/jasvim ~/.config/nvim --depth 1
 - Telescope fuzzy finders
 - Tmux integration
 
+## How it's built
+jasvim is built around modules,
+modules are normal lua modules that are tables
+and have to attributes, `plugins` function or table that is used for packer spec, `configs` function 
+that configures plugins for respected module
+
 ## Screenshots
 ![Start screen](https://raw.github.com/amirrezaask/jasvim/master/screenshots/0.png)
 ![fuzzy finder](https://raw.github.com/amirrezaask/jasvim/master/screenshots/1.png)

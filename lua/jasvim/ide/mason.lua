@@ -5,7 +5,11 @@ function M.configs()
 end
 
 function M.plugins()
-  return {}
+  return {
+    {
+      "williamboman/mason.nvim",
+    },
+  }
 end
 
 return M
