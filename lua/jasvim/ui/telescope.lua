@@ -1,7 +1,35 @@
+local dropdown = require("telescope.themes").get_dropdown()
+
+local pickers_settings = {
+  find_files = {
+    theme = dropdown,
+  },
+  oldfiles = {
+    theme = dropdown,
+  },
+  git_files = {
+    theme = dropdown,
+  },
+  live_grep = {
+    preview = true,
+  },
+  help_tags = {
+    theme = dropdown,
+  },
+  commands = {
+    theme = dropdown,
+    prompt_title = "Command Palete",
+  },
+  command_palete = {
+    theme = dropdown,
+    prompt_title = "Command Palete",
+  },
+}
+
 local _mt = {
   __call = function(tbl, name, user_opts)
     return function()
-      local opts = tbl.get_default_telescope_picker_opts()[name] or {}
+      local opts = pickers_settings[name] or {}
       user_opts = user_opts or {}
       local theme = opts.theme or {}
       if tbl[name] then
@@ -93,30 +121,6 @@ function M.command_palete(opts)
       end,
     })
     :find()
-end
-function M.get_default_telescope_picker_opts()
-  local dropdown = require("telescope.themes").get_dropdown()
-  return {
-    find_files = {
-      theme = dropdown,
-    },
-    oldfiles = {
-      theme = dropdown,
-    },
-    git_files = {
-      theme = dropdown,
-    },
-    live_grep = {
-      preview = true,
-    },
-    help_tags = {
-      theme = dropdown,
-    },
-    commands = {
-      theme = dropdown,
-      prompt_title = "Command Palete",
-    },
-  }
 end
 
 function M.configs()

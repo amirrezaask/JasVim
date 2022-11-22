@@ -23,6 +23,9 @@ function M.configs()
       jasvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
       jasvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
       jasvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
+      jasvim.buf_nnoremap(meta.buffer, "<leader>p", require('jasvim.ui.telescope')('command_palete', {
+            pattern = 'Go',
+        }), { remap = true })
     end,
   })
 
