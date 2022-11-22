@@ -78,8 +78,8 @@ function M.configs()
       ["<leader>fg"] = { telescope_wrap "git_files", desc = "Git Files" },
       ["<leader>fr"] = { telescope_wrap "oldfiles", desc = "Recent Files" },
       ["<leader>fh"] = { telescope_wrap "help_tags", desc = "Help" },
+      ["<leader>p"] = { telescope_wrap "commands", desc = "Commands" },
       ["<leader>fc"] = { telescope_wrap "commands", desc = "Commands" },
-
       ["??"] = telescope_wrap "live_grep",
     },
   }

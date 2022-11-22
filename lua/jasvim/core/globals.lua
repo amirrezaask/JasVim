@@ -2,6 +2,15 @@ _G.jasvim = {}
 
 jasvim.version = "0.1.0"
 
+jasvim.R = function(name)
+  package.loaded[name] = nil
+  return require(name)
+end
+
+jasvim.P = function(obj)
+  print(vim.inspect(obj))
+end
+
 function jasvim.onsave(opts)
   local pattern = opts.pattern
   local callback = opts.callback
@@ -32,8 +41,8 @@ local function make_mapper(mode, default_opts)
 end
 
 jasvim.nnoremap = make_mapper("n", { noremap = true })
-jasvim.inoremap = make_mapper("n", { noremap = true })
-jasvim.vnoremap = make_mapper("n", { noremap = true })
+jasvim.inoremap = make_mapper("i", { noremap = true })
+jasvim.vnoremap = make_mapper("v", { noremap = true })
 
 function jasvim.buf_vnoremap(buf, lhs, rhs, opts)
   jasvim.vnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))

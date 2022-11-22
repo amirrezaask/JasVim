@@ -23,8 +23,8 @@ function M.configs()
     pattern = "*.rs",
     callback = function()
       vim.lsp.buf.format()
-    end
-}
+    end,
+  }
 end
 
 function M.plugins()

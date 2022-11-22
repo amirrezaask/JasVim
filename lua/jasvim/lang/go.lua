@@ -3,8 +3,15 @@ local M = {}
 function M.plugins()
   return {
     "nvim-lua/plenary.nvim",
-    "fatih/vim-go",
+    "ray-x/go.nvim",
   }
+end
+
+function M.commands()
+  local go_commands = vim.fn.getcompletion("Go", "command")
+  vim.ui.select(go_commands, { prompt = "Run Go Command: " }, function(cmd)
+    vim.cmd(cmd)
+  end)
 end
 
 function M.configs()
@@ -14,16 +21,16 @@ function M.configs()
     on_attach = lsp.on_attach,
   }
 
+  require("go").setup()
   local go_group = vim.api.nvim_create_augroup("GoModule", {})
 
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.go",
     callback = function(meta)
-      print("setting keymaps for " .. vim.inspect(meta))
-      -- jasvim.buf_vnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTags<CR>")
-      -- jasvim.vnoremap("<leader>lat", "<cmd>GoAddTags<CR>")
-      -- TODO: investigate why above does not work
-      vim.cmd(string.format([[ vnoremap <buffer> <leader>at <cmd>GoAddTags<CR>]], meta.buffer))
+      jasvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
+      jasvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
+      jasvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
+      jasvim.buf_nnoremap(meta.buffer, "<leader>p", M.commands, { remap = true })
     end,
   })
 

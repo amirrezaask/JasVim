@@ -3,7 +3,6 @@ local ui = {}
 function ui.plugins()
   return jasvim.append(
     {
-      "stevearc/dressing.nvim",
       "sainnhe/sonokai",
       "folke/tokyonight.nvim",
       "ellisonleao/gruvbox.nvim",
@@ -22,6 +21,7 @@ function ui.plugins()
     require("jasvim.ui.telescope").plugins(),
     require("jasvim.ui.splits").plugins(),
     require("jasvim.ui.statusline").plugins(),
+    require("jasvim.ui.dressing").plugins,
     require("jasvim.ui.dashboard").plugins()
   )
 end
@@ -33,12 +33,12 @@ function ui.configs()
   require("jasvim.ui.statusline").configs()
   require("jasvim.ui.dashboard").configs()
   require("jasvim.ui.splits").configs()
+  require("jasvim.ui.dressing").configs()
 
-  require("dressing").setup {}
   require("nvim-tree").setup()
   jasvim.bind {
     n = {
-      ["<leader>l"] = "<cmd>NvimTreeToggle<CR>",
+      ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
     },
   }
 end
