@@ -3,6 +3,9 @@ local dropdown = require("telescope.themes").get_dropdown()
 local pickers_settings = {
   find_files = {
     theme = dropdown,
+    layout_config = {
+      height = math.ceil(jasvim.window_height() * 0.4),
+    },
   },
   oldfiles = {
     theme = dropdown,
@@ -19,10 +22,16 @@ local pickers_settings = {
   commands = {
     theme = dropdown,
     prompt_title = "Command Palete",
+layout_config = {
+        height = math.ceil(jasvim.window_height()*0.4),
+      },
   },
   command_palete = {
     theme = dropdown,
     prompt_title = "Command Palete",
+layout_config = {
+        height = math.ceil(jasvim.window_height()*0.4),
+      },
   },
 }
 
@@ -129,9 +138,7 @@ function M.configs()
       preview = false,
       prompt_prefix = "🔍 ",
       layout_config = {
-        center = {
-          height = math.ceil(jasvim.window_height() * 0.8),
-        },
+        height = math.ceil(jasvim.window_height() * 0.4),
       },
     },
     extensions = {
@@ -154,7 +161,7 @@ function M.configs()
       ["<leader>fg"] = { M "git_files", desc = "Git Files" },
       ["<leader>fr"] = { M "oldfiles", desc = "Recent Files" },
       ["<leader>fh"] = { M "help_tags", desc = "Help" },
-      ["<leader>p"] =  { M "command_palete", desc = "Command palete" },
+      ["<leader>p"] = { M "command_palete", desc = "Command palete" },
       ["<leader>fc"] = { M "commands", desc = "Command palete" },
       ["??"] = M "live_grep",
     },
