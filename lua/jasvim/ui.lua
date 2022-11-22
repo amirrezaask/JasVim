@@ -18,6 +18,10 @@ function ui.plugins()
         "j-hui/fidget.nvim",
       },
     },
+    {
+      'glepnir/zephyr-nvim',
+      requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
+    },
     require("jasvim.ui.telescope").plugins(),
     require("jasvim.ui.splits").plugins(),
     require("jasvim.ui.statusline").plugins(),

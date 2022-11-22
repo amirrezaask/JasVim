@@ -1,6 +1,6 @@
 require "jasvim.core"
 
-jasvim.colorscheme = "tokyonight-night"
+jasvim.colorscheme = "zephyr"
 jasvim.leader = " "
 
 jasvim.modules {
