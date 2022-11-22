@@ -7,13 +7,6 @@ function M.plugins()
   }
 end
 
-function M.commands()
-  local go_commands = vim.fn.getcompletion("Go", "command")
-  vim.ui.select(go_commands, { prompt = "Run Go Command: " }, function(cmd)
-    vim.cmd(cmd)
-  end)
-end
-
 function M.configs()
   require("nvim-treesitter.install").ensure_installed "go"
 
@@ -30,7 +23,6 @@ function M.configs()
       jasvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
       jasvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
       jasvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
-      jasvim.buf_nnoremap(meta.buffer, "<leader>p", M.commands, { remap = true })
     end,
   })
 
