@@ -2,8 +2,7 @@ local M = {}
 
 function M.plugins()
   return {
-    "nvim-lua/plenary.nvim",
-    "ray-x/go.nvim",
+    { "ray-x/go.nvim", requires = { "nvim-lua/plenary.nvim" }}
   }
 end
 

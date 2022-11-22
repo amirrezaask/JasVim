@@ -150,7 +150,7 @@ function M.configs()
     n = {
       ["<leader><leader>"] = { M "find_files", desc = "Find Files" },
       ["<leader>ff"] = { M "find_files", desc = "Find Files" },
-      ["<leader>fd"] = { M("find_files", { cwd = "~/dev/dotfiles" }), desc = "Find Dotfile" },
+      ["<leader>fn"] = { M("find_files", { cwd = "~/.config/nvim" }), desc = "Neovim Config" },
       ["<leader>fg"] = { M "git_files", desc = "Git Files" },
       ["<leader>fr"] = { M "oldfiles", desc = "Recent Files" },
       ["<leader>fh"] = { M "help_tags", desc = "Help" },
