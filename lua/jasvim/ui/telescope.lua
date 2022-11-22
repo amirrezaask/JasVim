@@ -154,7 +154,7 @@ function M.configs()
       ["<leader>fg"] = { M "git_files", desc = "Git Files" },
       ["<leader>fr"] = { M "oldfiles", desc = "Recent Files" },
       ["<leader>fh"] = { M "help_tags", desc = "Help" },
-      ["<leader>p"] = { M "command_palete", desc = "Command palete" },
+      ["<leader>p"] =  { M "command_palete", desc = "Command palete" },
       ["<leader>fc"] = { M "commands", desc = "Command palete" },
       ["??"] = M "live_grep",
     },

@@ -22,7 +22,8 @@ function ui.plugins()
     require("jasvim.ui.splits").plugins(),
     require("jasvim.ui.statusline").plugins(),
     require("jasvim.ui.dressing").plugins,
-    require("jasvim.ui.dashboard").plugins()
+    require("jasvim.ui.dashboard").plugins(),
+    require("jasvim.ui.noice").plugins
   )
 end
 
@@ -34,6 +35,7 @@ function ui.configs()
   require("jasvim.ui.dashboard").configs()
   require("jasvim.ui.splits").configs()
   require("jasvim.ui.dressing").configs()
+  require("jasvim.ui.noice").configs()
 
   require("nvim-tree").setup()
   jasvim.bind {
