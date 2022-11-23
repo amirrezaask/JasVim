@@ -129,3 +129,7 @@ function jasvim.append(...)
   end
   return out
 end
+
+function jasvim.reload()
+  vim.cmd [[ so $MYVIMRC ]]
+end

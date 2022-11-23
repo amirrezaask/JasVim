@@ -12,6 +12,7 @@ function lang.configs()
   require("jasvim.lang.zig").configs()
   require("jasvim.lang.yaml").configs()
   require("jasvim.lang.python").configs()
+  require("jasvim.lang.org").configs()
 end
 
 function lang.plugins()
@@ -26,7 +27,8 @@ function lang.plugins()
     require("jasvim.lang.haskell").plugins(),
     require("jasvim.lang.zig").plugins(),
     require("jasvim.lang.yaml").plugins(),
-    require("jasvim.lang.python").plugins()
+    require("jasvim.lang.python").plugins(),
+    require("jasvim.lang.org").plugins
   )
 end
 
