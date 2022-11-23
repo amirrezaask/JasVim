@@ -3,6 +3,7 @@ require "jasvim.core"
 jasvim.colorscheme = "zephyr"
 jasvim.transparent = true
 jasvim.leader = " "
+jasvim.fuzzy_finder = 'fzf'
 
 jasvim.modules {
   "jasvim.ui",
