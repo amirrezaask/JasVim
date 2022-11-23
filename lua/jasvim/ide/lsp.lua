@@ -33,7 +33,8 @@ function M.configs()
         -- ["<c-d>"] = { vim.diagnostic.open_float, desc = "Show current line diagnostics", buffer = bufnr },
         ["[d"] = { vim.diagnostic.goto_prev, desc = "Goto previous diagnostic", buffer = bufnr },
         ["]d"] = { vim.diagnostic.goto_next, desc = "Goto next diagnostic", buffer = bufnr },
-        ["C"] = { vim.lsp.buf.code_action, desc = "Code actions", buffer = bufnr },
+        ["C"] = { vim.lsp.buf.code_action, desc = "Code Actions", buffer = bufnr },
+        ['<leader>ca'] = {vim.lsp.buf.code_action, desc = "Code Actions", buffer = bufnr},
         ["<C-s>"] = { vim.lsp.buf.signature_help, desc = "Toggle Signature help", buffer = bufnr },
       },
       i = {

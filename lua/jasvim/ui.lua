@@ -31,8 +31,16 @@ function ui.plugins()
   )
 end
 
+function jasvim.make_transparent()
+  vim.cmd [[ hi Normal guibg=none ]]
+end
+
 function ui.configs()
   vim.cmd([[ colorscheme  ]] .. jasvim.colorscheme or "nightfly")
+
+  if jasvim.transparent then
+    jasvim.make_transparent()
+  end
 
   require("jasvim.ui.telescope").configs()
   require("jasvim.ui.statusline").configs()
