@@ -7,7 +7,7 @@ local _mt = {
         find_files = {
           theme = dropdown,
           layout_config = {
-            height = math.ceil(jvim.window_height() * 0.4),
+            height = math.ceil(jvim.window_height() * 0.5),
           },
         },
         oldfiles = {
@@ -18,6 +18,7 @@ local _mt = {
         },
         live_grep = {
           preview = true,
+          theme = dropdown,
         },
         help_tags = {
           theme = dropdown,
@@ -141,7 +142,7 @@ function M.configs()
       preview = false,
       prompt_prefix = "🔍 ",
       layout_config = {
-        height = math.ceil(jvim.window_height() * 0.4),
+        height = math.ceil(jvim.window_height() * 0.7),
       },
     },
     extensions = {

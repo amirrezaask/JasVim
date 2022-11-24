@@ -2,7 +2,7 @@
 require "jasvim.core"
 
 -- Set your default colorscheme
-jvim.colorscheme = "dracula"
+jvim.colorscheme = "tokyonight-night"
 
 -- Do you want your jasvim background to be transparent ?
 jvim.transparent = false
