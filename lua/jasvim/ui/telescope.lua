@@ -1,43 +1,43 @@
-local dropdown = require("telescope.themes").get_dropdown()
-
-local pickers_settings = {
-  find_files = {
-    theme = dropdown,
-    layout_config = {
-      height = math.ceil(jasvim.window_height() * 0.4),
-    },
-  },
-  oldfiles = {
-    theme = dropdown,
-  },
-  git_files = {
-    theme = dropdown,
-  },
-  live_grep = {
-    preview = true,
-  },
-  help_tags = {
-    theme = dropdown,
-  },
-  commands = {
-    theme = dropdown,
-    prompt_title = "Command Palete",
-layout_config = {
-        height = math.ceil(jasvim.window_height()*0.4),
-      },
-  },
-  command_palete = {
-    theme = dropdown,
-    prompt_title = "Command Palete",
-layout_config = {
-        height = math.ceil(jasvim.window_height()*0.4),
-      },
-  },
-}
-
 local _mt = {
   __call = function(tbl, name, user_opts)
     return function()
+      local dropdown = require("telescope.themes").get_dropdown()
+
+      local pickers_settings = {
+        find_files = {
+          theme = dropdown,
+          layout_config = {
+            height = math.ceil(jasvim.window_height() * 0.4),
+          },
+        },
+        oldfiles = {
+          theme = dropdown,
+        },
+        git_files = {
+          theme = dropdown,
+        },
+        live_grep = {
+          preview = true,
+        },
+        help_tags = {
+          theme = dropdown,
+        },
+        commands = {
+          theme = dropdown,
+          prompt_title = "Command Palete",
+          layout_config = {
+            height = math.ceil(jasvim.window_height() * 0.4),
+          },
+        },
+        command_palete = {
+          theme = dropdown,
+          prompt_title = "Command Palete",
+          layout_config = {
+            height = math.ceil(jasvim.window_height() * 0.4),
+          },
+        },
+      }
+
       local opts = pickers_settings[name] or {}
       user_opts = user_opts or {}
       local theme = opts.theme or {}

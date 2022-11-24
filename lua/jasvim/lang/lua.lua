@@ -15,7 +15,7 @@ function M.configs()
 
   require("nvim-treesitter.install").ensure_installed "lua"
 
-  vim.api.nvim_create_autocmd("BufWritePost", {
+  vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function(opts)
       local buf = opts.buf
