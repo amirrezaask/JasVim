@@ -1,7 +1,7 @@
 local M = {}
 
 function M.configs()
-  jasvim.L("mason").setup {}
+  jvim.L("mason").setup {}
 end
 
 function M.plugins()

@@ -19,10 +19,10 @@ function M.configs()
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.go",
     callback = function(meta)
-      jasvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
-      jasvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
-      jasvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
-      jasvim.buf_nnoremap(
+      jvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
+      jvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
+      jvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
+      jvim.buf_nnoremap(
         meta.buffer,
         "<leader>p",
         require "jasvim.ui.telescope"("command_palete", {
@@ -33,7 +33,7 @@ function M.configs()
     end,
   })
 
-  jasvim.onsave {
+  jvim.onsave {
     pattern = "*.go",
     group = go_group,
     callback = function(meta)

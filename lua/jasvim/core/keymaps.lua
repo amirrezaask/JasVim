@@ -1,8 +1,8 @@
 -- Keymap helper
 -- Set leader to <Space>
-vim.g.mapleader = jasvim.leader or " "
+vim.g.mapleader = jvim.leader or " "
 
-function jasvim.bind(spec)
+function jvim.bind(spec)
   for mode, keys in pairs(spec) do
     for key, binding in pairs(keys) do
       if type(binding) == "string" or type(binding) == "function" then
@@ -20,7 +20,7 @@ function jasvim.bind(spec)
 end
 
 -- [[ Basic keymaps
-jasvim.bind {
+jvim.bind {
   n = {
     ["Q"] = "<NOP>",
     [";,"] = ":",

@@ -21,16 +21,19 @@ function M.configs()
 
   require("fidget").setup()
 
+  require("mason-lspconfig").setup {
+    automatic_installation = true,
+  }
+
   function lsp.on_attach(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    jasvim.bind {
+    jvim.bind {
       n = {
         gd = { vim.lsp.buf.definition, desc = "Goto definition", buffer = bufnr },
         gi = { vim.lsp.buf.implementation, desc = "Goto implementations", buffer = bufnr },
         gr = { vim.lsp.buf.references, desc = "Goto references", buffer = bufnr },
         R = { vim.lsp.buf.rename, desc = "Rename symbol under cursor", buffer = bufnr },
         K = { vim.lsp.buf.hover, desc = "Hover docs under cursor", buffer = bufnr },
-        -- ["<c-d>"] = { vim.diagnostic.open_float, desc = "Show current line diagnostics", buffer = bufnr },
         ["[d"] = { vim.diagnostic.goto_prev, desc = "Goto previous diagnostic", buffer = bufnr },
         ["]d"] = { vim.diagnostic.goto_next, desc = "Goto next diagnostic", buffer = bufnr },
         ["C"] = { vim.lsp.buf.code_action, desc = "Code Actions", buffer = bufnr },

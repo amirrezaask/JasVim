@@ -1,10 +1,12 @@
 local ui = {}
 
 function ui.plugins()
-  local plugins = jasvim.append(
+  local plugins = jvim.append(
     {
       "sainnhe/sonokai",
       "folke/tokyonight.nvim",
+      "martinsione/darkplus.nvim",
+      "Mofiqul/dracula.nvim",
       "ellisonleao/gruvbox.nvim",
       "bluz71/vim-nightfly-colors",
       {
@@ -28,24 +30,24 @@ function ui.plugins()
     require("jasvim.ui.dashboard").plugins(),
     require("jasvim.ui.noice").plugins
   )
-  jasvim.fuzzy_finder = jasvim.fuzzy_finder or "telescope"
-  if jasvim.fuzzy_finder == "fzf" then
-    plugins = jasvim.append(plugins, require("jasvim.ui.fzf").plugins)
-  elseif jasvim.fuzzy_finder == "telescope" then
-    plugins = jasvim.append(plugins, require("jasvim.ui.telescope").plugins())
+  jvim.fuzzy_finder = jvim.fuzzy_finder or "telescope"
+  if jvim.fuzzy_finder == "fzf" then
+    plugins = jvim.append(plugins, require("jasvim.ui.fzf").plugins)
+  elseif jvim.fuzzy_finder == "telescope" then
+    plugins = jvim.append(plugins, require("jasvim.ui.telescope").plugins())
   end
   return plugins
 end
 
-function jasvim.make_transparent()
+function jvim.make_transparent()
   vim.cmd [[ hi Normal guibg=none ]]
 end
 
 function ui.configs()
-  vim.cmd([[ colorscheme  ]] .. jasvim.colorscheme or "nightfly")
+  vim.cmd([[ colorscheme  ]] .. jvim.colorscheme or "nightfly")
 
-  if jasvim.transparent then
-    jasvim.make_transparent()
+  if jvim.transparent then
+    jvim.make_transparent()
   end
 
   require("jasvim.ui.statusline").configs()
@@ -53,15 +55,15 @@ function ui.configs()
   require("jasvim.ui.splits").configs()
   require("jasvim.ui.dressing").configs()
   require("jasvim.ui.noice").configs()
-  jasvim.fuzzy_finder = jasvim.fuzzy_finder or "telescope"
-  if jasvim.fuzzy_finder == "fzf" then
+  jvim.fuzzy_finder = jvim.fuzzy_finder or "telescope"
+  if jvim.fuzzy_finder == "fzf" then
     require("jasvim.ui.fzf").configs()
-  elseif jasvim.fuzzy_finder == "telescope" then
+  elseif jvim.fuzzy_finder == "telescope" then
     require("jasvim.ui.telescope").configs()
   end
 
   require("nvim-tree").setup()
-  jasvim.bind {
+  jvim.bind {
     n = {
       ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
     },

@@ -7,7 +7,7 @@ local _mt = {
         find_files = {
           theme = dropdown,
           layout_config = {
-            height = math.ceil(jasvim.window_height() * 0.4),
+            height = math.ceil(jvim.window_height() * 0.4),
           },
         },
         oldfiles = {
@@ -26,14 +26,14 @@ local _mt = {
           theme = dropdown,
           prompt_title = "Command Palete",
           layout_config = {
-            height = math.ceil(jasvim.window_height() * 0.4),
+            height = math.ceil(jvim.window_height() * 0.4),
           },
         },
         command_palete = {
           theme = dropdown,
           prompt_title = "Command Palete",
           layout_config = {
-            height = math.ceil(jasvim.window_height() * 0.4),
+            height = math.ceil(jvim.window_height() * 0.4),
           },
         },
       }
@@ -138,7 +138,7 @@ function M.configs()
       preview = false,
       prompt_prefix = "🔍 ",
       layout_config = {
-        height = math.ceil(jasvim.window_height() * 0.4),
+        height = math.ceil(jvim.window_height() * 0.4),
       },
     },
     extensions = {
@@ -153,7 +153,7 @@ function M.configs()
   }
   require("telescope").load_extension "fzf"
 
-  jasvim.bind {
+  jvim.bind {
     n = {
       ["<leader><leader>"] = { M "find_files", desc = "Find Files" },
       ["<leader>ff"] = { M "find_files", desc = "Find Files" },

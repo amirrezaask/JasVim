@@ -1,7 +1,7 @@
 local M = {}
 
 function M.plugins()
-  return jasvim.append({
+  return jvim.append({
     "pbrisbin/vim-mkdir",
     "sheerun/vim-polyglot",
     "szw/vim-maximizer",
@@ -9,6 +9,7 @@ function M.plugins()
     "towolf/vim-helm",
     "tpope/vim-surround",
     "junegunn/vim-easy-align",
+    "kevinhwang91/nvim-bqf",
     "windwp/nvim-autopairs",
     { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*", requires = "rafamadriz/friendly-snippets" },
     "junegunn/goyo.vim",

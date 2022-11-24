@@ -12,7 +12,7 @@ function M.configs()
     direction = "vertical",
   }
 
-  jasvim.bind {
+  jvim.bind {
     n = {
       ["<C-`>"] = "<cmd>ToggleTerm<CR>",
     },
@@ -22,7 +22,7 @@ function M.configs()
   }
 end
 function M.plugins()
-  jasvim.plugin {
+  jvim.plugin {
     "akinsho/toggleterm.nvim",
     tag = "*",
   }

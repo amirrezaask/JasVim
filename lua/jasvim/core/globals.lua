@@ -1,17 +1,17 @@
-_G.jasvim = {}
+_G.jvim = {}
 
-jasvim.version = "0.1.0"
+jvim.version = "0.1.0"
 
-jasvim.R = function(name)
+jvim.R = function(name)
   package.loaded[name] = nil
   return require(name)
 end
 
-jasvim.P = function(obj)
+jvim.P = function(obj)
   print(vim.inspect(obj))
 end
 
-function jasvim.onsave(opts)
+function jvim.onsave(opts)
   local pattern = opts.pattern
   local callback = opts.callback
   local group = opts.group
@@ -40,31 +40,31 @@ local function make_mapper(mode, default_opts)
   end
 end
 
-jasvim.nnoremap = make_mapper("n", { noremap = true })
-jasvim.inoremap = make_mapper("i", { noremap = true })
-jasvim.vnoremap = make_mapper("v", { noremap = true })
+jvim.nnoremap = make_mapper("n", { noremap = true })
+jvim.inoremap = make_mapper("i", { noremap = true })
+jvim.vnoremap = make_mapper("v", { noremap = true })
 
-function jasvim.buf_vnoremap(buf, lhs, rhs, opts)
-  jasvim.vnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
+function jvim.buf_vnoremap(buf, lhs, rhs, opts)
+  jvim.vnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
 end
 
-function jasvim.buf_inoremap(buf, lhs, rhs, opts)
-  jasvim.inoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
+function jvim.buf_inoremap(buf, lhs, rhs, opts)
+  jvim.inoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
 end
 
-function jasvim.buf_nnoremap(buf, lhs, rhs, opts)
-  jasvim.nnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
+function jvim.buf_nnoremap(buf, lhs, rhs, opts)
+  jvim.nnoremap(lhs, rhs, vim.tbl_extend("force", { buffer = buf }, opts))
 end
 
-jasvim.window_height = function()
+jvim.window_height = function()
   return vim.api.nvim_win_get_height(0)
 end
 
-jasvim.window_width = function()
+jvim.window_width = function()
   return vim.api.nvim_win_get_width(0)
 end
 
-function jasvim.L(name)
+function jvim.L(name)
   local exists, _ = pcall(require, name)
   if exists then
     return require(name)
@@ -74,7 +74,7 @@ end
 
 -- Enable modules
 -- @param names: table
-function jasvim.modules(names)
+function jvim.modules(names)
   require "jasvim.core.keymaps"
   require "jasvim.core.options"
   require "jasvim.core.plugins"
@@ -94,7 +94,7 @@ function jasvim.modules(names)
         end
       end
       for _, spec in ipairs(plugins) do
-        jasvim.plugin(spec)
+        jvim.plugin(spec)
       end
     end
   end
@@ -108,7 +108,7 @@ function jasvim.modules(names)
     local mod = require(name)
     if type(mod) == "table" and mod.keymaps then
       if type(mod.keymaps) == "table" then
-        jasvim.bind(mod.keymaps)
+        jvim.bind(mod.keymaps)
       else
         if type(mod.keymaps) == "function" then
           mod.keymaps()
@@ -118,7 +118,17 @@ function jasvim.modules(names)
   end
 end
 
-function jasvim.append(...)
+function jvim.start()
+  jvim.modules {
+    "jasvim.ui",
+    "jasvim.editor",
+    "jasvim.ide",
+    "jasvim.lang",
+    "jasvim.whichkey",
+  }
+end
+
+function jvim.append(...)
   local out = {}
   for _, t in ipairs { ... } do
     if type(t) == "table" then
@@ -130,6 +140,6 @@ function jasvim.append(...)
   return out
 end
 
-function jasvim.reload()
+function jvim.reload()
   vim.cmd [[ so $MYVIMRC ]]
 end

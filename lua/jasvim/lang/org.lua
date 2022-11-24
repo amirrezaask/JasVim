@@ -1,14 +1,14 @@
 local M = {}
 
-M.plugins = {
-  {
+function M.plugins()
+  return {
     "nvim-orgmode/orgmode",
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("orgmode").setup {}
     end,
-  },
-}
+  }
+end
 
 function M.configs()
   require("orgmode").setup_ts_grammar()

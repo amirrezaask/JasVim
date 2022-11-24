@@ -14,7 +14,7 @@ packer_ensure()
 
 -- Now we install plugins
 
-jasvim.plugin = require("packer").use
+jvim.plugin = require("packer").use
 
 require("packer").init {
   display = {
@@ -22,5 +22,5 @@ require("packer").init {
   },
 }
 
-jasvim.plugin "wbthomason/packer.nvim"
-jasvim.plugin "lewis6991/impatient.nvim"
+jvim.plugin "wbthomason/packer.nvim"
+jvim.plugin "lewis6991/impatient.nvim"

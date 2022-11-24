@@ -16,7 +16,7 @@ function M.plugins()
 end
 
 function M.configs()
-  local cmp = jasvim.L "cmp"
+  local cmp = jvim.L "cmp"
 
   cmp.setup {
     snippet = {
