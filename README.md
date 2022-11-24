@@ -15,6 +15,12 @@ git clone https://github.com/amirrezaask/jasvim ~/.config/nvim --depth 1
 - DAP debuggers integrated
 - Terminal emulator using `toggleterm`
 
+## Keymaps
+| Key | Description |
+| --- | ----------- |
+| <C-`> | Toggle terminal emulator |
+| SPC SPC | find files |
+
 ## How it's built
 JasVim is built with isolated modules that can be enabled or disabled by the user.
 each module should have following structure:
