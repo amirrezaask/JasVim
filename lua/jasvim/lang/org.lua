@@ -16,8 +16,6 @@ function M.configs()
     org_agenda_files = {},
     org_default_notes_file = "",
   }
-
 end
-
 
 return M

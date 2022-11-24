@@ -25,7 +25,7 @@ function M.configs()
       ["<A-j>"] = require("smart-splits").resize_down,
       ["<A-k>"] = require("smart-splits").resize_up,
       ["<A-l>"] = require("smart-splits").resize_right,
-    }
+    },
   }
 end
 

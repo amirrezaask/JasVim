@@ -16,7 +16,7 @@ function M.configs()
       ["<leader>fh"] = { "<cmd>Helptags<CR>", desc = "Help" },
       ["<leader>p"] = { "<cmd>Commands<cr>", desc = "Command palete" },
       ["<leader>fc"] = { "<cmd>Commands<cr>", desc = "Command palete" },
-      ["??"] = { '<cmd>Rg<cr>', desc = 'live grep'},
+      ["??"] = { "<cmd>Rg<cr>", desc = "live grep" },
     },
   }
 end

@@ -10,7 +10,6 @@ M.plugins = {
   },
 }
 
-function M.configs()
-end
+function M.configs() end
 
 return M

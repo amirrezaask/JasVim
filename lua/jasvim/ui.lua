@@ -28,7 +28,7 @@ function ui.plugins()
     require("jasvim.ui.dashboard").plugins(),
     require("jasvim.ui.noice").plugins
   )
-  jasvim.fuzzy_finder = jasvim.fuzzy_finder or 'telescope'
+  jasvim.fuzzy_finder = jasvim.fuzzy_finder or "telescope"
   if jasvim.fuzzy_finder == "fzf" then
     plugins = jasvim.append(plugins, require("jasvim.ui.fzf").plugins)
   elseif jasvim.fuzzy_finder == "telescope" then
@@ -53,7 +53,7 @@ function ui.configs()
   require("jasvim.ui.splits").configs()
   require("jasvim.ui.dressing").configs()
   require("jasvim.ui.noice").configs()
-  jasvim.fuzzy_finder = jasvim.fuzzy_finder or 'telescope'
+  jasvim.fuzzy_finder = jasvim.fuzzy_finder or "telescope"
   if jasvim.fuzzy_finder == "fzf" then
     require("jasvim.ui.fzf").configs()
   elseif jasvim.fuzzy_finder == "telescope" then
