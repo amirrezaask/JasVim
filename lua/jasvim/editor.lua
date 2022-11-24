@@ -7,7 +7,6 @@ function M.plugins()
     "szw/vim-maximizer",
     "fladson/vim-kitty",
     "towolf/vim-helm",
-    "jansedivy/jai.vim",
     "tpope/vim-surround",
     "junegunn/vim-easy-align",
     "windwp/nvim-autopairs",

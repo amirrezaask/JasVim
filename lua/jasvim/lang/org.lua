@@ -1,9 +1,9 @@
 local M = {}
 
 M.plugins = {
-  { "nvim-treesitter/nvim-treesitter" },
   {
     "nvim-orgmode/orgmode",
+    requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("orgmode").setup {}
     end,

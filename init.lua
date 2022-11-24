@@ -1,7 +1,7 @@
 require "jasvim.core"
 
 jasvim.colorscheme = "zephyr"
-jasvim.transparent = true
+jasvim.transparent = false
 jasvim.leader = " "
 jasvim.fuzzy_finder = "telescope" -- it can be fzf | telescope
 

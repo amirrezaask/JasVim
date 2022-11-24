@@ -17,6 +17,7 @@ end
 
 function lang.plugins()
   return jasvim.append(
+    { "jansedivy/jai.vim" },
     require("jasvim.lang.lua").plugins(),
     require("jasvim.lang.json").plugins(),
     require("jasvim.lang.go").plugins(),

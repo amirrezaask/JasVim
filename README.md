@@ -1,6 +1,4 @@
-# JasVim
-
-## Take on PDE: Personalized Developer Environment
+# JasVim: Personalized Developer Environment
 
 ## How to install
 ```bash
