@@ -1,25 +1,28 @@
-# JasVim: Personalized Developer Environment
+# JasVim
 
 ## How to install
 ### Linux & macOS
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/amirrezaask/jasvim/master/install.sh)
 ```
-wait for it to exit and ignore any error.
-
 ## Features
 - LSP + Automatic install of LSP servers
 - Tree file explorer using `nvim-tree`
-- `Telescope` fuzzy finders
+- `Telescope` fuzzy finder + `Fzf` fuzzy finder
 - Tmux integration
-- DAP debuggers integrated
+- DAP debuggers integrated + Automatic installation of DAP servers
 - Terminal emulator using `toggleterm`
+any many improvements to vanilla neovim experience
 
 ## Keymaps
 | Key | Description |
 | --- | ----------- |
 | <C-`> | Toggle terminal emulator |
 | SPC SPC | find files |
+| SPC f f | find files |
+| SPC f g | git files |
+| SPC p | command palete |
+| ?? | live grep |
 
 ## How it's built
 JasVim is built with isolated modules that can be enabled or disabled by the user.

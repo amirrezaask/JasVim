@@ -37,6 +37,7 @@ function M.configs()
         gr = { vim.lsp.buf.references, desc = "Goto references", buffer = bufnr },
         R = { vim.lsp.buf.rename, desc = "Rename symbol under cursor", buffer = bufnr },
         K = { vim.lsp.buf.hover, desc = "Hover docs under cursor", buffer = bufnr },
+        ["<leader>lf"] = { vim.lsp.buf.format, desc = "format document", buffer = bufnr },
         ["[d"] = { vim.diagnostic.goto_prev, desc = "Goto previous diagnostic", buffer = bufnr },
         ["]d"] = { vim.diagnostic.goto_next, desc = "Goto next diagnostic", buffer = bufnr },
         ["C"] = { vim.lsp.buf.code_action, desc = "Code Actions", buffer = bufnr },
