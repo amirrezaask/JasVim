@@ -1,7 +1,9 @@
 local M = {}
 
 function M.configs()
-  jvim.L("mason").setup {}
+  if jvim.plugin_exists "mason" then
+    require("mason").setup {}
+  end
 end
 
 function M.plugins()

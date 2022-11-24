@@ -4,10 +4,14 @@ function M.plugins()
 end
 
 function M.configs()
-  require("nvim-treesitter.install").ensure_installed "zig"
-  require("lspconfig").zls.setup {
-    on_attach = lsp.on_attach,
-  }
+  if jvim.plugin_exists "nvim-treesitter" then
+    require("nvim-treesitter.install").ensure_installed "zig"
+  end
+  if jvim.plugin_exists "lspconfig" then
+    require("lspconfig").zls.setup {
+      on_attach = lsp.on_attach,
+    }
+  end
 end
 
 return M

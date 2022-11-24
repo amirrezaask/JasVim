@@ -18,12 +18,15 @@ end
 
 function M.configs()
   _G.lsp = {}
+  if jvim.plugin_exists "fidget" then
+    require("fidget").setup()
+  end
 
-  require("fidget").setup()
-
-  require("mason-lspconfig").setup {
-    automatic_installation = true,
-  }
+  if jvim.plugin_exists "mason-lspconfig" then
+    require("mason-lspconfig").setup {
+      automatic_installation = true,
+    }
+  end
 
   function lsp.on_attach(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -64,10 +67,12 @@ function M.configs()
     opts.border = opts.border or border
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
   end
-  require("lspsaga").init_lsp_saga {
-    symbol_in_winbar = {
-      enable = true,
-    },
-  }
+  if jvim.plugin_exists "lspsaga" then
+    require("lspsaga").init_lsp_saga {
+      symbol_in_winbar = {
+        enable = true,
+      },
+    }
+  end
 end
 return M

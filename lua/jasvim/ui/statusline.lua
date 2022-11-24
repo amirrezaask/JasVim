@@ -7,6 +7,9 @@ function M.plugins()
 end
 
 function M.configs()
+  if not jvim.plugin_exists "lualine" then
+    return
+  end
   require("lualine").setup {
     options = {
       icons_enabled = true,

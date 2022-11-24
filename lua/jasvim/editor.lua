@@ -22,9 +22,13 @@ function M.configs()
 
   -- ]]
 
-  require("luasnip.loaders.from_vscode").lazy_load()
+  if jvim.plugin_exists "luasnip" then
+    require("luasnip.loaders.from_vscode").lazy_load()
+  end
 
-  require("nvim-autopairs").setup {}
+  if jvim.plugin_exists "nvim-autopairs" then
+    require("nvim-autopairs").setup {}
+  end
 end
 
 -- Integrate Tmux and neovim pane and window switching

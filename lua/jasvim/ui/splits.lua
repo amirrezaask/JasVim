@@ -5,6 +5,9 @@ function M.plugins()
 end
 
 function M.configs()
+  if not jvim.plugin_exists "smart-splits" then
+    return
+  end
   -- smart split
   require("smart-splits").setup {}
 

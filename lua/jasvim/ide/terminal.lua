@@ -1,6 +1,9 @@
 local M = {}
 
 function M.configs()
+  if not jvim.plugin_exists "toggleterm" then
+    return
+  end
   require("toggleterm").setup {
     size = function(term)
       if term.direction == "horizontal" then

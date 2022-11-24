@@ -7,17 +7,24 @@ function M.plugins()
 end
 
 function M.configs()
-  require("neodev").setup {}
+  if jvim.plugin_exists "neodev" then
+    require("neodev").setup {}
+  end
 
   local runtime_path = vim.split(package.path, ";")
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
 
-  require("nvim-treesitter.install").ensure_installed "lua"
+  if jvim.plugin_exists "nvim-treesitter" then
+    require("nvim-treesitter.install").ensure_installed "lua"
+  end
 
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function(opts)
+      if not jvim.plugin_exists "plenary" then
+        return
+      end
       local buf = opts.buf
       local Job = require "plenary.job"
       local j = Job:new {
@@ -42,6 +49,9 @@ function M.configs()
     end,
   })
 
+  if not jvim.plugin_exists "lspconfig" then
+    return
+  end
   require("lspconfig").sumneko_lua.setup {
     on_attach = lsp.on_attach,
     commands = {

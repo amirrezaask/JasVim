@@ -1,7 +1,9 @@
 local M = {}
 
 function M.configs()
-  require("which-key").setup()
+  if jvim.plugin_exists "which-key" then
+    require("which-key").setup()
+  end
 end
 
 M.plugins = {

@@ -5,6 +5,9 @@ M.plugins = {
 }
 
 function M.configs()
+  if not jvim.plugin_exists "dressing" then
+    return
+  end
   require("dressing").setup {
     input = {
       -- Set to false to disable the vim.ui.input implementation

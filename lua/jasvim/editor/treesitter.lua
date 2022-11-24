@@ -12,6 +12,9 @@ function M.plugins()
 end
 
 function M.configs()
+  if not jvim.plugin_exists "nvim-treesitter" then
+    return
+  end
   require("nvim-treesitter.configs").setup {
     highlight = {
       enable = true,

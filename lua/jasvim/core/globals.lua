@@ -64,6 +64,11 @@ jvim.window_width = function()
   return vim.api.nvim_win_get_width(0)
 end
 
+function jvim.plugin_exists(name)
+  local exists, _ = pcall(require, name)
+  return exists
+end
+
 function jvim.L(name)
   local exists, _ = pcall(require, name)
   if exists then

@@ -16,6 +16,10 @@ function M.plugins()
 end
 
 function M.configs()
+  if not jvim.plugin_exists "cmp" then
+    return
+  end
+
   local cmp = jvim.L "cmp"
 
   cmp.setup {

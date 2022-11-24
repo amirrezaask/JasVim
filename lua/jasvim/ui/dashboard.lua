@@ -9,6 +9,9 @@ function M.plugins()
 end
 
 function M.configs()
+  if not jvim.plugin_exists "alpha" then
+    return
+  end
   local asciiarts = {
     vim.split(
       [[

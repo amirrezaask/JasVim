@@ -4,13 +4,14 @@ function M.plugins()
   return {
     "nvim-orgmode/orgmode",
     requires = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("orgmode").setup {}
-    end,
   }
 end
 
 function M.configs()
+  if not jvim.plugin_exists "orgmode" then
+    return
+  end
+
   require("orgmode").setup_ts_grammar()
   require("orgmode").setup {
     org_agenda_files = {},

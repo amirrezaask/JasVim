@@ -7,36 +7,45 @@ function M.plugins()
 end
 
 function M.configs()
-  require("nvim-treesitter.install").ensure_installed "go"
+  if jvim.plugin_exists "nvim-treesitter" then
+    require("nvim-treesitter.install").ensure_installed "go"
+  end
 
-  require("lspconfig").gopls.setup {
-    on_attach = lsp.on_attach,
-  }
+  if jvim.plugin_exists "lspconfig" then
+    require("lspconfig").gopls.setup {
+      on_attach = lsp.on_attach,
+    }
+  end
 
-  require("go").setup()
   local go_group = vim.api.nvim_create_augroup("GoModule", {})
-
-  vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = "*.go",
-    callback = function(meta)
-      jvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
-      jvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
-      jvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
-      jvim.buf_nnoremap(
-        meta.buffer,
-        "<leader>p",
-        require "jasvim.ui.telescope"("command_palete", {
-          pattern = "Go",
-        }),
-        { remap = true }
-      )
-    end,
-  })
+  if jvim.plugin_exists "go" then
+    require("go").setup()
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*.go",
+      group = go_group,
+      callback = function(meta)
+        jvim.buf_nnoremap(meta.buffer, "<leader>gat", "<cmd>GoAddTag<CR>", { remap = true })
+        jvim.buf_nnoremap(meta.buffer, "<leader>grt", "<cmd>GoRmTag<CR>", { remap = true })
+        jvim.buf_nnoremap(meta.buffer, "<leader>gfs", "<cmd>GoFillStruct<CR>", { remap = true })
+        jvim.buf_nnoremap(
+          meta.buffer,
+          "<leader>p",
+          require "jasvim.ui.telescope"("command_palete", {
+            pattern = "Go",
+          }),
+          { remap = true }
+        )
+      end,
+    })
+  end
 
   jvim.onsave {
     pattern = "*.go",
     group = go_group,
     callback = function(meta)
+      if not jvim.plugin_exists "plenary" then
+        return
+      end
       local Job = require "plenary.job"
       local j = Job:new {
         "goimports",

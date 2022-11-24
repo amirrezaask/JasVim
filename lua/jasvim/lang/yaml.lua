@@ -1,10 +1,14 @@
 local M = {}
 
 function M.configs()
-  require("nvim-treesitter.install").ensure_installed "yaml"
-  require("lspconfig").yamlls.setup {
-    on_attach = require("jasvim.ide.lsp").on_attach,
-  }
+  if jvim.plugin_exists "nvim-treesitter" then
+    require("nvim-treesitter.install").ensure_installed "yaml"
+  end
+  if jvim.plugin_exists "lspconfig" then
+    require("lspconfig").yamlls.setup {
+      on_attach = require("jasvim.ide.lsp").on_attach,
+    }
+  end
 end
 
 function M.plugins()

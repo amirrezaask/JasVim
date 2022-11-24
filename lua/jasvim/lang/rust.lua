@@ -1,10 +1,14 @@
 local M = {}
 
 function M.configs()
-  local rt = jvim.L "rust-tools"
+  if jvim.plugin_exists "nvim-treesitter" then
+    require("nvim-treesitter.install").ensure_installed "rust"
+  end
 
-  require("nvim-treesitter.install").ensure_installed "rust"
-
+  if not jvim.plugin_exists "rust-tools" then
+    return
+  end
+  local rt = require "rust-tools"
   rt.setup {
     server = {
       on_attach = function(_, bufnr)

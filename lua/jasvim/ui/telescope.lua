@@ -133,6 +133,9 @@ function M.command_palete(opts)
 end
 
 function M.configs()
+  if not jvim.plugin_exists "telescope" then
+    return
+  end
   require("telescope").setup {
     defaults = {
       preview = false,

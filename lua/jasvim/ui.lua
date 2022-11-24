@@ -44,7 +44,8 @@ function jvim.make_transparent()
 end
 
 function ui.configs()
-  vim.cmd([[ colorscheme  ]] .. jvim.colorscheme or "nightfly")
+  local set_colorscheme = [[ colorscheme  ]] .. jvim.colorscheme or "nightfly"
+  pcall(vim.cmd, set_colorscheme)
 
   if jvim.transparent then
     jvim.make_transparent()
@@ -62,12 +63,14 @@ function ui.configs()
     require("jasvim.ui.telescope").configs()
   end
 
-  require("nvim-tree").setup()
-  jvim.bind {
-    n = {
-      ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
-    },
-  }
+  if jvim.plugin_exists "nvim-tree" then
+    require("nvim-tree").setup()
+    jvim.bind {
+      n = {
+        ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
+      },
+    }
+  end
 end
 
 return ui

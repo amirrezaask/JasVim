@@ -1,9 +1,11 @@
 local M = {}
 
 function M.configs()
-  require("lspconfig").jedi_language_server.setup {
-    on_attach = lsp.on_attach,
-  }
+  if jvim.plugin_exists "lspconfig" then
+    require("lspconfig").jedi_language_server.setup {
+      on_attach = lsp.on_attach,
+    }
+  end
 end
 
 function M.plugins()
