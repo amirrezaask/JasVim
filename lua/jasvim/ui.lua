@@ -9,6 +9,7 @@ function ui.plugins()
       "Mofiqul/dracula.nvim",
       "ellisonleao/gruvbox.nvim",
       "bluz71/vim-nightfly-colors",
+      "eemed/sitruuna.vim",
       {
         "nvim-tree/nvim-tree.lua",
         requires = {
