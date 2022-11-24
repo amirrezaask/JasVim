@@ -1,13 +1,9 @@
 local M = {}
 function M.plugins()
   return {
-    {
-      "nvim-treesitter/nvim-treesitter",
-      requires = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "p00f/nvim-ts-rainbow",
-      },
-    },
+    "nvim-treesitter/nvim-treesitter",
+    { "nvim-treesitter/nvim-treesitter-textobjects", requires = { "nvim-treesitter/nvim-treesitter" } },
+    { "p00f/nvim-ts-rainbow", requires = { "nvim-treesitter/nvim-treesitter" } },
   }
 end
 
