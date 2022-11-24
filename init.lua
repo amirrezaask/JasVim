@@ -29,5 +29,14 @@ jvim.languages = {
   -- "zig",
 }
 
+-- Adding a custom keymap
+jvim.bind {
+  n = {
+    ["<leader>abc"] = function()
+      print "some custom keymap"
+    end,
+  },
+}
+
 -- Start Jasvim
 jvim.start()
