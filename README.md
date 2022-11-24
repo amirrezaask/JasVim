@@ -1,11 +1,9 @@
 # JasVim: Personalized Developer Environment
 
 ## How to install
+### Linux & macOS
 ```bash
-# back up your current configuration
-cp $HOME/.config/nvim $HOME/.config/nvim.backup
-git clone https://github.com/amirrezaask/jasvim ~/.config/nvim --depth 1
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
+bash <(curl -s https://raw.githubusercontent.com/amirrezaask/jasvim/master/install.sh)
 ```
 wait for it to exit and ignore any error.
 
