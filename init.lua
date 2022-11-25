@@ -19,7 +19,7 @@ jvim.fuzzy_finder = "telescope"
 -- if you want a fancy start screen or not
 jvim.start_screen = true
 
--- Default configuration that applies for all languages unless overriden
+-- Default configuration that applies for all languages unless overridden
 jvim.language_defaults = {
   autoformat = false,
   lsp = true,
@@ -56,6 +56,22 @@ jvim.languages = {
 --     end,
 --   },
 -- }
+-- or
+-- You can use normal vim way of keymaps
+-- ofcourse they are limited to only vimscript
+-- nnoremap lhs rhs
+-- inoremap lhs rhs
+-- vnoremap lhs rhs
+-- ...
+-- or
+-- new neovim keymap api
+-- :help vim.keymap.set
+-- vim.keymap.set(mode, lhs, rhs, opts)
+-- vim.keymap.set('i', lhs, rhs, opts)
+-- vim.keymap.set('n', lhs, rhs, opts)
+-- vim.keymap.set('v', lhs, rhs, opts)
+--
+--
 
 -- Installing a plugin
 -- for documentation of syntax check https://github.com/wbthomason/packer.nvim
