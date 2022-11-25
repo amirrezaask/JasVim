@@ -26,6 +26,9 @@ local _mt = {
         keymaps = {
           theme = dropdown,
         },
+        colorschemes = {
+          theme = dropdown,
+        },
         commands = {
           theme = dropdown,
           prompt_title = "Command Palete",
