@@ -23,6 +23,9 @@ local _mt = {
         help_tags = {
           theme = dropdown,
         },
+        keymaps = {
+          theme = dropdown,
+        },
         commands = {
           theme = dropdown,
           prompt_title = "Command Palete",
@@ -165,6 +168,7 @@ function M.configs()
       ["<leader>fg"] = { M "git_files", desc = "Git Files" },
       ["<leader>fr"] = { M "oldfiles", desc = "Recent Files" },
       ["<leader>fh"] = { M "help_tags", desc = "Help" },
+      ["<leader>fk"] = { M "keymaps", desc = "Keymaps" },
       ["<leader>p"] = { M "command_palete", desc = "Command palete" },
       ["<leader>fc"] = { M "commands", desc = "Command palete" },
       ["??"] = M "live_grep",

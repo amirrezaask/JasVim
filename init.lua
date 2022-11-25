@@ -1,6 +1,9 @@
 -- Never delete or comment this line.
 require "jasvim.core"
 
+-- Automatic installation of plugins on startup
+jvim.auto_install_plugins = true
+
 -- Set your default colorscheme
 jvim.colorscheme = "catppuccin-macchiato"
 

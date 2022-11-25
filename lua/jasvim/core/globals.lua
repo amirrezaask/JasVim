@@ -110,6 +110,9 @@ function jvim.modules(names)
       end
     end
   end
+  if jvim.auto_install_plugins then
+    vim.cmd [[ PackerInstall ]]
+  end
   for _, name in ipairs(names) do
     local mod = require(name)
     if type(mod) == "table" and mod.configs then
