@@ -5,11 +5,9 @@ function M.plugins()
 end
 
 function M.configs()
-  if jvim.plugin_exists "lspconfig" then
-    require("lspconfig").purescriptls.setup {
-      on_attach = lsp.on_attach,
-    }
-  end
+  jvim.lsp.config("purescriptls", {
+    on_attach = lsp.on_attach,
+  })
 end
 
 return M

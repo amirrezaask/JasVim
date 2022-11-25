@@ -7,6 +7,14 @@ function M.plugins()
   }
 end
 
+jvim.treesitter = {}
+
+function jvim.treesitter.ensure(name)
+  jvim.with("nvim-treesitter.install", function(ts)
+    ts.ensure_installed(name)
+  end)
+end
+
 function M.configs()
   if not jvim.plugin_exists "nvim-treesitter" then
     return

@@ -11,7 +11,7 @@ function M.plugins()
     "junegunn/vim-easy-align",
     "kevinhwang91/nvim-bqf",
     "windwp/nvim-autopairs",
-    { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*", requires = "rafamadriz/friendly-snippets" },
+    { "L3MON4D3/LuaSnip", requires = "rafamadriz/friendly-snippets" },
     "junegunn/goyo.vim",
   }, require("jasvim.editor.treesitter").plugins(), require("jasvim.editor.comment").plugins)
 end
@@ -22,13 +22,13 @@ function M.configs()
 
   -- ]]
 
-  if jvim.plugin_exists "luasnip" then
+  jvim.with("luasnip", function(_)
     require("luasnip.loaders.from_vscode").lazy_load()
-  end
+  end)
 
-  if jvim.plugin_exists "nvim-autopairs" then
-    require("nvim-autopairs").setup {}
-  end
+  jvim.with("nvim-autopairs", function(autopairs)
+    autopairs.setup {}
+  end)
 end
 
 -- Integrate Tmux and neovim pane and window switching

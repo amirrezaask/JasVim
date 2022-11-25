@@ -4,11 +4,11 @@ function M.plugins()
 end
 
 function M.configs()
-  if jvim.plugin_exists "masvon-nvim-dap" then
-    require("mason-nvim-dap").setup {
+  jvim.with("mason-nvim-dap", function(mason_nvim_dap)
+    mason_nvim_dap.setup {
       automatic_installation = false,
     }
-  end
+  end)
 end
 
 return M

@@ -7,6 +7,7 @@ jvim.colorscheme = "tokyonight-night"
 -- Do you want your jasvim background to be transparent ?
 jvim.transparent = false
 
+-- Set leader key, by default it's Space
 jvim.leader = " "
 
 -- it can be fzf | telescope
@@ -40,6 +41,10 @@ jvim.bind {
     end,
   },
 }
+
+-- Installing a plugin
+-- for documentation of syntax check https://github.com/wbthomason/packer.nvim
+jvim.plugin { "catppuccin/nvim", as = "catppuccin" }
 
 -- Start Jasvim
 jvim.start()

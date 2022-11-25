@@ -7,15 +7,10 @@ function M.plugins()
 end
 
 function M.configs()
-  if jvim.plugin_exists "nvim-treesitter" then
-    require("nvim-treesitter.install").ensure_installed "go"
-  end
-
-  if jvim.plugin_exists "lspconfig" then
-    require("lspconfig").gopls.setup {
-      on_attach = lsp.on_attach,
-    }
-  end
+  jvim.treesitter.ensure "go"
+  jvim.lsp.config("gopls", {
+    on_attach = lsp.on_attach,
+  })
 
   local go_group = vim.api.nvim_create_augroup("GoModule", {})
   if jvim.plugin_exists "go" then

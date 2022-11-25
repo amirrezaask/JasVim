@@ -1,11 +1,10 @@
 local M = {}
 
 function M.configs()
-  if jvim.plugin_exists "lspconfig" then
-    require("lspconfig").jedi_language_server.setup {
-      on_attach = lsp.on_attach,
-    }
-  end
+  jvim.treesitter.ensure "python"
+  jvim.lsp.config("jedi_language_server", {
+    on_attach = lsp.on_attach,
+  })
 end
 
 function M.plugins()

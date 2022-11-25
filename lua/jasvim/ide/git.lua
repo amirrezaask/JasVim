@@ -16,12 +16,12 @@ function M.plugins()
 end
 
 function M.configs()
-  if jvim.plugin_exists "neogit" then
-    require("neogit").setup()
-  end
-  if jvim.plugin_exists "gitsigns" then
-    require("gitsigns").setup()
-  end
+  jvim.with("neogit", function(neogit)
+    neogit.setup {}
+  end)
+  jvim.with("gitsigns", function(gitsigns)
+    gitsigns.setup {}
+  end)
 end
 
 return M

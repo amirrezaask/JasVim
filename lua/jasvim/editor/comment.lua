@@ -11,11 +11,11 @@ M.plugins = {
 }
 
 function M.configs()
-  if jvim.plugin_exists "todo-comments" then
-    require("todo-comments").setup()
-  end
-  if jvim.plugin_exists "Comment" then
-    require("Comment").setup {
+  jvim.with("todo-comments", function(todo_comments)
+    todo_comments.setup()
+  end)
+  jvim.with("Comment", function(comment)
+    comment.setup {
       ---Add a space b/w comment and the line
       padding = true,
       ---Whether the cursor should stay at its position
@@ -52,7 +52,7 @@ function M.configs()
         extra = true,
       },
     }
-  end
+  end)
 end
 
 return M

@@ -3,21 +3,21 @@ local M = {}
 function M.plugins()
   return {
     { "folke/neodev.nvim", requires = { "nvim-lua/plenary.nvim" } },
+    "milisims/nvim-luaref",
+    "nanotee/luv-vimdocs",
   }
 end
 
 function M.configs()
-  if jvim.plugin_exists "neodev" then
-    require("neodev").setup {}
-  end
+  jvim.with("neodev", function(neodev)
+    neodev.setup {}
+  end)
 
   local runtime_path = vim.split(package.path, ";")
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
 
-  if jvim.plugin_exists "nvim-treesitter" then
-    require("nvim-treesitter.install").ensure_installed "lua"
-  end
+  jvim.treesitter.ensure "lua"
 
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
@@ -49,10 +49,7 @@ function M.configs()
     end,
   })
 
-  if not jvim.plugin_exists "lspconfig" then
-    return
-  end
-  require("lspconfig").sumneko_lua.setup {
+  jvim.lsp.config("sumneko_lua", {
     on_attach = lsp.on_attach,
     commands = {
       Format = {
@@ -77,6 +74,6 @@ function M.configs()
         },
       },
     },
-  }
+  })
 end
 return M

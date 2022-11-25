@@ -69,6 +69,13 @@ function jvim.plugin_exists(name)
   return exists
 end
 
+function jvim.with(name, callback)
+  local exists, _ = pcall(require, name)
+  if exists then
+    callback(require(name))
+  end
+end
+
 function jvim.L(name)
   local exists, _ = pcall(require, name)
   if exists then

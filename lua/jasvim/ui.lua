@@ -8,6 +8,7 @@ function ui.plugins()
       "martinsione/darkplus.nvim",
       "Mofiqul/dracula.nvim",
       "ellisonleao/gruvbox.nvim",
+      "tanvirtin/monokai.nvim",
       "bluz71/vim-nightfly-colors",
       "eemed/sitruuna.vim",
       {
@@ -64,14 +65,14 @@ function ui.configs()
     require("jasvim.ui.telescope").configs()
   end
 
-  if jvim.plugin_exists "nvim-tree" then
-    require("nvim-tree").setup()
+  jvim.with("nvim-tree", function(nvim_tree)
+    nvim_tree.setup()
     jvim.bind {
       n = {
         ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
       },
     }
-  end
+  end)
 end
 
 return ui
