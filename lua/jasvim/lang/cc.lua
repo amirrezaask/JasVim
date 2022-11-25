@@ -5,12 +5,16 @@ function M.plugins()
 end
 
 function M.configs()
-  jvim.treesitter.ensure "c"
-  jvim.treesitter.ensure "cpp"
+  if jasvim.lang.has_treesitter "cc" then
+    jasvim.treesitter.ensure "c"
+    jasvim.treesitter.ensure "cpp"
+  end
 
-  jvim.lsp.config("clangd", {
-    on_attach = lsp.on_attach,
-  })
+  if jasvim.lang.has_lsp "cc" then
+    jasvim.lsp.config("clangd", {
+      on_attach = lsp.on_attach,
+    })
+  end
 end
 
 return M

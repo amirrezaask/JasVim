@@ -1,9 +1,13 @@
 local M = {}
 function M.configs()
-  jvim.treesitter.ensure "haskell"
-  jvim.lsp.config("hls", {
-    on_attach = lsp.on_attach,
-  })
+  if jasvim.lang.has_treesitter "haskell" then
+    jasvim.treesitter.ensure "haskell"
+  end
+  if jasvim.lang.has_lsp "haskell" then
+    jasvim.lsp.config("hls", {
+      on_attach = lsp.on_attach,
+    })
+  end
 end
 
 function M.plugins()

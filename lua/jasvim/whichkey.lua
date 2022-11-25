@@ -1,7 +1,7 @@
 local M = {}
 
 function M.configs()
-  jvim.with("which-key", function(wk)
+  jasvim.with("which-key", function(wk)
     wk.setup()
   end)
 end

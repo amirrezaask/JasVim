@@ -2,7 +2,7 @@
 -- Set leader to <Space>
 vim.g.mapleader = jvim.leader or " "
 
-function jvim.bind(spec)
+function jasvim.bind(spec)
   for mode, keys in pairs(spec) do
     for key, binding in pairs(keys) do
       if type(binding) == "string" or type(binding) == "function" then
@@ -20,7 +20,7 @@ function jvim.bind(spec)
 end
 
 -- [[ Basic keymaps
-jvim.bind {
+jasvim.bind {
   n = {
     ["Q"] = "<NOP>",
     [";,"] = ":",
@@ -50,3 +50,5 @@ jvim.bind {
     ["kj"] = "<esc>",
   },
 }
+
+jvim.bind = jasvim.bind

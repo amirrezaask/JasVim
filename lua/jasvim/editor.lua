@@ -1,7 +1,7 @@
 local M = {}
 
 function M.plugins()
-  return jvim.append({
+  return jasvim.append({
     "pbrisbin/vim-mkdir",
     "sheerun/vim-polyglot",
     "szw/vim-maximizer",
@@ -22,11 +22,11 @@ function M.configs()
 
   -- ]]
 
-  jvim.with("luasnip", function(_)
+  jasvim.with("luasnip", function(_)
     require("luasnip.loaders.from_vscode").lazy_load()
   end)
 
-  jvim.with("nvim-autopairs", function(autopairs)
+  jasvim.with("nvim-autopairs", function(autopairs)
     autopairs.setup {}
   end)
 end

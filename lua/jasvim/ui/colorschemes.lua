@@ -23,7 +23,7 @@ function M.plugins()
 end
 
 function M.configs()
-  local set_colorscheme = [[ colorscheme  ]] .. jvim.colorscheme or default_colorscheme
+  local set_colorscheme = [[ colorscheme  ]] .. (jvim.colorscheme or default_colorscheme)
   local ok, _ = pcall(vim.cmd, set_colorscheme)
 end
 

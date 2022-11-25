@@ -8,7 +8,7 @@ function M.plugins()
 end
 
 function M.configs()
-  if not jvim.plugin_exists "orgmode" then
+  if not jasvim.plugin_exists "orgmode" then
     return
   end
 

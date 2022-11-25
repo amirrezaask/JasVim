@@ -4,11 +4,15 @@ function M.plugins()
   return {}
 end
 function M.configs()
-  jvim.treesitter.ensure "elixir"
+  if jasvim.lang.has_treesitter "elixir" then
+    jasvim.treesitter.ensure "elixir"
+  end
 
-  jvim.lsp.config("elixirls", {
-    on_attach = lsp.on_attach,
-  })
+  if jasvim.lang.has_lsp "elixir" then
+    jasvim.lsp.config("elixirls", {
+      on_attach = lsp.on_attach,
+    })
+  end
 end
 
 return M

@@ -11,10 +11,10 @@ M.plugins = {
 }
 
 function M.configs()
-  jvim.with("todo-comments", function(todo_comments)
+  jasvim.with("todo-comments", function(todo_comments)
     todo_comments.setup()
   end)
-  jvim.with("Comment", function(comment)
+  jasvim.with("Comment", function(comment)
     comment.setup {
       ---Add a space b/w comment and the line
       padding = true,

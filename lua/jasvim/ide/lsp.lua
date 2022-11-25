@@ -19,17 +19,17 @@ function M.plugins()
     },
   }
 end
-_G.jvim.lsp = {}
+_G.jasvim.lsp = {}
 
-function jvim.lsp.config(name, opts)
-  jvim.with("lspconfig", function(lspconfig)
+function jasvim.lsp.config(name, opts)
+  jasvim.with("lspconfig", function(lspconfig)
     lspconfig[name].setup(opts)
   end)
 end
 
-function jvim.lsp.on_attach(_, bufnr)
+function jasvim.lsp.on_attach(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  jvim.bind {
+  jasvim.bind {
     n = {
       gd = { vim.lsp.buf.definition, desc = "Goto definition", buffer = bufnr },
       gi = { vim.lsp.buf.implementation, desc = "Goto implementations", buffer = bufnr },
@@ -50,11 +50,11 @@ function jvim.lsp.on_attach(_, bufnr)
   require("lsp_signature").on_attach({}, bufnr)
 end
 function M.configs()
-  jvim.with("fidget", function(fidget)
+  jasvim.with("fidget", function(fidget)
     fidget.setup {}
   end)
 
-  jvim.with("mason-lspconfig", function(mason_lspconfig)
+  jasvim.with("mason-lspconfig", function(mason_lspconfig)
     mason_lspconfig.setup {
       automatic_installation = true,
     }
@@ -77,7 +77,7 @@ function M.configs()
     opts.border = opts.border or border
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
   end
-  jvim.with("lspsaga", function(lspsaga)
+  jasvim.with("lspsaga", function(lspsaga)
     lspsaga.init_lsp_saga {
       symbol_in_winbar = {
         enable = true,
@@ -85,14 +85,14 @@ function M.configs()
     }
   end)
 
-  jvim.with("trouble", function(trouble)
+  jasvim.with("trouble", function(trouble)
     trouble.setup {}
-    jvim.bind {
+    jasvim.bind {
       n = {
         ["<leader>lt"] = "<cmd>TroubleToggle<cr>",
       },
     }
   end)
 end
-_G.lsp = jvim.lsp
+_G.lsp = jasvim.lsp
 return M

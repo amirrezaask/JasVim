@@ -1,7 +1,7 @@
 local ui = {}
 
 function ui.plugins()
-  local plugins = jvim.append(
+  local plugins = jasvim.append(
     {
       {
         "nvim-tree/nvim-tree.lua",
@@ -27,20 +27,16 @@ function ui.plugins()
   )
   jvim.fuzzy_finder = jvim.fuzzy_finder or "telescope"
   if jvim.fuzzy_finder == "fzf" then
-    plugins = jvim.append(plugins, require("jasvim.ui.fzf").plugins)
+    plugins = jasvim.append(plugins, require("jasvim.ui.fzf").plugins)
   elseif jvim.fuzzy_finder == "telescope" then
-    plugins = jvim.append(plugins, require("jasvim.ui.telescope").plugins())
+    plugins = jasvim.append(plugins, require("jasvim.ui.telescope").plugins())
   end
   return plugins
 end
 
-function jvim.make_transparent()
-  vim.cmd [[ hi Normal guibg=none ]]
-end
-
 function ui.configs()
   if jvim.transparent then
-    jvim.make_transparent()
+    vim.cmd [[ hi Normal guibg=none ]]
   end
 
   require("jasvim.ui.statusline").configs()
@@ -49,16 +45,16 @@ function ui.configs()
   require("jasvim.ui.dressing").configs()
   require("jasvim.ui.noice").configs()
   require("jasvim.ui.colorschemes").configs()
-  jvim.fuzzy_finder = jvim.fuzzy_finder or "telescope"
-  if jvim.fuzzy_finder == "fzf" then
+  jasvim.fuzzy_finder = jasvim.fuzzy_finder or "telescope"
+  if jasvim.fuzzy_finder == "fzf" then
     require("jasvim.ui.fzf").configs()
-  elseif jvim.fuzzy_finder == "telescope" then
+  elseif jasvim.fuzzy_finder == "telescope" then
     require("jasvim.ui.telescope").configs()
   end
 
-  jvim.with("nvim-tree", function(nvim_tree)
+  jasvim.with("nvim-tree", function(nvim_tree)
     nvim_tree.setup()
-    jvim.bind {
+    jasvim.bind {
       n = {
         ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
       },

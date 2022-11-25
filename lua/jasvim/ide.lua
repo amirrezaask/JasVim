@@ -1,6 +1,6 @@
 local ide = {}
 
-ide.plugins = jvim.append(
+ide.plugins = jasvim.append(
   require("jasvim.ide.completion").plugins(),
   require("jasvim.ide.git").plugins(),
   require("jasvim.ide.mason").plugins(),

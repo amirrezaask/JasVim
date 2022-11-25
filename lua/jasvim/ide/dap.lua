@@ -4,7 +4,7 @@ function M.plugins()
 end
 
 function M.configs()
-  jvim.with("mason-nvim-dap", function(mason_nvim_dap)
+  jasvim.with("mason-nvim-dap", function(mason_nvim_dap)
     mason_nvim_dap.setup {
       automatic_installation = false,
     }

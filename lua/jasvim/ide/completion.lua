@@ -16,11 +16,11 @@ function M.plugins()
 end
 
 function M.configs()
-  if not jvim.plugin_exists "cmp" then
+  if not jasvim.plugin_exists "cmp" then
     return
   end
 
-  local cmp = jvim.L "cmp"
+  local cmp = jasvim.L "cmp"
 
   cmp.setup {
     snippet = {

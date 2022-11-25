@@ -9,7 +9,7 @@ function M.plugins()
 end
 
 function M.configs()
-  if not jvim.plugin_exists "alpha" then
+  if not jasvim.plugin_exists "alpha" then
     return
   end
   if jvim.start_screen == false then
@@ -72,7 +72,7 @@ function M.configs()
       { type = "padding", val = 2 },
       { type = "text", val = "JasVim", opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 1 },
-      { type = "text", val = jvim.version, opts = { position = "center", hl = "Type" } },
+      { type = "text", val = jasvim.version, opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 2 },
       {
         type = "group",
@@ -94,7 +94,7 @@ function M.configs()
     },
   }
   require("alpha").setup(myconfig)
-  jvim.bind {
+  jasvim.bind {
     n = {
       [",z"] = { "<cmd>MaximizerToggle<cr>", desc = "Toggle zoom on current window" },
     },

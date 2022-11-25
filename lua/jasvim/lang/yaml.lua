@@ -1,10 +1,14 @@
 local M = {}
 
 function M.configs()
-  jvim.treesitter.ensure "yaml"
-  jvim.lsp.config("yamlls", {
-    on_attach = jvim.lsp.on_attach,
-  })
+  if jasvim.lang.has_treesitter "yaml" then
+    jasvim.treesitter.ensure "yaml"
+  end
+  if jasvim.lang.has_lsp "yaml" then
+    jasvim.lsp.config("yamlls", {
+      on_attach = jasvim.lsp.on_attach,
+    })
+  end
 end
 
 function M.plugins()

@@ -16,10 +16,10 @@ function M.plugins()
 end
 
 function M.configs()
-  jvim.with("neogit", function(neogit)
+  jasvim.with("neogit", function(neogit)
     neogit.setup {}
   end)
-  jvim.with("gitsigns", function(gitsigns)
+  jasvim.with("gitsigns", function(gitsigns)
     gitsigns.setup {}
   end)
 end

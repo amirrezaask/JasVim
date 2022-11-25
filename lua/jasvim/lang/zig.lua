@@ -4,10 +4,14 @@ function M.plugins()
 end
 
 function M.configs()
-  jvim.treesitter.ensure "zig"
-  jvim.lsp.config("zls", {
-    on_attach = lsp.on_attach,
-  })
+  if jasvim.lang.has_treesitter "zig" then
+    jasvim.treesitter.ensure "zig"
+  end
+  if jasvim.lang.has_lsp "zig" then
+    jasvim.lsp.config("zls", {
+      on_attach = lsp.on_attach,
+    })
+  end
 end
 
 return M

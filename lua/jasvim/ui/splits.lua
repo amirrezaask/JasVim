@@ -5,13 +5,13 @@ function M.plugins()
 end
 
 function M.configs()
-  if not jvim.plugin_exists "smart-splits" then
+  if not jasvim.plugin_exists "smart-splits" then
     return
   end
   -- smart split
   require("smart-splits").setup {}
 
-  jvim.bind {
+  jasvim.bind {
     n = {
       ["<A-h>"] = require("smart-splits").resize_left,
       ["<A-j>"] = require("smart-splits").resize_down,

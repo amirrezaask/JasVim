@@ -8,16 +8,16 @@ function M.plugins()
   }
 end
 
-jvim.treesitter = {}
+jasvim.treesitter = {}
 
-function jvim.treesitter.ensure(name)
-  jvim.with("nvim-treesitter.install", function(ts)
+function jasvim.treesitter.ensure(name)
+  jasvim.with("nvim-treesitter.install", function(ts)
     ts.ensure_installed(name)
   end)
 end
 
 function M.configs()
-  if not jvim.plugin_exists "nvim-treesitter" then
+  if not jasvim.plugin_exists "nvim-treesitter" then
     return
   end
   require("nvim-treesitter.configs").setup {
@@ -67,7 +67,7 @@ function M.configs()
     },
   }
 
-  jvim.with("treesitter-context", function(ts_context)
+  jasvim.with("treesitter-context", function(ts_context)
     ts_context.setup {}
   end)
 end

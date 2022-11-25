@@ -5,13 +5,15 @@ function M.plugins()
 end
 
 function M.configs()
-  jvim.treesitter.ensure "php"
-  if jvim.plugin_exists "nvim-treesitter" then
-    require("nvim-treesitter.install").ensure_installed "php"
+  if jasvim.lang.has_treesitter "php" then
+    jasvim.treesitter.ensure "php"
   end
-  jvim.lsp.config("intelephense", {
-    on_attach = lsp.on_attach,
-  })
+
+  if jasvim.lang.has_lsp "php" then
+    jasvim.lsp.config("intelephense", {
+      on_attach = lsp.on_attach,
+    })
+  end
 end
 
 return M

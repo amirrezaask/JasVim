@@ -6,7 +6,7 @@ M.plugins = {
 }
 
 function M.configs()
-  jvim.bind {
+  jasvim.bind {
     n = {
       ["<leader><leader>"] = { ":Files<cr>", desc = "Find Files" },
       ["<leader>ff"] = { "<cmd>Files<cr>", desc = "Find Files" },

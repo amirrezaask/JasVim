@@ -5,7 +5,7 @@ M.plugins = {
 }
 
 function M.configs()
-  if not jvim.plugin_exists "dressing" then
+  if not jasvim.plugin_exists "dressing" then
     return
   end
   require("dressing").setup {

@@ -1,7 +1,7 @@
 local M = {}
 
 function M.configs()
-  if not jvim.plugin_exists "toggleterm" then
+  if not jasvim.plugin_exists "toggleterm" then
     return
   end
   require("toggleterm").setup {
@@ -15,7 +15,7 @@ function M.configs()
     direction = "vertical",
   }
 
-  jvim.bind {
+  jasvim.bind {
     n = {
       ["<C-`>"] = "<cmd>ToggleTerm<CR>",
     },
@@ -25,7 +25,7 @@ function M.configs()
   }
 end
 function M.plugins()
-  jvim.plugin {
+  jasvim.plugin {
     "akinsho/toggleterm.nvim",
     tag = "*",
   }
