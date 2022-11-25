@@ -13,6 +13,10 @@ function M.plugins()
     },
     "onsails/lspkind.nvim",
     "williamboman/mason-lspconfig.nvim",
+    {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+    },
   }
 end
 _G.jvim.lsp = {}
@@ -77,6 +81,15 @@ function M.configs()
     lspsaga.init_lsp_saga {
       symbol_in_winbar = {
         enable = true,
+      },
+    }
+  end)
+
+  jvim.with("trouble", function(trouble)
+    trouble.setup {}
+    jvim.bind {
+      n = {
+        ["<leader>lt"] = "<cmd>TroubleToggle<cr>",
       },
     }
   end)

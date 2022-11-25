@@ -10,7 +10,6 @@ bash <(curl -s https://raw.githubusercontent.com/amirrezaask/jasvim/master/insta
 - Tree file explorer using `nvim-tree`
 - `Telescope` fuzzy finder + `Fzf` fuzzy finder
 - Tmux integration
-- DAP debuggers integrated + Automatic installation of DAP servers
 - Terminal emulator using `toggleterm`
 any many improvements to vanilla neovim experience
 
