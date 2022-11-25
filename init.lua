@@ -18,19 +18,19 @@ jvim.start_screen = true
 
 -- Which languages you want to support ?
 jvim.languages = {
-  -- "cc",
-  -- "elixir",
+  "cc",
+  "elixir",
   "go",
-  -- "haskell",
+  "haskell",
   "json",
   "lua",
-  -- "org",
+  "org",
   "php",
-  -- "purescript",
+  "purescript",
   "python",
   "rust",
   "yaml",
-  -- "zig",
+  "zig",
 }
 
 -- Adding a custom keymap
