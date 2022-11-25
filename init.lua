@@ -5,7 +5,7 @@ require "jasvim.core"
 jvim.auto_install_plugins = true
 
 -- Set your default colorscheme
-jvim.colorscheme = "catppuccin-macchiato"
+jvim.colorscheme = "tokyonight-night"
 
 -- Do you want your jasvim background to be transparent ?
 jvim.transparent = false

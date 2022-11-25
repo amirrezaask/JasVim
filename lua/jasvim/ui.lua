@@ -3,15 +3,6 @@ local ui = {}
 function ui.plugins()
   local plugins = jvim.append(
     {
-      "sainnhe/sonokai",
-      "folke/tokyonight.nvim",
-      "martinsione/darkplus.nvim",
-      "Mofiqul/dracula.nvim",
-      "ellisonleao/gruvbox.nvim",
-      "tanvirtin/monokai.nvim",
-      "bluz71/vim-nightfly-colors",
-      { "catppuccin/nvim", as = "catppuccin" },
-      "eemed/sitruuna.vim",
       {
         "nvim-tree/nvim-tree.lua",
         requires = {
@@ -31,6 +22,7 @@ function ui.plugins()
     require("jasvim.ui.statusline").plugins(),
     require("jasvim.ui.dressing").plugins,
     require("jasvim.ui.dashboard").plugins(),
+    require("jasvim.ui.colorschemes").plugins(),
     require("jasvim.ui.noice").plugins
   )
   jvim.fuzzy_finder = jvim.fuzzy_finder or "telescope"
@@ -47,9 +39,6 @@ function jvim.make_transparent()
 end
 
 function ui.configs()
-  local set_colorscheme = [[ colorscheme  ]] .. jvim.colorscheme or "nightfly"
-  pcall(vim.cmd, set_colorscheme)
-
   if jvim.transparent then
     jvim.make_transparent()
   end
@@ -59,6 +48,7 @@ function ui.configs()
   require("jasvim.ui.splits").configs()
   require("jasvim.ui.dressing").configs()
   require("jasvim.ui.noice").configs()
+  require("jasvim.ui.colorschemes").configs()
   jvim.fuzzy_finder = jvim.fuzzy_finder or "telescope"
   if jvim.fuzzy_finder == "fzf" then
     require("jasvim.ui.fzf").configs()
