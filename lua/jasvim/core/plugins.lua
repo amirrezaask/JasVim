@@ -24,3 +24,5 @@ require("packer").init {
 
 jasvim.plugin "wbthomason/packer.nvim"
 jasvim.plugin "lewis6991/impatient.nvim"
+
+jvim.plugin = jasvim.plugin
