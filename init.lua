@@ -12,6 +12,9 @@ jvim.leader = " "
 -- it can be fzf | telescope
 jvim.fuzzy_finder = "telescope"
 
+-- if you want a fancy start screen or not
+jvim.start_screen = true
+
 -- Which languages you want to support ?
 jvim.languages = {
   -- "cc",

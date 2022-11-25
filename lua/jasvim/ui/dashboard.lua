@@ -12,6 +12,9 @@ function M.configs()
   if not jvim.plugin_exists "alpha" then
     return
   end
+  if jvim.start_screen == false then
+    return
+  end
   local asciiarts = {
     vim.split(
       [[
