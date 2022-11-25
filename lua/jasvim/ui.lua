@@ -10,6 +10,7 @@ function ui.plugins()
       "ellisonleao/gruvbox.nvim",
       "tanvirtin/monokai.nvim",
       "bluz71/vim-nightfly-colors",
+      { "catppuccin/nvim", as = "catppuccin" },
       "eemed/sitruuna.vim",
       {
         "nvim-tree/nvim-tree.lua",

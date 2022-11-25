@@ -2,7 +2,7 @@
 require "jasvim.core"
 
 -- Set your default colorscheme
-jvim.colorscheme = "tokyonight-night"
+jvim.colorscheme = "catppuccin-macchiato"
 
 -- Do you want your jasvim background to be transparent ?
 jvim.transparent = false
@@ -34,17 +34,20 @@ jvim.languages = {
 }
 
 -- Adding a custom keymap
-jvim.bind {
-  n = {
-    ["<leader>abc"] = function()
-      print "some custom keymap"
-    end,
-  },
-}
+-- jvim.bind {
+--   n = {
+--     ["<leader>abc"] = function()
+--       print "some custom keymap"
+--     end,
+--   },
+-- }
 
 -- Installing a plugin
 -- for documentation of syntax check https://github.com/wbthomason/packer.nvim
-jvim.plugin { "catppuccin/nvim", as = "catppuccin" }
+-- jvim.plugin {
+--   "catppuccin/nvim",
+--   as = "catppuccin",
+-- }
 
 -- Start Jasvim
 jvim.start()

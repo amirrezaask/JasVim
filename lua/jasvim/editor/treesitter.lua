@@ -3,6 +3,7 @@ function M.plugins()
   return {
     "nvim-treesitter/nvim-treesitter",
     { "nvim-treesitter/nvim-treesitter-textobjects", requires = { "nvim-treesitter/nvim-treesitter" } },
+    { "nvim-treesitter/nvim-treesitter-context", requires = { "nvim-treesitter/nvim-treesitter" } },
     { "p00f/nvim-ts-rainbow", requires = { "nvim-treesitter/nvim-treesitter" } },
   }
 end
@@ -65,5 +66,9 @@ function M.configs()
       },
     },
   }
+
+  jvim.with("treesitter-context", function(ts_context)
+    ts_context.setup {}
+  end)
 end
 return M
