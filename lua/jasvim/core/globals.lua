@@ -1,6 +1,6 @@
 _G.jvim = {}
 
-jvim.version = "0.1.0"
+jvim.version = "0.2.0"
 
 jvim.R = function(name)
   package.loaded[name] = nil
