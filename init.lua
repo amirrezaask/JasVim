@@ -1,83 +1,39 @@
--- Never delete or comment this line.
-require "jasvim.core"
+-- Jasvim
+-- Core libraries and helpers are in $HOME/.config/nvim/lua/core/*.lua
+-- Configurations for all plugins reside in $HOME/.config/nvim/lua/plugins/<plugin name>.lua
+-- Language configurations are in $HOME/.config/nvim/lua/langs/<language name>.lua
+-- All configurations will load automatically and there is no need to source your stuff in your init.lua
+-- Also some plugins are grouped under one group name forexample all git related plugins are in git.lua
 
--- Automatic installation of plugins on startup
-jvim.auto_install_plugins = true
+require "core"
 
--- Set your default colorscheme
-jvim.colorscheme = "tokyonight-night"
+local home = vim.env.HOME
 
--- Do you want your jasvim background to be transparent ?
-jvim.transparent = false
+local function get_config_path()
+  local config = os.getenv "XDG_CONFIG_DIR"
+  if not config then
+    return home .. "/.config/nvim"
+  end
+  return config
+end
 
--- Set leader key, by default it's Space
-jvim.leader = " "
+local plugins_dir = get_config_path() .. "/lua/plugins"
 
--- it can be fzf | telescope
-jvim.fuzzy_finder = "telescope"
+local langs_dir = get_config_path() .. "/lua/langs"
 
--- if you want a fancy start screen or not
-jvim.start_screen = true
+local get_lua_files = function(dir)
+  local list = {}
+  local tmp = vim.split(vim.fn.globpath(dir, "*.lua"), "\n")
+  for _, f in ipairs(tmp) do
+    list[#list + 1] = string.match(f, "lua/(.+).lua$")
+  end
+  return list
+end
+for _, m in ipairs(get_lua_files(plugins_dir)) do
+  require(m)
+end
+for _, m in ipairs(get_lua_files(langs_dir)) do
+  require(m)
+end
 
--- Default configuration that applies for all languages unless overridden
-jvim.language_defaults = {
-  autoformat = false,
-  lsp = true,
-  treesitter = true,
-}
-
--- Which languages you want to support and what features ?
--- See list of available features for each language in docs.
-jvim.languages = {
-  go = {
-    autoformat = true,
-  },
-  lua = {
-    autoformat = true,
-  },
-  cc = {},
-  elixir = {},
-  haskell = {},
-  json = {},
-  org = {},
-  php = {},
-  purescript = {},
-  python = {},
-  rust = {},
-  yaml = {},
-  zig = {},
-}
-
--- Adding a custom keymap
--- jvim.bind {
---   n = {
---     ["<leader>abc"] = function()
---       print "some custom keymap"
---     end,
---   },
--- }
--- or
--- You can use normal vim way of keymaps
--- ofcourse they are limited to only vimscript
--- nnoremap lhs rhs
--- inoremap lhs rhs
--- vnoremap lhs rhs
--- ...
--- or
--- new neovim keymap api
--- :help vim.keymap.set
--- vim.keymap.set(mode, lhs, rhs, opts)
--- vim.keymap.set('i', lhs, rhs, opts)
--- vim.keymap.set('n', lhs, rhs, opts)
--- vim.keymap.set('v', lhs, rhs, opts)
---
-
--- Installing a plugin
--- for documentation of syntax check https://github.com/wbthomason/packer.nvim
--- jvim.plugin {
---   "catppuccin/nvim",
---   as = "catppuccin",
--- }
-
--- Start Jasvim
-jvim.start()
+vim.cmd [[ PackerInstall ]]

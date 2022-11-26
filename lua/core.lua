@@ -1,0 +1,6 @@
+require "core.keymaps"
+require "core.options"
+require "core.packer"
+require "core.mason"
+require "core.lsp"
+require "core.treesitter"
