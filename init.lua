@@ -71,7 +71,6 @@ jvim.languages = {
 -- vim.keymap.set('n', lhs, rhs, opts)
 -- vim.keymap.set('v', lhs, rhs, opts)
 --
---
 
 -- Installing a plugin
 -- for documentation of syntax check https://github.com/wbthomason/packer.nvim
