@@ -8,17 +8,17 @@ plugin {
       pattern = "*.go",
       group = go_group,
       callback = function(meta)
-      --   jasvim.buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
-      --   jasvim.buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
-      --   jasvim.buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
-      --   jasvim.buf_nnoremap(
-      --     meta.buffer,
-      --     "<leader>p",
-      --     require "jasvim.ui.telescope"("command_palete", {
-      --       pattern = "Go",
-      --     }),
-      --     { remap = true }
-      --   )
+        -- buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
+        -- buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
+        -- buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
+        --   jasvim.buf_nnoremap(
+        --     meta.buffer,
+        --     "<leader>p",
+        --     require "jasvim.ui.telescope"("command_palete", {
+        --       pattern = "Go",
+        --     }),
+        --     { remap = true }
+        --   )
       end,
     })
   end,
@@ -28,6 +28,7 @@ treesitter.ensure "go"
 lsp.config("gopls", {
   on_attach = lsp.on_attach,
 })
+
 -- jasvim.onsave {
 --       pattern = "*.go",
 --       group = go_group,
