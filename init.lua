@@ -5,7 +5,12 @@
 -- All configurations will load automatically and there is no need to source your stuff in your init.lua
 -- Also some plugins are grouped under one group name forexample all git related plugins are in git.lua
 
-require "core"
+require "core.keymaps"
+require "core.options"
+require "core.packer"
+require "core.mason"
+require "core.lsp"
+require "core.treesitter"
 
 local home = vim.env.HOME
 
