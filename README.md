@@ -30,7 +30,7 @@ a simple framework to start with and provide some sane defaults and also plugins
 #### Init flow
 JasVim utilizes `packer.nvim` and uses it's declarative syntax for most plugins configurations.
 In short, jasvim `init.lua` does following:
-- Load `core.lua` which will load basic functionalities and plugins that are in `lua/core/*.lua`.
+- Load `core` modules, which will load basic functionalities and plugins that are in `lua/core/*.lua`.
 - Scan `lua/langs` and `lua/plugins` for lua files and load them all.
 - Finally it will call `:PackerInstall` command which will install all missing plugins.
 - That's it
