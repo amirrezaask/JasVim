@@ -13,9 +13,11 @@ if not ok then
 end
 
 require("mason").setup {}
+
 require("mason-lspconfig").setup {
   automatic_installation = true,
 }
--- require("mason-nvim-dap").setup {
---   automatic_installation = false,
--- }
+
+require("mason-nvim-dap").setup {
+  automatic_installation = false,
+}
