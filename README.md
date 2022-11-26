@@ -1,6 +1,6 @@
 # JasVim
 
-## Why another distro when we have awesome ones like ![AstroNvim](https://astronvim.github.io/) or ![LunarVim](https://www.lunarvim.org/) ?
+## Why another distro when we have awesome ones like [AstroNvim](https://astronvim.github.io/) or [LunarVim](https://www.lunarvim.org/) ?
 Most vim and also emacs distros will try to mimic the experience and ideas from tools like VSCode or Intelij IDEs and I'm not saying
 this is wrong or anything but I think both Vim/Neovim and Emacs are different and need different thinking and maybe the audience of these
 tools are not same as out of the box tools I mentioned. I think Vim/Neovim and Emacs are tools to create your own personalized developer environment
