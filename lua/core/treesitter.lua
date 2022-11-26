@@ -1,5 +1,13 @@
 _G.treesitter = {}
 
+_G.treesitter.ensure = function(name) 
+  local ok, _ = pcall(require, 'nvim-treesitter.install')
+  if not ok then
+    return
+  end
+  require("nvim-treesitter.install").ensure_installed(name)
+end
+
 plugin {
   "nvim-treesitter/nvim-treesitter",
   requires = {
@@ -8,7 +16,6 @@ plugin {
     "p00f/nvim-ts-rainbow",
   },
   config = function()
-    _G.treesitter.ensure = require("nvim-treesitter.install").ensure_installed
     require("nvim-treesitter.configs").setup {
       highlight = {
         enable = true,

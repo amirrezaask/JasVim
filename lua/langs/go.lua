@@ -8,17 +8,17 @@ plugin {
       pattern = "*.go",
       group = go_group,
       callback = function(meta)
-        jasvim.buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
-        jasvim.buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
-        jasvim.buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
-        jasvim.buf_nnoremap(
-          meta.buffer,
-          "<leader>p",
-          require "jasvim.ui.telescope"("command_palete", {
-            pattern = "Go",
-          }),
-          { remap = true }
-        )
+      --   jasvim.buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
+      --   jasvim.buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
+      --   jasvim.buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
+      --   jasvim.buf_nnoremap(
+      --     meta.buffer,
+      --     "<leader>p",
+      --     require "jasvim.ui.telescope"("command_palete", {
+      --       pattern = "Go",
+      --     }),
+      --     { remap = true }
+      --   )
       end,
     })
   end,

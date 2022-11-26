@@ -40,15 +40,6 @@ plugin {
 plugin "onsails/lspkind.nvim"
 
 plugin {
-  "williamboman/mason-lspconfig.nvim",
-  config = function()
-    require("mason-lspconfig").setup {
-      automatic_installation = true,
-    }
-  end,
-}
-
-plugin {
   "j-hui/fidget.nvim",
   config = function()
     require("fidget").setup {}
@@ -72,7 +63,7 @@ local lsp = {}
 
 function lsp.on_attach(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  jasvim.bind {
+  bind {
     n = {
       gd = { vim.lsp.buf.definition, desc = "Goto definition", buffer = bufnr },
       gi = { vim.lsp.buf.implementation, desc = "Goto implementations", buffer = bufnr },

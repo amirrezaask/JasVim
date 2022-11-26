@@ -6,7 +6,7 @@ plugin {
   tag = "nightly", -- optional, updated every week. (see issue #1193)
   config = function()
     require("nvim-tree").setup()
-    jasvim.bind {
+    bind {
       n = {
         ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
       },

@@ -17,3 +17,5 @@ plugin {
   "glepnir/zephyr-nvim",
   requires = { "nvim-treesitter/nvim-treesitter", opt = true },
 }
+
+pcall(vim.cmd, 'colorscheme tokyonight-night') 

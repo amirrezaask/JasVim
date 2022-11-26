@@ -1,3 +1,11 @@
+_G.window_height = function()
+  return vim.api.nvim_win_get_height(0)
+end
+
+_G.window_width = function()
+  return vim.api.nvim_win_get_width(0)
+end
+
 local _mt = {
   __call = function(tbl, name, user_opts)
     return function()
@@ -7,7 +15,7 @@ local _mt = {
         find_files = {
           theme = dropdown,
           layout_config = {
-            height = math.ceil(jasvim.window_height() * 0.5),
+            height = math.ceil(window_height() * 0.5),
           },
         },
         oldfiles = {
@@ -33,14 +41,14 @@ local _mt = {
           theme = dropdown,
           prompt_title = "Command Palete",
           layout_config = {
-            height = math.ceil(jasvim.window_height() * 0.4),
+            height = math.ceil(window_height() * 0.4),
           },
         },
         command_palete = {
           theme = dropdown,
           prompt_title = "Command Palete",
           layout_config = {
-            height = math.ceil(jasvim.window_height() * 0.4),
+            height = math.ceil(window_height() * 0.4),
           },
         },
       }
@@ -57,9 +65,9 @@ local _mt = {
   end,
 }
 
-local M = setmetatable({}, _mt)
+_G.telescope = setmetatable({}, _mt)
 
-function M.command_palete(opts)
+function telescope.command_palete(opts)
   local pickers = require "telescope.pickers"
   local finders = require "telescope.finders"
   local conf = require("telescope.config").values
@@ -133,7 +141,7 @@ local function config()
       preview = false,
       prompt_prefix = "🔍 ",
       layout_config = {
-        height = math.ceil(jasvim.window_height() * 0.7),
+        height = math.ceil(window_height() * 0.7),
       },
     },
     extensions = {
@@ -149,16 +157,16 @@ local function config()
 
   bind {
     n = {
-      ["<leader><leader>"] = { M "find_files", desc = "Find Files" },
-      ["<leader>ff"] = { M "find_files", desc = "Find Files" },
-      ["<leader>fn"] = { M("find_files", { cwd = "~/.config/nvim" }), desc = "Neovim Config" },
-      ["<leader>fg"] = { M "git_files", desc = "Git Files" },
-      ["<leader>fr"] = { M "oldfiles", desc = "Recent Files" },
-      ["<leader>fh"] = { M "help_tags", desc = "Help" },
-      ["<leader>fk"] = { M "keymaps", desc = "Keymaps" },
-      ["<leader>p"] = { M "command_palete", desc = "Command palete" },
-      ["<leader>fc"] = { M "commands", desc = "Command palete" },
-      ["??"] = M "live_grep",
+      ["<leader><leader>"] = { telescope "find_files", desc = "Find Files" },
+      ["<leader>ff"] = { telescope "find_files", desc = "Find Files" },
+      ["<leader>fn"] = { telescope("find_files", { cwd = "~/.config/nvim" }), desc = "Neovim Config" },
+      ["<leader>fg"] = { telescope "git_files", desc = "Git Files" },
+      ["<leader>fr"] = { telescope "oldfiles", desc = "Recent Files" },
+      ["<leader>fh"] = { telescope "help_tags", desc = "Help" },
+      ["<leader>fk"] = { telescope "keymaps", desc = "Keymaps" },
+      ["<leader>p"] = { telescope "command_palete", desc = "Command palete" },
+      ["<leader>fc"] = { telescope "commands", desc = "Command palete" },
+      ["??"] = telescope "live_grep",
     },
   }
 end

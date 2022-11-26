@@ -56,7 +56,7 @@ local function config()
       { type = "padding", val = 2 },
       { type = "text", val = "JasVim", opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 1 },
-      { type = "text", val = jasvim.version, opts = { position = "center", hl = "Type" } },
+      -- { type = "text", val = jasvim.version, opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 2 },
       {
         type = "group",
@@ -78,7 +78,7 @@ local function config()
     },
   }
   require("alpha").setup(myconfig)
-  jasvim.bind {
+  bind {
     n = {
       [",z"] = { "<cmd>MaximizerToggle<cr>", desc = "Toggle zoom on current window" },
     },
