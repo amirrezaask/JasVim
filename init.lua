@@ -14,6 +14,19 @@ require "core.treesitter"
 
 local loader = require "core.loader"
 
+_G.langs = {
+  autoformat = true,
+  lua = {
+    autoformat = true,
+  },
+  go = {
+    autoformat = true,
+  },
+  rust = {
+    autoformat = true,
+  },
+}
+
 -- Loader will load all your /lua/plugins/*.lua and /lua/langs/*.lua
 loader()
 
