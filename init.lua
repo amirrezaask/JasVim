@@ -12,33 +12,11 @@ require "core.mason"
 require "core.lsp"
 require "core.treesitter"
 
-local home = vim.env.HOME
+local loader = require "core.loader"
 
-local function get_config_path()
-  local config = os.getenv "XDG_CONFIG_DIR"
-  if not config then
-    return home .. "/.config/nvim"
-  end
-  return config
-end
+-- Loader will load all your /lua/plugins/*.lua and /lua/langs/*.lua
+loader()
 
-local plugins_dir = get_config_path() .. "/lua/plugins"
-
-local langs_dir = get_config_path() .. "/lua/langs"
-
-local get_lua_files = function(dir)
-  local list = {}
-  local tmp = vim.split(vim.fn.globpath(dir, "*.lua"), "\n")
-  for _, f in ipairs(tmp) do
-    list[#list + 1] = string.match(f, "lua/(.+).lua$")
-  end
-  return list
-end
-for _, m in ipairs(get_lua_files(plugins_dir)) do
-  require(m)
-end
-for _, m in ipairs(get_lua_files(langs_dir)) do
-  require(m)
-end
-
-vim.cmd [[ PackerInstall ]]
+-- PackerInstall
+-- PackerCompile
+vim.cmd.JvimReload()

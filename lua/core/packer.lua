@@ -22,4 +22,15 @@ _G.use = require("packer").use
 plugin "wbthomason/packer.nvim"
 plugin "lewis6991/impatient.nvim"
 
-local ok, _ = pcall(require, "impatient")
+local _, _ = pcall(require, "impatient")
+
+local function reload()
+  vim.cmd [[PackerInstall]]
+  vim.cmd [[PackerCompile]]
+end
+
+vim.api.nvim_create_user_command("JvimReload", reload, {})
+
+return {
+  reload = reload,
+}
