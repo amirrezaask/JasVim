@@ -14,6 +14,8 @@ require "core.treesitter"
 
 local loader = require "core.loader"
 
+_G.fuzzy_finder = "fzf"
+
 _G.langs = {
   autoformat = true,
   lua = {

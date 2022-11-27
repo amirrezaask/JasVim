@@ -136,6 +136,9 @@ function telescope.command_palete(opts)
 end
 
 local function config()
+  if fuzzy_finder and fuzzy_finder ~= "telescope" then
+    return
+  end
   require("telescope").setup {
     defaults = {
       preview = false,
