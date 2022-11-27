@@ -11,7 +11,10 @@ local function get_config_path()
   return config
 end
 
-return function()
+-- Plugins register their config callback in here
+_G.conf = {};
+
+(function()
   local plugins_dir = get_config_path() .. "/lua/plugins"
 
   local langs_dir = get_config_path() .. "/lua/langs"
@@ -30,4 +33,4 @@ return function()
   for _, m in ipairs(get_lua_files(langs_dir)) do
     require(m)
   end
-end
+end)()

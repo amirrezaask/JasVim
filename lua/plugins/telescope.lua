@@ -135,7 +135,7 @@ function telescope.command_palete(opts)
     :find()
 end
 
-local function config()
+function conf.telescope()
   if fuzzy_finder and fuzzy_finder ~= "telescope" then
     return
   end
@@ -149,11 +149,10 @@ local function config()
     },
     extensions = {
       fzf = {
-        fuzzy = true, -- false will only do exact matching
-        override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true, -- override the file sorter
-        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-        -- the default case_mode is "smart_case"
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
       },
     },
   }
@@ -177,7 +176,7 @@ end
 plugin {
   "nvim-telescope/telescope.nvim",
   requires = { "nvim-lua/plenary.nvim" },
-  config = config,
+  config = conf.telescope,
 }
 
 plugin {
