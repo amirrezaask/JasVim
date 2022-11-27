@@ -7,7 +7,7 @@ plugin {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
   },
-  configs = function()
+  config = function()
     local cmp = require "cmp"
     cmp.setup {
       snippet = {
