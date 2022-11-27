@@ -17,6 +17,42 @@ function _G.bind(spec)
   end
 end
 
+function _G.nnoremap(lhs, rhs, opts)
+  opts = opts or {}
+  opts = vim.tbl_extend("force", opts, { noremap = true })
+  vim.keymap.set("n", lhs, rhs, opts)
+end
+
+function _G.inoremap(lhs, rhs, opts)
+  opts = opts or {}
+  opts = vim.tbl_extend("force", opts, { noremap = true })
+  vim.keymap.set("i", lhs, rhs, opts)
+end
+
+function _G.vnoremap(lhs, rhs, opts)
+  opts = opts or {}
+  opts = vim.tbl_extend("force", opts, { noremap = true })
+  vim.keymap.set("v", lhs, rhs, opts)
+end
+
+function _G.buf_nnoremap(buf, lhs, rhs, opts)
+  opts = opts or {}
+  opts = vim.tbl_extend("force", opts, { noremap = true, buffer = buf })
+  vim.keymap.set("n", lhs, rhs, opts)
+end
+
+function _G.buf_inoremap(buf, lhs, rhs, opts)
+  opts = opts or {}
+  opts = vim.tbl_extend("force", opts, { noremap = true, buffer = buf })
+  vim.keymap.set("i", lhs, rhs, opts)
+end
+
+function _G.buf_vnoremap(buf, lhs, rhs, opts)
+  opts = opts or {}
+  opts = vim.tbl_extend("force", opts, { noremap = true, buffer = buf })
+  vim.keymap.set("v", lhs, rhs, opts)
+end
+
 -- [[ Basic keymaps
 bind {
   n = {
