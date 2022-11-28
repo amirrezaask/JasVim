@@ -12,9 +12,12 @@ end
 -- If packer.nvim is not installed, install it.
 packer_ensure()
 
-require("packer").init { display = {
-  open_fn = require("packer.util").float,
-} }
+require("packer").init {
+  compile_path = require("packer.util").join_paths(vim.fn.stdpath "data", "packer_compiled.lua"),
+  display = {
+    open_fn = require("packer.util").float,
+  },
+}
 
 _G.plugin = require("packer").use
 _G.use = require("packer").use
