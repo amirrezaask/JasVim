@@ -168,7 +168,7 @@ function conf.telescope()
       ["<leader>fk"] = { telescope "keymaps", desc = "Keymaps" },
       ["<leader>p"] = { telescope "command_palete", desc = "Command palete" },
       ["<leader>fc"] = { telescope "commands", desc = "Command palete" },
-      ["??"] = telescope "live_grep",
+      ["??"] = { telescope "live_grep", desc = "Live Grep" },
     },
   }
 end
