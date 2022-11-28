@@ -18,9 +18,19 @@ require("packer").init {
     open_fn = require("packer.util").float,
   },
 }
+local configs = {}
 
-_G.plugin = require("packer").use
-_G.use = require("packer").use
+local function plugin(spec)
+    if type(spec) == 'table' then
+        if spec.config then
+            table.insert(configs, spec.config)
+            spec.config = nil
+        end
+    end
+    require'packer'.use(spec)
+end
+
+_G.plugin = plugin
 
 plugin "wbthomason/packer.nvim"
 plugin "lewis6991/impatient.nvim"
@@ -29,7 +39,10 @@ local _, _ = pcall(require, "impatient")
 
 local function reload()
   vim.cmd [[PackerInstall]]
-  vim.cmd [[PackerCompile]]
+  for _, cfg in ipairs(configs) do
+    pcall(cfg)
+  end
+
 end
 
 vim.api.nvim_create_user_command("JvimReload", reload, {})

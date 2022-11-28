@@ -7,17 +7,20 @@ plugin {
 }
 
 local ok, _ = pcall(require, "mason")
-
-if not ok then
-  return
+if ok then
+  require("mason").setup {}
 end
 
-require("mason").setup {}
+ok, _ = pcall(require, "mason-lspconfig")
+if ok then
+  require("mason-lspconfig").setup {
+    automatic_installation = true,
+  }
+end
 
-require("mason-lspconfig").setup {
-  automatic_installation = true,
-}
-
-require("mason-nvim-dap").setup {
-  automatic_installation = false,
-}
+ok, _ = pcall(require, "mason-nvim-dap")
+if ok then
+  require("mason-nvim-dap").setup {
+    automatic_installation = false,
+  }
+end

@@ -1,7 +1,7 @@
 _G.treesitter = {}
 
-_G.treesitter.ensure = function(name) 
-  local ok, _ = pcall(require, 'nvim-treesitter.install')
+_G.treesitter.ensure = function(name)
+  local ok, _ = pcall(require, "nvim-treesitter.install")
   if not ok then
     return
   end
@@ -10,11 +10,6 @@ end
 
 plugin {
   "nvim-treesitter/nvim-treesitter",
-  requires = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/nvim-treesitter-context",
-    "p00f/nvim-ts-rainbow",
-  },
   config = function()
     require("nvim-treesitter.configs").setup {
       highlight = {
@@ -62,7 +57,23 @@ plugin {
         },
       },
     }
+  end,
+}
 
+plugin {
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  after = "nvim-treesitter",
+}
+
+plugin {
+  "p00f/nvim-ts-rainbow",
+  after = "nvim-treesitter",
+}
+
+plugin {
+  "nvim-treesitter/nvim-treesitter-context",
+  after = "nvim-treesitter",
+  config = function()
     require("treesitter-context").setup {}
   end,
 }

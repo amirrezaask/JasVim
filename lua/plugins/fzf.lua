@@ -19,9 +19,11 @@ function conf.fzf()
     },
   }
 end
+if _G.plugins.fuzzy_finder == "fzf" then
+	plugin { "junegunn/fzf", run = ":call fzf#install()" }
+	plugin {
+	  "junegunn/fzf.vim",
+	  config = conf.fzf,
+	}
+end
 
-plugin { "junegunn/fzf", run = ":call fzf#install()" }
-plugin {
-  "junegunn/fzf.vim",
-  config = conf.fzf,
-}
