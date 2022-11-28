@@ -29,6 +29,11 @@ JasVim is designed to be a simpler start for someone coming to neovim and yet it
 ,there is no hidden logic and everything starts at `init.lua` and you can easily follow everything from there and start customizing anything you want, it's more like a 
 a simple framework to start with and provide some sane defaults and also plugins that are defacto standards.
 
+
+## Use as a template
+This project is designed to be used not as a seperate distro but as a template to build your own configuration from it,
+to do so use `Use this template` button and create a new repo from this template to hold your own configuration in it
+
 ### Jasvim structure
 #### Init flow
 JasVim utilizes `packer.nvim` and uses it's declarative syntax for most plugins configurations.
