@@ -84,3 +84,4 @@ bind {
     ["kj"] = "<esc>",
   },
 }
+require "core.whichkey"

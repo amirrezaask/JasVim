@@ -6,9 +6,9 @@
 -- Also some plugins are grouped under one group name forexample all git related plugins are in git.lua
 -- _G in lua is global namespace, we use it for less linter errors but in lua anything without `local` keyword is global.
 
+require "core.packer"
 require "core.keymaps"
 require "core.options"
-require "core.packer"
 require "core.mason"
 require "core.lsp"
 require "core.treesitter"

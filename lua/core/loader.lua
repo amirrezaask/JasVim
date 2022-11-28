@@ -30,4 +30,8 @@ _G.conf = {};
   for _, m in ipairs(get_lua_files(langs_dir)) do
     require(m)
   end
+  local ok, _ = pcall(require, "which-key")
+  if ok then
+    require("which-key").setup {}
+  end
 end)()
