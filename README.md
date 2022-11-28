@@ -4,6 +4,9 @@
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/amirrezaask/jasvim/master/install.sh)
 ```
+**Note** : remember that if installation stuck due to network problems just exit and re enter and it will continue were it failed,
+in my country due to network problems this happens a lot to me.
+
 ## Features
 - LSP + Automatic install of LSP servers
 - Tree file explorer using `nvim-tree`

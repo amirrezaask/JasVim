@@ -48,6 +48,7 @@ vim.opt.listchars:append "trail:·"
 vim.opt.listchars:append "lead:·"
 vim.opt.timeoutlen = 500 -- when a key is pressed timeout until it's forgotten
 vim.opt.clipboard:append "unnamedplus" -- use system clipboard by default
+vim.opt.guicursor = ""
 
 if vim.version().major >= 0 and vim.version().minor >= 8 then
   vim.opt.laststatus = 3 -- if supported use global statusline

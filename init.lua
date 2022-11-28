@@ -21,7 +21,7 @@ require "core.configs"
 -- Now we set values we want.
 _G.plugins = {
   fuzzy_finder = "telescope",
-  colorscheme = "tokyonight-night",
+  colorscheme = "catppuccin",
 }
 
 _G.langs = {
