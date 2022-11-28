@@ -10,7 +10,7 @@ plugin "nanotee/luv-vimdocs"
 
 treesitter.ensure "lua"
 
-if langs.autoformat and langs.lua and langs.lua.autoformat then
+if config(langs, "autoformat", "lua.autoformat") then
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function(opts)

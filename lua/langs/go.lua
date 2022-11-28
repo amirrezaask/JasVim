@@ -21,7 +21,7 @@ lsp.config("gopls", {
   on_attach = lsp.on_attach,
 })
 
-if langs.autoformat and langs.go and langs.go.autoformat then
+if config(langs, 'autoformat', 'go.autoformat') then
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     group = go_group,

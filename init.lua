@@ -19,29 +19,28 @@ require "core.treesitter"
 require "core.configs"
 
 -- Now we set values we want.
-_G.plugins = {
-  fuzzy_finder = "telescope",
-  colorscheme = "catppuccin",
-}
+plugins.fuzzy_finder = "telescope"
 
-_G.langs = {
-  -- Global autoformat configuration, langauge specific ones will override this
-  autoformat = true,
+-- Colorscheme, check :Theme command for available options
+plugins.colorscheme = "catppuccin"
+
+-- Some language specific settings
+-- language specific ones will override globals
+-- by default I don't want auto format
+-- but for specific languages i want them
+langs = {
+  autoformat = false,
+
+  go = {
+    autoformat = true,
+  },
 
   lua = {
     autoformat = true,
   },
-  go = {
-    autoformat = true,
-  },
-  rust = {
-    autoformat = true,
-  },
 }
 
--- Loader will load all your /lua/plugins/*.lua and /lua/langs/*.lua
+-- Loader will:
+-- install all missing plugins
+-- then load all your /lua/plugins/*.lua and /lua/langs/*.lua
 require "core.loader"
-
--- PackerInstall
--- PackerCompile
-vim.cmd.JvimReload()

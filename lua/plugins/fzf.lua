@@ -1,5 +1,5 @@
 function conf.fzf()
-  if _G.plugins.fuzzy_finder ~= "fzf" then
+  if config(plugins, "fuzzy_finder") == "fzf" then
     return
   end
   vim.g.fzf_layout = {
@@ -19,11 +19,10 @@ function conf.fzf()
     },
   }
 end
-if _G.plugins.fuzzy_finder == "fzf" then
-	plugin { "junegunn/fzf", run = ":call fzf#install()" }
-	plugin {
-	  "junegunn/fzf.vim",
-	  config = conf.fzf,
-	}
+if config(plugins, "fuzzy_finder") == "fzf" then
+  plugin { "junegunn/fzf", run = ":call fzf#install()" }
+  plugin {
+    "junegunn/fzf.vim",
+    config = conf.fzf,
+  }
 end
-

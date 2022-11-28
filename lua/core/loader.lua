@@ -11,7 +11,7 @@ end
 -- Plugins register their config callback in here
 _G.conf = {};
 
-(function()
+local load = function()
   local plugins_dir = get_config_path() .. "/lua/plugins"
 
   local langs_dir = get_config_path() .. "/lua/langs"
@@ -34,4 +34,11 @@ _G.conf = {};
   if ok then
     require("which-key").setup {}
   end
-end)()
+
+  require'core.packer'.reload()
+end
+
+vim.api.nvim_create_user_command('Reload', '<cmd>so ~/.config/nvim/init.lua', {})
+nnoremap('<leader>cr', '<cmd>so ~/.config/nvim/init.lua<CR>', {})
+
+load()

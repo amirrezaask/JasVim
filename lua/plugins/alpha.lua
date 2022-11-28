@@ -1,7 +1,8 @@
-local function config()
-  local asciiarts = {
-    vim.split(
-      [[
+local asciiart = ""
+if config(plugins, "alpha.asciiart") then
+  asciiart = config(plugins, "alpha.asciiart")
+else
+  asciiart = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -17,32 +18,11 @@ local function config()
 ⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⢹⣿⠿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠉⠛⠿⠿⣿⡟⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-]],
-      "\n"
-    ),
+]]
+end
 
-    vim.split(
-      [[
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⢀⡀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⡿⠟⠛⠉⠉⠈⠉⠙⠛⠿⣧⡀⠀⢸⡇⠀⢀⣼⠿⠛⠋⠉⠉⠉⠉⠛⠻⢿⣿
-⣿⣷⡀⠀⠀⠀⠀⠀⢀⠀⠀⠈⠻⣧⣸⣇⣾⠟⠁⠀⠀⡀⠀⠀⠀⠀⠀⢀⣾⣿
-⣿⣿⣷⡄⠀⠀⠀⠀⠙⠛⠷⢶⣤⡾⠛⠛⢷⣤⡶⠾⠛⠃⠀⠀⠀⠀⣠⣿⣿⣿
-⣿⣿⣿⣿⣶⣤⣀⣀⡀⣀⣴⠶⠿⣇⠀⠀⣸⣇⣀⠀⠀⢀⣀⣀⣤⣾⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⣴⠟⣿⠛⢻⣯⠉⠛⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⢀⡾⠋⠀⣿⡀⠀⠙⢧⡀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⢀⣾⣧⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⡆⠀⣀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣶⣤⣀⣀⠀⢠⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-  ]],
-      "\n"
-    ),
-  }
-  math.randomseed(os.clock() * 100000000000)
+local function config()
+  local ascii_art = vim.split(asciiart, "\n")
   local button = require("alpha.themes.dashboard").button
   local myconfig = {
     layout = {
@@ -50,12 +30,10 @@ local function config()
       {
         type = "text",
         -- val = asciiarts[math.ceil(math.random(1, 100) % 2) + 1],
-        val = asciiarts[1],
+        val = ascii_art,
         opts = { position = "center", hl = "Type" },
       },
       { type = "padding", val = 2 },
-      { type = "text", val = "JasVim", opts = { position = "center", hl = "Type" } },
-      { type = "padding", val = 1 },
       -- { type = "text", val = jasvim.version, opts = { position = "center", hl = "Type" } },
       { type = "padding", val = 2 },
       {

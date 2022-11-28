@@ -70,7 +70,7 @@ bind {
 
     ["j"] = "gj",
     ["k"] = "gk",
-    ["<leader>c"] = ":e ~/.config/nvim/init.lua<CR>",
+    ["<leader>ce"] = ":e ~/.config/nvim/init.lua<CR>",
     ["<CR>"] = { [[ {-> v:hlsearch ? ':nohl<CR>' : '<CR>'}() ]], expr = true },
   },
   t = {

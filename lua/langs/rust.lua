@@ -24,10 +24,10 @@ plugin {
   end,
 }
 
-if langs.autoformat and langs.rust and langs.rust.autoformat then
+if config(langs, 'autoformat', 'rust.autoformat') then
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.rs",
-    callback = function(meta)
+    callback = function(_)
       vim.lsp.buf.format()
     end,
   })

@@ -45,8 +45,6 @@ local function reload()
 
 end
 
-vim.api.nvim_create_user_command("JvimReload", reload, {})
-
 return {
   reload = reload,
 }

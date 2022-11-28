@@ -6,10 +6,6 @@ plugin {
 }
 
 plugin {
-  "tpope/vim-fugitive",
-}
-
-plugin {
   "junegunn/gv.vim",
 }
 
@@ -21,6 +17,9 @@ plugin {
   "TimUntersberger/neogit",
   requires = "nvim-lua/plenary.nvim",
   config = function()
-    require("neogit").setup {}
+    require("neogit").setup {
+      kind = 'vsplit'
+    }
+    nnoremap('<leader>g', '<cmd>Neogit<cr>')
   end,
 }

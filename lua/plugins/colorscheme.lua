@@ -5,17 +5,51 @@ plugin "ellisonleao/gruvbox.nvim"
 plugin "tanvirtin/monokai.nvim"
 plugin "bluz71/vim-nightfly-colors"
 plugin "navarasu/onedark.nvim"
-plugin "aktersnurra/no-clown-fiesta.nvim"
 plugin "Shatur/neovim-ayu"
 plugin "rose-pine/neovim"
-plugin "projekt0n/github-nvim-theme"
-plugin "Mofiqul/vscode.nvim"
 plugin "EdenEast/nightfox.nvim"
+plugin "bluz71/vim-moonfly-colors"
 plugin { "catppuccin/nvim", as = "catppuccin" }
-plugin "eemed/sitruuna.vim"
+plugin "tiagovla/tokyodark.nvim"
 plugin {
   "glepnir/zephyr-nvim",
   requires = { "nvim-treesitter/nvim-treesitter", opt = true },
 }
+
+local themes = {
+  "sonokai",
+  "tokyonight",
+  "tokyonight-day",
+  "tokyonight-moon",
+  "tokyonight-night",
+  "tokyonight-storm",
+  "dracula",
+  "gruvbox",
+  "monokai",
+  "nightfly",
+  "ayu-mirage",
+  "ayu-dark",
+  "ayu-light",
+  "onedark",
+  "rose-pine",
+  "nightfox",
+  "moonfly",
+  "tokyodark",
+  "catppuccin",
+  "catppuccin-frappe",
+  "catppuccin-latte",
+  "catppuccin-macchiato",
+  "catppuccin-mocha",
+}
+
+local function select_theme()
+  vim.ui.select(themes, {
+    prompt = "Choose theme: ",
+  }, function(theme)
+    vim.cmd.colorscheme(theme)
+  end)
+end
+
+vim.api.nvim_create_user_command("Theme", select_theme, {})
 
 pcall(vim.cmd.colorscheme, _G.plugins.colorscheme or "tokyonight-night")
