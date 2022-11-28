@@ -136,7 +136,7 @@ function telescope.command_palete(opts)
 end
 
 function conf.telescope()
-  if fuzzy_finder and fuzzy_finder ~= "telescope" then
+  if _G.plugins.fuzzy_finder ~= "telescope" then
     return
   end
   require("telescope").setup {

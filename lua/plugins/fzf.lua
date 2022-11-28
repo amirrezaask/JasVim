@@ -1,5 +1,5 @@
 function conf.fzf()
-  if fuzzy_finder and fuzzy_finder ~= "fzf" then
+  if _G.plugins.fuzzy_finder ~= "fzf" then
     return
   end
   vim.g.fzf_layout = {

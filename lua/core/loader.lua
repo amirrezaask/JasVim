@@ -1,8 +1,5 @@
 local home = vim.env.HOME
 
-_G.langs = {}
-_G.plugins = {}
-
 local function get_config_path()
   local config = os.getenv "XDG_CONFIG_DIR"
   if not config then

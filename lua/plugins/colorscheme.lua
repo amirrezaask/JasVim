@@ -18,4 +18,4 @@ plugin {
   requires = { "nvim-treesitter/nvim-treesitter", opt = true },
 }
 
-pcall(vim.cmd.colorscheme, "tokyonight-night")
+pcall(vim.cmd.colorscheme, _G.plugins.colorscheme or "tokyonight-night")

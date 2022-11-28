@@ -13,7 +13,16 @@ require "core.mason"
 require "core.lsp"
 require "core.treesitter"
 
-_G.fuzzy_finder = "telescope"
+-- This is how I think we can make our configuration configurable
+-- We will make two global tables, one to hold configuration values
+-- for languages and one for plugins, _G.langs and _G.plugins
+require "core.configs"
+
+-- Now we set values we want.
+_G.plugins = {
+  fuzzy_finder = "telescope",
+  colorscheme = "tokyonight-night",
+}
 
 _G.langs = {
   -- Global autoformat configuration, langauge specific ones will override this
