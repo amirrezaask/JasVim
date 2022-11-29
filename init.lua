@@ -26,6 +26,9 @@ plugins.fuzzy_finder = "telescope"
 plugins.colorscheme = "catppuccin"
 -- plugins.colorscheme = "gruvbox"
 
+-- If you want transparent background
+-- plugins.transparent = true
+
 -- Wether you want startup alpha dashboard or no.
 plugins.alpha = {
   enabled = false,
