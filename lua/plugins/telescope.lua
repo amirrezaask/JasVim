@@ -13,6 +13,9 @@ local _mt = {
         live_grep = {
           preview = true,
         },
+        help_tags = {
+          preview = true,
+        },
       }
       local opts = pickers_settings[name] or {}
       user_opts = user_opts or {}
@@ -57,7 +60,7 @@ function conf.telescope()
       ["<leader>fn"] = { telescope("find_files", { cwd = "~/.config/nvim" }), desc = "Neovim Config" },
       ["<leader>fg"] = { telescope "git_files", desc = "Git Files" },
       ["<leader>fr"] = { telescope "oldfiles", desc = "Recent Files" },
-      ["<leader>fh"] = { telescope "help_tags", desc = "Help" },
+      ["<leader>h"] = { telescope "help_tags", desc = "Help" },
       ["<leader>fk"] = { telescope "keymaps", desc = "Keymaps" },
       ["<leader>p"] = { telescope "commands", desc = "Command palete" },
       ["<leader>fc"] = { telescope "commands", desc = "Command palete" },

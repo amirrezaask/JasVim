@@ -21,4 +21,3 @@ function config(store, ...)
   end
   return values[#values]
 end
-

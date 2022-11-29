@@ -13,7 +13,6 @@ in my country due to network problems this happens a lot to me.
 - `Telescope` fuzzy finder + `Fzf` fuzzy finder
 - Tmux integration
 - Terminal emulator using `toggleterm`
-any many improvements to vanilla neovim experience
 
 
 ## Why another distro when we have awesome ones like [AstroNvim](https://astronvim.github.io/) or [LunarVim](https://www.lunarvim.org/) ?
@@ -80,7 +79,6 @@ There is a list of all themes that are installed in this template and there is a
 and see which one you want and set it in your `init.lua`
 
 ### catppuccin
-It's also the default theme and the most beautiful in my opinion :)
 ![Default Theme: catppuccin](https://raw.github.com/amirrezaask/jasvim/master/screenshots/catppuccin.png)
 
 ### catppuccin-mocha

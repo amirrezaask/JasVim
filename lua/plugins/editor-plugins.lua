@@ -14,6 +14,8 @@ plugin "junegunn/vim-easy-align"
 
 plugin "kevinhwang91/nvim-bqf"
 
+plugin "tpope/vim-eunuch"
+
 plugin {
   "windwp/nvim-autopairs",
   config = function()

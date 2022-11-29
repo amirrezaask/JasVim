@@ -6,6 +6,7 @@
 -- Also some plugins are grouped under one group name forexample all git related plugins are in git.lua
 -- _G in lua is global namespace, we use it for less linter errors but in lua anything without `local` keyword is global.
 
+-- Core functionalities and utilities
 require "core.packer"
 require "core.keymaps"
 require "core.options"
@@ -22,7 +23,13 @@ require "core.configs"
 plugins.fuzzy_finder = "telescope"
 
 -- Colorscheme, check :Theme command for available options
-plugins.colorscheme = "catppuccin"
+-- plugins.colorscheme = "catppuccin"
+plugins.colorscheme = "gruvbox"
+
+-- Wether you want startup alpha dashboard or no.
+plugins.alpha = {
+  enabled = false,
+}
 
 -- Some language specific settings
 -- language specific ones will override globals
@@ -40,7 +47,7 @@ langs = {
   },
 }
 
--- Loader will:
+-- Loader
 -- install all missing plugins
 -- then load all your /lua/plugins/*.lua and /lua/langs/*.lua
 require "core.loader"

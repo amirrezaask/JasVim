@@ -21,13 +21,13 @@ require("packer").init {
 local configs = {}
 
 local function plugin(spec)
-    if type(spec) == 'table' then
-        if spec.config then
-            table.insert(configs, spec.config)
-            spec.config = nil
-        end
+  if type(spec) == "table" then
+    if spec.config then
+      table.insert(configs, spec.config)
+      spec.config = nil
     end
-    require'packer'.use(spec)
+  end
+  require("packer").use(spec)
 end
 
 _G.plugin = plugin
@@ -42,7 +42,6 @@ local function reload()
   for _, cfg in ipairs(configs) do
     pcall(cfg)
   end
-
 end
 
 return {

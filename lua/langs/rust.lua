@@ -24,7 +24,7 @@ plugin {
   end,
 }
 
-if config(langs, 'autoformat', 'rust.autoformat') then
+if config(langs, "autoformat", "rust.autoformat") then
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.rs",
     callback = function(_)

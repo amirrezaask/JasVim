@@ -18,8 +18,8 @@ plugin {
   requires = "nvim-lua/plenary.nvim",
   config = function()
     require("neogit").setup {
-      kind = 'vsplit'
+      kind = "vsplit",
     }
-    nnoremap('<leader>g', '<cmd>Neogit<cr>')
+    nnoremap("<leader>g", "<cmd>Neogit<cr>")
   end,
 }
