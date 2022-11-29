@@ -42,6 +42,12 @@ local themes = {
   "catppuccin-mocha",
 }
 
+function transparent()
+  vim.cmd.highlight "Normal guibg=none"
+end
+
+vim.api.nvim_create_user_command("Transparent", transparent, {})
+
 local function select_theme()
   vim.ui.select(themes, {
     prompt = "Choose theme: ",
