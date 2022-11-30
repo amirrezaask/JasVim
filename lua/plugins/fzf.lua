@@ -1,5 +1,5 @@
 function conf.fzf()
-  if config(plugins, "fuzzy_finder") == "fzf" then
+  if config(plugins, "fuzzy_finder") ~= "fzf" then
     return
   end
   bind {
