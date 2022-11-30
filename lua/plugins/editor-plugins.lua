@@ -16,6 +16,8 @@ plugin "kevinhwang91/nvim-bqf"
 
 plugin "tpope/vim-eunuch"
 
+plugin "tpope/vim-sleuth"
+
 plugin {
   "windwp/nvim-autopairs",
   config = function()
