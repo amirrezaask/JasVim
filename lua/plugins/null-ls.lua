@@ -12,6 +12,7 @@ plugin {
         require("null-ls").builtins.formatting.prettierd,
         require("null-ls").builtins.formatting.phpcsfixer,
         require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.formatting.goimports,
       },
     }
   end,

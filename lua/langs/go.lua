@@ -37,27 +37,11 @@ lsp.config("gopls", {
 })
 
 if config(langs, "autoformat", "go.autoformat") then
-  vim.api.nvim_create_autocmd("BufWritePost", {
+  vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     group = go_group,
-    callback = function(meta)
-      local ok, _ = pcall(require, "plenary")
-      if not ok then
-        return
-      end
-      local Job = require "plenary.job"
-      local j = Job:new {
-        "goimports",
-        meta.file,
-      }
-      local output = j:sync()
-      if j.code ~= 0 then
-        vim.schedule(function()
-          vim.api.nvim_err_writeln "cannot format using goimports"
-        end)
-      else
-        vim.api.nvim_buf_set_lines(meta.buf, 0, -1, false, output)
-      end
+    callback = function(_)
+      vim.lsp.buf.format()
     end,
   })
 end
