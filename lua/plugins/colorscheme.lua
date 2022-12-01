@@ -1,17 +1,17 @@
-plugin "sainnhe/sonokai"
-plugin "folke/tokyonight.nvim"
-plugin "Mofiqul/dracula.nvim"
-plugin "ellisonleao/gruvbox.nvim"
-plugin "tanvirtin/monokai.nvim"
-plugin "bluz71/vim-nightfly-colors"
-plugin "navarasu/onedark.nvim"
-plugin "Shatur/neovim-ayu"
-plugin "rose-pine/neovim"
-plugin "EdenEast/nightfox.nvim"
-plugin "bluz71/vim-moonfly-colors"
-plugin { "catppuccin/nvim", as = "catppuccin" }
-plugin "tiagovla/tokyodark.nvim"
-plugin {
+use "sainnhe/sonokai"
+use "folke/tokyonight.nvim"
+use "Mofiqul/dracula.nvim"
+use "ellisonleao/gruvbox.nvim"
+use "tanvirtin/monokai.nvim"
+use "bluz71/vim-nightfly-colors"
+use "navarasu/onedark.nvim"
+use "Shatur/neovim-ayu"
+use "rose-pine/neovim"
+use "EdenEast/nightfox.nvim"
+use "bluz71/vim-moonfly-colors"
+use { "catppuccin/nvim", as = "catppuccin" }
+use "tiagovla/tokyodark.nvim"
+use {
   "glepnir/zephyr-nvim",
   requires = { "nvim-treesitter/nvim-treesitter", opt = true },
 }
@@ -42,7 +42,7 @@ local themes = {
   "catppuccin-mocha",
 }
 
-function transparent()
+local function transparent()
   vim.cmd.highlight "Normal guibg=none"
 end
 
@@ -58,4 +58,10 @@ end
 
 vim.api.nvim_create_user_command("Theme", select_theme, {})
 
-pcall(vim.cmd.colorscheme, _G.plugins.colorscheme or "tokyonight-night")
+
+function configs.colorscheme()
+  pcall(vim.cmd.colorscheme, _G.plugins.colorscheme or "tokyonight-night")
+  if plugins.transparent == true then
+    transparent()
+  end
+end

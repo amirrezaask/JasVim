@@ -1,7 +1,8 @@
-plugin {
+use {
   "folke/todo-comments.nvim",
   reuqires = "nvim-lua/plenary.nvim",
-  config = function()
-    require("todo-comments").setup {}
-  end,
 }
+
+function configs.todo_comments()
+  require("todo-comments").setup {}
+end

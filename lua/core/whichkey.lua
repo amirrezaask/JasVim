@@ -1,1 +1,1 @@
-plugin "folke/which-key.nvim"
+use "folke/which-key.nvim"

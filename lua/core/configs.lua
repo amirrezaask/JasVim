@@ -13,7 +13,7 @@ end
 _G.plugins = {}
 _G.langs = {}
 
-function config(store, ...)
+function cfg(store, ...)
   local names = { ... }
   local values = {}
   for _, name in ipairs(names) do

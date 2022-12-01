@@ -7,17 +7,7 @@
 -- _G in lua is global namespace, we use it for less linter errors but in lua anything without `local` keyword is global.
 
 -- Core functionalities and utilities
-require "core.packer"
-require "core.keymaps"
-require "core.options"
-require "core.mason"
-require "core.lsp"
-require "core.treesitter"
-
--- This is how I think we can make our configuration configurable
--- We will make two global tables, one to hold configuration values
--- for languages and one for plugins, _G.langs and _G.plugins
-require "core.configs"
+require "core"
 
 -- Now we set values we want.
 plugins.fuzzy_finder = "telescope"

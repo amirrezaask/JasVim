@@ -1,4 +1,4 @@
-plugin {
+use {
   "williamboman/mason.nvim",
   requires = {
     "jayp0521/mason-nvim-dap.nvim",
@@ -6,9 +6,13 @@ plugin {
   },
 }
 
+local mason_install_path = require("mason-core.path").concat { vim.fn.stdpath "data", "mason" }
+
 local ok, _ = pcall(require, "mason")
 if ok then
-  require("mason").setup {}
+  require("mason").setup {
+    install_root_dir = mason_install_path,
+  }
 end
 
 ok, _ = pcall(require, "mason-lspconfig")

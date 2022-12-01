@@ -8,7 +8,7 @@ _G.treesitter.ensure = function(name)
   require("nvim-treesitter.install").ensure_installed(name)
 end
 
-plugin {
+use {
   "nvim-treesitter/nvim-treesitter",
   config = function()
     require("nvim-treesitter.configs").setup {
@@ -60,17 +60,17 @@ plugin {
   end,
 }
 
-plugin {
+use {
   "nvim-treesitter/nvim-treesitter-textobjects",
   after = "nvim-treesitter",
 }
 
-plugin {
+use {
   "p00f/nvim-ts-rainbow",
   after = "nvim-treesitter",
 }
 
-plugin {
+use {
   "nvim-treesitter/nvim-treesitter-context",
   after = "nvim-treesitter",
   config = function()

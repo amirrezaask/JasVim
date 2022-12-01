@@ -1,26 +1,28 @@
-plugin "pbrisbin/vim-mkdir"
+use "pbrisbin/vim-mkdir"
 
-plugin "sheerun/vim-polyglot"
+use "sheerun/vim-polyglot"
 
-plugin "szw/vim-maximizer"
+use "szw/vim-maximizer"
 
-plugin "fladson/vim-kitty"
+use "fladson/vim-kitty"
 
-plugin "towolf/vim-helm"
+use "towolf/vim-helm"
 
-plugin "tpope/vim-surround"
+use "tpope/vim-surround"
 
-plugin "junegunn/vim-easy-align"
+use "junegunn/vim-easy-align"
 
-plugin "kevinhwang91/nvim-bqf"
+use "kevinhwang91/nvim-bqf"
 
-plugin "tpope/vim-eunuch"
+use "tpope/vim-eunuch"
 
-plugin "tpope/vim-sleuth"
+use "tpope/vim-sleuth"
 
-plugin {
-  "windwp/nvim-autopairs",
-  config = function()
-    require("nvim-autopairs").setup {}
-  end,
+use {
+  "windwp/nvim-autopairs"
 }
+
+
+function configs.autopair()
+  require("nvim-autopairs").setup {}
+end

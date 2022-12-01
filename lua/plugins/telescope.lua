@@ -1,3 +1,13 @@
+use {
+  "nvim-telescope/telescope.nvim",
+  requires = { "nvim-lua/plenary.nvim" },
+}
+
+use {
+  "nvim-telescope/telescope-fzf-native.nvim",
+  run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+}
+
 _G.window_height = function()
   return vim.api.nvim_win_get_height(0)
 end
@@ -31,7 +41,7 @@ local _mt = {
 
 _G.telescope = setmetatable({}, _mt)
 
-function conf.telescope()
+function configs.telescope()
   if _G.plugins.fuzzy_finder ~= "telescope" then
     return
   end
@@ -60,25 +70,13 @@ function conf.telescope()
       ["<leader>fn"] = { telescope("find_files", { cwd = "~/.config/nvim" }), desc = "Neovim Config" },
       ["<leader>fg"] = { telescope "git_files", desc = "Git Files" },
       ["<leader>fr"] = { telescope "oldfiles", desc = "Recent Files" },
-      ["<leader>h"] = { telescope "help_tags", desc = "Help" },
+      ["<leader>fh"] = { telescope "help_tags", desc = "Help" },
       ["<leader>fk"] = { telescope "keymaps", desc = "Keymaps" },
       ["<leader>p"] = { telescope "commands", desc = "Command palete" },
       ["<leader>fc"] = { telescope "commands", desc = "Command palete" },
       ["??"] = { telescope "live_grep", desc = "Live Grep" },
     },
   }
+
+  require("telescope").load_extension "fzf"
 end
-
-plugin {
-  "nvim-telescope/telescope.nvim",
-  requires = { "nvim-lua/plenary.nvim" },
-  config = conf.telescope,
-}
-
-plugin {
-  "nvim-telescope/telescope-fzf-native.nvim",
-  run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-  config = function()
-    require("telescope").load_extension "fzf"
-  end,
-}

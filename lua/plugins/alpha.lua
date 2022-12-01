@@ -1,6 +1,6 @@
 local asciiart = ""
-if config(plugins, "alpha.asciiart") then
-  asciiart = config(plugins, "alpha.asciiart")
+if cfg(plugins, "alpha.asciiart") then
+  asciiart = cfg(plugins, "alpha.asciiart")
 else
   asciiart = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -21,7 +21,7 @@ else
 ]]
 end
 
-local function cfg()
+function configs.alpha()
   local ascii_art = vim.split(asciiart, "\n")
   local button = require("alpha.themes.dashboard").button
   local myconfig = {
@@ -62,10 +62,10 @@ local function cfg()
     },
   }
 end
-if config(plugins, "alpha.enabled") == true then
-  plugin {
+
+if cfg(plugins, "alpha.enabled") == true then
+  use {
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
-    config = cfg,
   }
 end

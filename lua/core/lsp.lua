@@ -1,4 +1,4 @@
-plugin {
+use {
   "neovim/nvim-lspconfig",
   config = function()
     local border = {
@@ -21,11 +21,11 @@ plugin {
   end,
 }
 
-plugin {
+use {
   "ray-x/lsp_signature.nvim",
 }
 
-plugin {
+use {
   "glepnir/lspsaga.nvim",
   branch = "main",
   config = function()
@@ -37,16 +37,16 @@ plugin {
   end,
 }
 
-plugin "onsails/lspkind.nvim"
+use "onsails/lspkind.nvim"
 
-plugin {
+use {
   "j-hui/fidget.nvim",
   config = function()
     require("fidget").setup {}
   end,
 }
 
-plugin {
+use {
   "folke/trouble.nvim",
   requires = "kyazdani42/nvim-web-devicons",
   config = function()

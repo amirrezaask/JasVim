@@ -1,1 +1,1 @@
-plugin { "christoomey/vim-tmux-navigator", config = function() end }
+use { "christoomey/vim-tmux-navigator" }

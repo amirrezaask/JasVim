@@ -18,31 +18,18 @@ require("packer").init {
     open_fn = require("packer.util").float,
   },
 }
-local configs = {}
 
-local function plugin(spec)
-  if type(spec) == "table" then
-    if spec.config then
-      table.insert(configs, spec.config)
-      spec.config = nil
-    end
-  end
-  require("packer").use(spec)
-end
+-- Where plugins store their configurations
+configs = {}
 
-_G.plugin = plugin
+use = require("packer").use
 
-plugin "wbthomason/packer.nvim"
-plugin "lewis6991/impatient.nvim"
+use "wbthomason/packer.nvim"
+use "lewis6991/impatient.nvim"
 
 local _, _ = pcall(require, "impatient")
 
-local function reload()
-  vim.cmd [[PackerInstall]]
-  for _, cfg in ipairs(configs) do
-    pcall(cfg)
-  end
-end
+local function reload() end
 
 return {
   reload = reload,
