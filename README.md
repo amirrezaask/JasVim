@@ -46,29 +46,31 @@ so in summary:
 - `after/plugin/configs.lua` will install missing plugins and also run all configuration callbacks registered in `plugin/*.lua`
 
 ## API
-JasVim has a simple function which is a tweaked version of `packer`.use function,
-so you can always refer to [packer documentation](https://github.com/wbthomason/packer.nvim#specifying-plugins) for it's keys and how to use it.
-for every plugin specific configuration we use this function to install and configure that plugin,
-but also in some scenarios like registering autocmd for autoformat feature we just do it in the root
-of module.<br>
-for example:
+Jasvim uses [packer.nvim](https://github.com/wbthomason/packer.nvim) as it's package manager for installing plugins
+so you can always refer to  for it's keys and how to use it.
+Also Jasvim has a global `configs` table that will contain callbacks for different plugins configuration,
+every single function you define in this table will be called on startup so be carefull what you put in there,
+mostly it should be plugin setup, keymaps, autocmds and these kind of stuff.
+
 ```lua
-plugin {
+-- This will register go.nvim plugin for installation with it's requirements.
+use {
   "ray-x/go.nvim",
   requires = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("go").setup()
-    vim.api.nvim_create_autocmd("BufEnter", {
-      pattern = "*.go",
-      group = _G.go_group,
-      callback = function(meta)
-        buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
-        buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
-        buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
-      end,
-    })
-  end,
 }
+-- This function will be called in startup to configure anything related to go.
+function configs.go()
+  require("go").setup()
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "*.go",
+        group = _G.go_group,
+        callback = function(meta)
+          buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
+          buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
+          buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
+        end,
+      })
+end
 ```
 
 
