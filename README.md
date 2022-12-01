@@ -73,7 +73,6 @@ function configs.go()
 end
 ```
 
-
 ## Themes
 There is a list of all themes that are installed in this template and there is a `Theme` command to switch between them
 and see which one you want and set it in your `init.lua`
