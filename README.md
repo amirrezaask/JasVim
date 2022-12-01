@@ -33,19 +33,9 @@ This project is designed to be used not as a seperate distro but as a template t
 to do so use `Use this template` button and create a new repo from this template to hold your own configuration in it
 
 ## Jasvim structure
-### Init flow
-JasVim utilizes `packer.nvim` and uses it's declarative syntax for most plugins configurations.
-In short, jasvim `init.lua` does following:
-- Load `core` modules, which will load basic functionalities and plugins that are in `lua/core/*.lua`.
-- Scan `lua/langs` and `lua/plugins` for lua files and load them all.
-- Finally it will call `:PackerInstall` command which will install all missing plugins.
-- That's it
-
-### Plugins
-All plugin configurations are in `lua/plugins/<plugin name>.lua`.
-
-### Languages
-All language configurations are in `lua/langs/<language name>.lua`.
+- `init.lua` is loaded which will load `core` functionalities and tools and also user defined values for different plugin settings.
+- neovim automatically will source all files in plugin folder.
+- After plugin folder neovim will source all files in after/plugin folder, we only have one file in there which will call in defined config callbacks.
 
 ## API
 JasVim has a simple function which is a tweaked version of `packer`.use function,
