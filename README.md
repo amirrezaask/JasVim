@@ -40,6 +40,10 @@ If you look inside our `plugin` directory you will see configurations for all pl
 after sourcing everything inside `plugin` directory neovim will source everything inside `after/plugin` as well but this is after all `plugin` content has been sourced.
 We use this sequence of events and basically define all of our configs and all plugins that need to be installed and then in `after/plugin/configs.lua` we will first
 install all required plugins and then run their configuration callback. In `init.lua` we just store some basic values for different plugins to use like the colorscheme we want.
+so in summary:
+- `init.lua` sets some defaults and user level configs
+- `plugin/*.lua` will configure all plugins.
+- `after/plugin/configs.lua` will install missing plugins and also run all configuration callbacks registered in `plugin/*.lua`
 
 ## API
 JasVim has a simple function which is a tweaked version of `packer`.use function,
