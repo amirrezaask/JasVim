@@ -1,4 +1,4 @@
-bind {
+require("core.keymaps").bind {
   n = {
     ["Q"] = "<NOP>",
     [";,"] = ":",

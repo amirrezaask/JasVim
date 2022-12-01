@@ -56,7 +56,7 @@ function configs.alpha()
     },
   }
   require("alpha").setup(myconfig)
-  bind {
+  require("core.keymaps").bind {
     n = {
       [",z"] = { "<cmd>MaximizerToggle<cr>", desc = "Toggle zoom on current window" },
     },

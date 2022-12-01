@@ -13,7 +13,7 @@ function configs.rust()
     server = {
       on_attach = function(_, bufnr)
         lsp.on_attach(_, bufnr)
-        bind {
+        require("core.keymaps").bind {
           n = {
             C = { rt.hover_actions.hover_actions, desc = "Hover code actions", buffer = bufnr },
             ga = { rt.code_action_group.code_action_group, desc = "Code actions", buffer = bufnr },

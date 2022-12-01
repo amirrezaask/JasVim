@@ -13,7 +13,7 @@ function configs.toggleterm()
     direction = "vertical",
   }
 
-  bind {
+  require("core.keymaps").bind {
     n = {
       ["<C-`>"] = "<cmd>ToggleTerm<CR>",
     },

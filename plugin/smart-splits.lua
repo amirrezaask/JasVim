@@ -4,7 +4,7 @@ use {
 function configs.smart_splits()
   -- smart split
   require("smart-splits").setup {}
-  bind {
+  require("core.keymaps").bind {
     n = {
       ["<A-h>"] = require("smart-splits").resize_left,
       ["<A-j>"] = require("smart-splits").resize_down,

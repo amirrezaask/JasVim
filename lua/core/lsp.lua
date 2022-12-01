@@ -1,3 +1,5 @@
+local keymaps = require "core.keymaps"
+
 use {
   "neovim/nvim-lspconfig",
   config = function()
@@ -51,11 +53,7 @@ use {
   requires = "kyazdani42/nvim-web-devicons",
   config = function()
     require("trouble").setup {}
-    bind {
-      n = {
-        ["<leader>lt"] = "<cmd>TroubleToggle<cr>",
-      },
-    }
+    keymaps.nnoremap("<leader>lt", "<cmd>TroubleToggle<CR>")
   end,
 }
 
@@ -63,7 +61,7 @@ local lsp = {}
 
 function lsp.on_attach(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  bind {
+  keymaps.bind {
     n = {
       gd = { vim.lsp.buf.definition, desc = "Goto definition", buffer = bufnr },
       gi = { vim.lsp.buf.implementation, desc = "Goto implementations", buffer = bufnr },

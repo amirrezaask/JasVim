@@ -2,7 +2,7 @@ function configs.fzf()
   if cfg(plugins, "fuzzy_finder") ~= "fzf" then
     return
   end
-  bind {
+  require("core.keymaps").bind {
     n = {
       ["<leader><leader>"] = { ":Files<cr>", desc = "Find Files" },
       ["<leader>ff"] = { "<cmd>Files<cr>", desc = "Find Files" },

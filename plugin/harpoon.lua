@@ -6,7 +6,7 @@ use {
 }
 function configs.harpoon()
   require("telescope").load_extension "harpoon"
-  bind {
+  require("core.keymaps").bind {
     n = {
       ["<leader>hm"] = require("harpoon.ui").toggle_quick_menu,
       ["<leader>ha"] = require("harpoon.mark").add_file,

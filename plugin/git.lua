@@ -15,11 +15,10 @@ use {
   requires = "nvim-lua/plenary.nvim",
 }
 
-
 function configs.gitsigns()
   require("gitsigns").setup {}
   require("neogit").setup {
     kind = "vsplit",
   }
-  nnoremap("<leader>g", "<cmd>Neogit<cr>")
+  require("core.keymaps").nnoremap("<leader>g", "<cmd>Neogit<cr>")
 end

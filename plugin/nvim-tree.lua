@@ -8,7 +8,7 @@ use {
 
 function configs.nvim_tree()
   require("nvim-tree").setup()
-  bind {
+  require("core.keymaps").bind {
     n = {
       ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
     },

@@ -63,7 +63,7 @@ function configs.telescope()
     },
   }
 
-  bind {
+  require("core.keymaps").bind {
     n = {
       ["<leader><leader>"] = { telescope "find_files", desc = "Find Files" },
       ["<leader>ff"] = { telescope "find_files", desc = "Find Files" },
