@@ -33,9 +33,13 @@ This project is designed to be used not as a seperate distro but as a template t
 to do so use `Use this template` button and create a new repo from this template to hold your own configuration in it
 
 ## Jasvim structure
-- `init.lua` is loaded which will load `core` functionalities and tools and also user defined values for different plugin settings.
-- neovim automatically will source all files in plugin folder.
-- After plugin folder neovim will source all files in after/plugin folder, we only have one file in there which will call in defined config callbacks.
+For understanding this configuration you need to know some things about neovim/vim startup process, both neovim and vim have several special
+directories but the one we work with is `plugin` directory, you can see full documentation about all these special directories by checking `:h runtimepath`.
+`plugin` directory was meant for users to store their scripts and vim/neovim will load everything inside those directories automaticaly.
+If you look inside our `plugin` directory you will see configurations for all plugins we have except for some `core` ones like `lsp`, `treesitter` and `mason`.
+after sourcing everything inside `plugin` directory neovim will source everything inside `after/plugin` as well but this is after all `plugin` content has been sourced.
+We use this sequence of events and basically define all of our configs and all plugins that need to be installed and then in `after/plugin/configs.lua` we will first
+install all required plugins and then run their configuration callback. In `init.lua` we just store some basic values for different plugins to use like the colorscheme we want.
 
 ## API
 JasVim has a simple function which is a tweaked version of `packer`.use function,
