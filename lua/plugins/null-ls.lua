@@ -10,5 +10,8 @@ plugin {
         require("null-ls").builtins.formatting.goimports,
       },
     }
+
+    -- Install missing tools
+    MasonInstall { "gitlint", "stylua", "golangci-lint", "goimports" }
   end,
 }
