@@ -4,4 +4,4 @@ if not ok then
   return
 end
 
-require "amirrezaask.mason"
+require "plugin.mason"

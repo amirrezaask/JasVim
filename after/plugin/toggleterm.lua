@@ -14,7 +14,7 @@ require("toggleterm").setup {
   direction = "vertical",
 }
 
-require("amirrezaask.keymaps").bind {
+require("core.keymaps").bind {
   n = {
     ["<C-`>"] = "<cmd>ToggleTerm<CR>",
   },

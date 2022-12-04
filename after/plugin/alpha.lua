@@ -44,7 +44,7 @@ local myconfig = {
 
 require("alpha").setup(myconfig)
 
-require("amirrezaask.keymaps").bind {
+require("core.keymaps").bind {
   n = {
     [",z"] = { "<cmd>MaximizerToggle<cr>", desc = "Toggle zoom on current window" },
   },

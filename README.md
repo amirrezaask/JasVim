@@ -42,41 +42,28 @@ We use this sequence of events and basically define all of our configs and all p
 install all required plugins and then run their configuration callback. In `init.lua` we just store some basic values for different plugins to use like the colorscheme we want.
 so in summary:
 - `init.lua` sets some defaults and user level configs
-- `plugin/*.lua` will configure all plugins.
-- `after/plugin/configs.lua` will install missing plugins and also run all configuration callbacks registered in `plugin/*.lua`
+- `plugin/plugins.lua` will make packer install all of our plugins.
+- `after/plugin/<plugin name>.lua` will configure plugins and other configurations for neovim core.
 
-## API
-Jasvim uses [packer.nvim](https://github.com/wbthomason/packer.nvim) as it's package manager for installing plugins
-so you can always refer to  for it's keys and how to use it.
-Also Jasvim has a global `configs` table that will contain callbacks for different plugins configuration,
-every single function you define in this table will be called on startup so be carefull what you put in there,
-mostly it should be plugin setup, keymaps, autocmds and these kind of stuff.
-
+## Adding a new plugin
+1.Add plugin `use` directive to `plugin/plugins.lua` file in setup function call like below.
 ```lua
--- This will register go.nvim plugin for installation with it's requirements.
-use {
-  "ray-x/go.nvim",
-  requires = { "nvim-lua/plenary.nvim" },
+require("packer").startup {
+  function(use)
+  -- other plugins ... 
+  use {
+    "ray-x/go.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  }
+  -- other plugins ...
+  end
 }
--- This function will be called in startup to configure anything related to go.
-function configs.go()
-  require("go").setup()
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "*.go",
-        group = _G.go_group,
-        callback = function(meta)
-          buf_nnoremap(meta.buffer, "<leader>lat", "<cmd>GoAddTag<CR>", { remap = true })
-          buf_nnoremap(meta.buffer, "<leader>lrt", "<cmd>GoRmTag<CR>", { remap = true })
-          buf_nnoremap(meta.buffer, "<leader>lfs", "<cmd>GoFillStruct<CR>", { remap = true })
-        end,
-      })
-end
 ```
+2. Add any configuration or keymapping you want to `after/plugin/<plugin name>.lua`.
+
+**Note** `<plugin name>.lua` is just a conventional name, you can name that file anything you want doesn't matter.
 
 ## Themes
-There is a list of all themes that are installed in this template and there is a `Theme` command to switch between them
-and see which one you want and set it in your `init.lua`
-
 ### catppuccin
 ![Default Theme: catppuccin](https://raw.github.com/amirrezaask/jasvim/master/screenshots/catppuccin.png)
 

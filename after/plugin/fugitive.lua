@@ -1,1 +1,1 @@
-require("amirrezaask.keymaps").nnoremap("<leader>g", "<cmd>Git<cr>")
+require("core.keymaps").nnoremap("<leader>g", "<cmd>Git<cr>")

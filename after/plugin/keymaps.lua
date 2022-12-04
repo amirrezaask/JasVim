@@ -1,4 +1,4 @@
-require("amirrezaask.keymaps").bind {
+require("core.keymaps").bind {
   n = {
     ["Q"] = "<NOP>",
     [";,"] = ":",

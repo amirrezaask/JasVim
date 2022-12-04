@@ -1,63 +1,12 @@
 local keymaps = require "core.keymaps"
 
-use {
-  "neovim/nvim-lspconfig",
-  config = function()
-    local border = {
-      { "🭽", "FloatBorder" },
-      { "▔", "FloatBorder" },
-      { "🭾", "FloatBorder" },
-      { "▕", "FloatBorder" },
-      { "🭿", "FloatBorder" },
-      { "▁", "FloatBorder" },
-      { "🭼", "FloatBorder" },
-      { "▏", "FloatBorder" },
-    }
-
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = opts.border or border
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
-    end
-  end,
-}
-
-use {
-  "ray-x/lsp_signature.nvim",
-}
-
-use {
-  "glepnir/lspsaga.nvim",
-  branch = "main",
-  config = function()
-    require("lspsaga").init_lsp_saga {
-      symbol_in_winbar = {
-        enable = true,
-      },
-    }
-  end,
-}
-
-use "onsails/lspkind.nvim"
-
-use {
-  "j-hui/fidget.nvim",
-  config = function()
-    require("fidget").setup {}
-  end,
-}
-
-use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {}
-    keymaps.nnoremap("<leader>lt", "<cmd>TroubleToggle<CR>")
-  end,
-}
-
 local lsp = {}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = "rounded"
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 function lsp.on_attach(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -86,6 +35,10 @@ function lsp.config(name, opts)
   local ok, _ = pcall(require, "lspconfig")
   if not ok then
     return
+  end
+  opts = opts or {}
+  if not opts.on_attach then
+    opts.on_attach = lsp.on_attach
   end
   require("lspconfig")[name].setup(opts)
 end

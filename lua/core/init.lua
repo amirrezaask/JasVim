@@ -1,5 +1,4 @@
 require "core.packer"
 require "core.mason"
 require "core.lsp"
-require "core.treesitter"
-require "core.configs"
+require "core.utils"

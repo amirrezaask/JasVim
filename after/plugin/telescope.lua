@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-local keymaps = require "amirrezaask.keymaps"
+local keymaps = require "core.keymaps"
 local nnoremap = keymaps.nnoremap
 
 require("telescope").setup {}

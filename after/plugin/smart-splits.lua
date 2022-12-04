@@ -4,7 +4,7 @@ if not ok then
 end
 
 require("smart-splits").setup {}
-require("amirrezaask.keymaps").bind {
+require("core.keymaps").bind {
   n = {
     ["<A-h>"] = require("smart-splits").resize_left,
     ["<A-j>"] = require("smart-splits").resize_down,

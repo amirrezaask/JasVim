@@ -1,11 +1,3 @@
-use {
-  "williamboman/mason.nvim",
-  requires = {
-    "jayp0521/mason-nvim-dap.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  },
-}
-
 local mason_install_path = require("mason-core.path").concat { vim.fn.stdpath "data", "mason" }
 
 local ok, _ = pcall(require, "mason")
@@ -29,7 +21,7 @@ if ok then
   }
 end
 
-function _G.MasonBinExists(name)
+local function mason_bin_exists(name)
   return vim.fn.filereadable(require("mason-core.path").concat { mason_install_path, "bin", name }) == 1
 end
 
@@ -37,7 +29,7 @@ function _G.MasonInstall(to_install)
   local missing = {}
 
   for _, name in pairs(to_install) do
-    if not MasonBinExists(name) then
+    if not mason_bin_exists(name) then
       table.insert(missing, name)
     end
   end

@@ -4,7 +4,7 @@ if not ok then
 end
 
 require("nvim-tree").setup()
-require("amirrezaask.keymaps").bind {
+require("core.keymaps").bind {
   n = {
     ["<leader>1"] = "<cmd>NvimTreeToggle<CR>",
   },
