@@ -1,25 +1,7 @@
--- Core functionalities and utilities
-require "core"
-
--- Now we set values we want.
-plugins.fuzzy_finder = "telescope"
-
--- Colorscheme, check :Theme command for available options
-plugins.colorscheme = "catppuccin"
-plugins.transparent = false
-
--- Some language specific settings
--- language specific ones will override globals
--- by default I don't want auto format
--- but for specific languages i want them
-langs = {
-  autoformat = false,
-
-  go = {
-    autoformat = true,
-  },
-
-  lua = {
-    autoformat = true,
-  },
-}
+-- init.lua
+-- nothing to see here
+-- read :h runtimepath to know how these files get sourced but in summary
+-- first init.lua gets sourced by neovim
+-- then all plugin/* files get sourced
+-- then all after/plugin/* files get sourced
+-- all files under lua/* are just there and need to be sourced manually
