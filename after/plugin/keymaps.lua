@@ -1,20 +1,18 @@
-require("core.keymaps").bind {
-  n = {
-    ["Q"] = "<NOP>",
-    [";,"] = ":",
-    ["q;"] = "q:",
-    ["{"] = ":cprev<CR>",
-    ["}"] = ":cnext<CR>",
-    ["Y"] = "y$",
-    ["n"] = "nzz",
-    ["N"] = "Nzz",
+local keymaps = require "core.keymaps"
+local nnoremap = keymaps.nnoremap
 
+keymaps.bind {
+  n = {
     ["<M-j>"] = ":m .+1<CR>==",
     ["<M-k>"] = ":m .-2<CR>==",
 
+    ["<C-d>"] = "<C-d>zz",
+    ["<C-u>"] = "<C-u>zz",
+
     ["j"] = "gj",
     ["k"] = "gk",
-    ["<leader>ce"] = ":e ~/.config/nvim/init.lua<CR>",
+
+    ["X"] = ":w | :so %<CR>",
     ["<CR>"] = { [[ {-> v:hlsearch ? ':nohl<CR>' : '<CR>'}() ]], expr = true },
 
     ["<leader>ek"] = { ":e ~/.config/kitty/kitty.conf<CR>", desc = "Edit Kitty" },
@@ -30,3 +28,10 @@ require("core.keymaps").bind {
     ["kj"] = "<esc>",
   },
 }
+
+nnoremap("Q", "<NOP>")
+nnoremap("{", ":cnext<CR>")
+nnoremap("}", ":cprev<CR>")
+nnoremap("Y", "y$")
+nnoremap("n", "nzz")
+nnoremap("N", "Nzz")

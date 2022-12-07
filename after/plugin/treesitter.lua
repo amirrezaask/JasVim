@@ -4,6 +4,7 @@ if not ok then
 end
 
 require("nvim-treesitter.configs").setup {
+  ensure_installed = "all",
   highlight = {
     enable = true,
   },
@@ -49,4 +50,11 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
--- require("treesitter-context").setup {}
+
+ok, _ = pcall(require, "treesitter-context")
+
+if not ok then
+  return
+end
+
+require("treesitter-context").setup {}

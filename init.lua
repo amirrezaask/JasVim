@@ -1,5 +1,12 @@
--- init.lua
--- nothing to see here
+--
+-- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+-- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+-- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+-- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+-- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+-- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+--
+--
 -- read :h runtimepath to know how these files get sourced but in summary
 -- first init.lua gets sourced by neovim
 -- then all plugin/* files get sourced

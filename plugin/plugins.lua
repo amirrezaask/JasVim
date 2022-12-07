@@ -15,13 +15,13 @@ require("packer").startup {
   function(use)
     use "wbthomason/packer.nvim"
     use "lewis6991/impatient.nvim"
+
     use "numToStr/Comment.nvim"
 
     use "sainnhe/sonokai"
     use "folke/tokyonight.nvim"
     use "Mofiqul/dracula.nvim"
     use "ellisonleao/gruvbox.nvim"
-    use "tanvirtin/monokai.nvim"
     use "bluz71/vim-nightfly-colors"
     use "navarasu/onedark.nvim"
     use "Shatur/neovim-ayu"
@@ -29,38 +29,50 @@ require("packer").startup {
     use "EdenEast/nightfox.nvim"
     use "bluz71/vim-moonfly-colors"
     use { "catppuccin/nvim", as = "catppuccin" }
-    use "tiagovla/tokyodark.nvim"
+
+    -- Telescope
     use {
-      "glepnir/zephyr-nvim",
-      requires = { "nvim-treesitter/nvim-treesitter", opt = true },
+      "nvim-telescope/telescope.nvim",
+      requires = { { "nvim-lua/plenary.nvim" } },
     }
 
+    use {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
+    }
+
+    -- Statusline
+    use {
+      "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    }
+
+    -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
+      requires = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "p00f/nvim-ts-rainbow",
+        "nvim-treesitter/nvim-treesitter-context",
+      },
     }
 
-    use {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      after = "nvim-treesitter",
-    }
+    -- If you want a facny start screen
+    -- use {
+    --   "goolord/alpha-nvim",
+    --   requires = { "nvim-tree/nvim-web-devicons" },
+    -- }
 
-    use {
-      "p00f/nvim-ts-rainbow",
-      after = "nvim-treesitter",
-    }
-
-    use {
-      "nvim-treesitter/nvim-treesitter-context",
-      after = "nvim-treesitter",
-    }
-    use {
-      "goolord/alpha-nvim",
-      requires = { "kyazdani42/nvim-web-devicons" },
-    }
+    -- LSP
     use {
       "neovim/nvim-lspconfig",
+      requires = {
+        "ray-x/lsp_signature.nvim", -- function signature as you type in parameters
+        "onsails/lspkind.nvim", -- icons in completion
+      },
     }
 
+    -- Autocompletion
     use {
       "hrsh7th/nvim-cmp",
       requires = {
@@ -72,12 +84,17 @@ require("packer").startup {
       },
     }
 
+    -- Automatically create directory when you create a new file in a directory that
+    -- does not exists.
     use "pbrisbin/vim-mkdir"
 
+    -- Support for many filetypes.
     use "sheerun/vim-polyglot"
 
+    -- toggle a window to be maximized, like tmux zoom
     use "szw/vim-maximizer"
 
+    -- Support Kitty terminal syntax
     use "fladson/vim-kitty"
 
     use "towolf/vim-helm"
@@ -99,6 +116,8 @@ require("packer").startup {
     use {
       "stevearc/dressing.nvim",
     }
+
+    -- Show progress of LSP.
     use {
       "j-hui/fidget.nvim",
     }
@@ -115,6 +134,7 @@ require("packer").startup {
       "cohama/agit.vim",
     }
 
+    -- Emacs magit clone
     use {
       "TimUntersberger/neogit",
       requires = "nvim-lua/plenary.nvim",
@@ -124,8 +144,9 @@ require("packer").startup {
       "tpope/vim-fugitive",
     }
 
+    -- Golang tools and code actions
     use {
-      "ray-x/go.nvim",
+      "fatih/vim-go",
     }
 
     use {
@@ -134,23 +155,18 @@ require("packer").startup {
         "nvim-lua/plenary.nvim",
       },
     }
+
+    use "ThePrimeagen/vim-be-good"
+
     use {
       "b0o/schemastore.nvim",
     }
 
     use {
-      "ray-x/lsp_signature.nvim",
-    }
-
-    use "onsails/lspkind.nvim"
-    use {
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-    }
-    use {
       "folke/neodev.nvim",
       requires = { "nvim-lua/plenary.nvim" },
     }
+
     use "milisims/nvim-luaref"
     use "nanotee/luv-vimdocs"
 
@@ -158,6 +174,8 @@ require("packer").startup {
       "L3MON4D3/LuaSnip",
       requires = "rafamadriz/friendly-snippets",
     }
+
+    -- Package manager for all tools, LSPs, DAPs and other utilities ...
     use {
       "williamboman/mason.nvim",
       requires = {
@@ -165,23 +183,27 @@ require("packer").startup {
         "williamboman/mason-lspconfig.nvim",
       },
     }
+
+    -- Hook non LSP tools into neovim LSP client
     use {
       "jose-elias-alvarez/null-ls.nvim",
     }
 
-    use {
-      "nvim-tree/nvim-tree.lua",
-      requires = {
-        "nvim-tree/nvim-web-devicons", -- optional, for file icons
-      },
-      tag = "nightly", -- optional, updated every week. (see issue #1193)
-    }
+    -- Tree file explorer, I don't use just use telescope or netrw
+    -- use {
+    --   "nvim-tree/nvim-tree.lua",
+    --   requires = {
+    --     "nvim-tree/nvim-web-devicons", -- optional, for file icons
+    --   },
+    --   tag = "nightly", -- optional, updated every week. (see issue #1193)
+    -- }
 
     use {
       "purescript-contrib/purescript-vim",
     }
 
     use "Glench/Vim-Jinja2-Syntax"
+
     use {
       "rust-lang/rust.vim",
     }
@@ -189,22 +211,33 @@ require("packer").startup {
     use {
       "simrat39/rust-tools.nvim",
     }
+
     use {
       "mrjones2014/smart-splits.nvim",
     }
+
     use {
       "akinsho/toggleterm.nvim",
     }
+
+    -- If you use tmux you should have this to integrate
+    -- tmux splits movement with vim/neovim.
     use { "christoomey/vim-tmux-navigator" }
+
+    use "RyanMillerC/better-vim-tmux-resizer"
+
     use {
       "ziglang/zig.vim",
     }
   end,
   config = {
     compile_path = require("packer.util").join_paths(vim.fn.stdpath "data", "packer_compiled.lua"),
-    display = {
-      open_fn = require("packer.util").float,
-    },
+    -- display = {
+    --   open_fn = function(opts)
+    --     opts.border = "rounded"
+    --     require("packer.util").float(opts)
+    --   end,
+    -- },
   },
 }
 
@@ -213,3 +246,10 @@ if packer_bootstrap then
 end
 
 local ok, impatient = pcall(require, "impatient")
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "plugins.lua",
+  callback = function(meta)
+    vim.cmd.PackerInstall()
+  end,
+})

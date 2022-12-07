@@ -1,4 +1,5 @@
 local mason_install_path = require("mason-core.path").concat { vim.fn.stdpath "data", "mason" }
+local M = {}
 
 local ok, _ = pcall(require, "mason")
 if ok then
@@ -25,7 +26,7 @@ local function mason_bin_exists(name)
   return vim.fn.filereadable(require("mason-core.path").concat { mason_install_path, "bin", name }) == 1
 end
 
-function _G.MasonInstall(to_install)
+function M.install(to_install)
   local missing = {}
 
   for _, name in pairs(to_install) do
@@ -35,3 +36,5 @@ function _G.MasonInstall(to_install)
   end
   require("mason.api.command").MasonInstall(missing)
 end
+
+return M

@@ -4,4 +4,4 @@ if not ok then
   return
 end
 
-require "plugin.mason"
+require "core.mason"
