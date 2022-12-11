@@ -33,36 +33,24 @@ This project is designed to be used not as a seperate distro but as a template t
 to do so use `Use this template` button and create a new repo from this template to hold your own configuration in it
 
 ## Jasvim structure
-For understanding this configuration you need to know some things about neovim/vim startup process, both neovim and vim have several special
-directories but the one we work with is `plugin` directory, you can see full documentation about all these special directories by checking `:h runtimepath`.
-`plugin` directory was meant for users to store their scripts and vim/neovim will load everything inside those directories automaticaly.
-If you look inside our `plugin` directory you will see configurations for all plugins we have except for some `core` ones like `lsp`, `treesitter` and `mason`.
-after sourcing everything inside `plugin` directory neovim will source everything inside `after/plugin` as well but this is after all `plugin` content has been sourced.
-We use this sequence of events and basically define all of our configs and all plugins that need to be installed and then in `after/plugin/configs.lua` we will first
-install all required plugins and then run their configuration callback. In `init.lua` we just store some basic values for different plugins to use like the colorscheme we want.
-so in summary:
-- `init.lua` sets some defaults and user level configs
-- `plugin/plugins.lua` will make packer install all of our plugins.
-- `after/plugin/<plugin name>.lua` will configure plugins and other configurations for neovim core.
-
+Just following init.lua will help you find out how this works
 ## Adding a new plugin
 1.Add plugin `use` directive to `plugin/plugins.lua` file in setup function call like below.
 ```lua
-require("packer").startup {
-  function(use)
-  -- other plugins ... 
-  use {
-    "ray-x/go.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  }
-  -- other plugins ...
+use {
+  "ray-x/go.nvim",
+  requires = { "nvim-lua/plenary.nvim" },
+  config = function()
+    -- If this plugin needs any configuration
+    -- if it's a complicated configuration you
+    -- can follow the pattern I did with other ones
+    -- like LSP or telescope. just make a script in 
+    -- lua/plugins/ directory and require it in here.
   end
 }
+end
+}
 ```
-2. Add any configuration or keymapping you want to `after/plugin/<plugin name>.lua`.
-
-**Note** `<plugin name>.lua` is just a conventional name, you can name that file anything you want doesn't matter.
-
 ## Themes
 ### catppuccin
 ![Default Theme: catppuccin](https://raw.github.com/amirrezaask/jasvim/master/screenshots/catppuccin.png)
