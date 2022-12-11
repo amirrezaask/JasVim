@@ -1,7 +1,6 @@
-vim.g.catppuccin_flavour = "mocha"
+vim.g.catppuccin_flavour = "macchiato"
 vim.g.gruvbox_contrast_dark = "hard"
-
-local tokyonight_style = "storm"
+local tokyonight_style = "night"
 
 local colorscheme = "rose-pine"
 
@@ -63,25 +62,36 @@ end
 local themes = {
   "rose-pine",
 
-  "cappuccin",
-  "cappuccin-mocha",
+  "catppuccin",
+  "catppuccin-mocha",
   "catppuccin-macchiato",
   "catppuccin-frappe",
   "catppuccin-latte",
 
-  "sonokai",
   "tokyonight",
   "tokyonight-night",
   "tokyonight-moon",
   "tokyonight-storm",
   "tokyonight-day",
 
-  "dracula",
   "gruvbox",
-  "nightfox",
   "nightfly",
   "onedark",
 }
+
+local color_mode = "dark"
+
+local function toggle_color_mode()
+  if color_mode == "dark" then
+    color_mode = "light"
+  else
+    color_mode = "dark"
+  end
+  vim.opt.background = color_mode
+end
+
+vim.api.nvim_create_user_command("ToggleColor", toggle_color_mode, {})
+vim.keymap.set("n", "<F10>", "<cmd>ToggleColor<CR>")
 
 local function select_theme()
   vim.ui.select(themes, {

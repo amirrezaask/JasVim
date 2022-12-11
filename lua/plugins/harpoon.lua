@@ -1,5 +1,6 @@
+local nnoremap = vim.keymap.nnoremap
+
 require("telescope").load_extension "harpoon"
-local nnoremap = require("core.keymaps").nnoremap
 
 nnoremap("<C-w>", require("harpoon.ui").toggle_quick_menu)
 

@@ -1,6 +1,0 @@
--- vim.api.nvim_create_autocmd("BufWritePost", {
---   pattern = "*.rs",
---   callback = function(_)
---     vim.lsp.buf.format()
---   end,
--- })

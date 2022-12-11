@@ -1,11 +1,4 @@
-local ok, _ = pcall(require, "telescope")
-if not ok then
-  return
-end
-
-local keymaps = require "core.keymaps"
-local nnoremap = keymaps.nnoremap
-
+local nnoremap = vim.keymap.nnoremap
 require("telescope").setup {}
 require("telescope").load_extension "fzf"
 
@@ -21,7 +14,7 @@ nnoremap("<leader>fb", function()
   require("telescope.builtin").buffers()
 end)
 
-nnoremap("<leader>gf", function()
+nnoremap("<leader>fg", function()
   require("telescope.builtin").git_files()
 end)
 
@@ -29,7 +22,7 @@ nnoremap("<C-p>", function()
   require("telescope.builtin").find_files()
 end)
 
-nnoremap("<leader>fw", function()
+nnoremap("<leader>fs", function()
   require("telescope.builtin").live_grep()
 end)
 
@@ -45,23 +38,7 @@ nnoremap("<leader>fh", function()
   require("telescope.builtin").help_tags()
 end)
 
-nnoremap("<leader>fk", function()
-  require("telescope.builtin").keymaps()
-end)
-
-nnoremap("<leader>d", function()
-  require("telescope.builtin").diagnostics(require("telescope.themes").get_dropdown())
-end)
-
-nnoremap("<A-d>", function()
-  require("telescope.builtin").diagnostics(require("telescope.themes").get_dropdown())
-end)
-
 -- Edit configurations
-nnoremap("<leader>en", function()
+nnoremap("<C-9>", function()
   require("telescope.builtin").find_files { cwd = "~/.config/nvim" }
-end)
-
-nnoremap("<leader>ek", function()
-  require("telescope.builtin").find_files { cwd = "~/.config/kitty" }
 end)

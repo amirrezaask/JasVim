@@ -1,14 +1,15 @@
+--      _         __     ___
+--     | | __ _ __\ \   / (_)_ __ ___
+--  _  | |/ _` / __\ \ / /| | '_ ` _ \
+-- | |_| | (_| \__ \\ V / | | | | | | |
+--  \___/ \__,_|___/ \_/  |_|_| |_| |_|
 --
--- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
--- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
--- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
--- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
--- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
--- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
---
---
--- read :h runtimepath to know how these files get sourced but in summary
--- first init.lua gets sourced by neovim
--- then all plugin/* files get sourced
--- then all after/plugin/* files get sourced
--- all files under lua/* are just there and need to be sourced manually
+-- To generate your own ascii art
+-- first you should have figlet installed ( brew install figlet )
+-- :.!figlet <your text>
+
+require "options"
+
+require "keymaps"
+
+require "plugins"
