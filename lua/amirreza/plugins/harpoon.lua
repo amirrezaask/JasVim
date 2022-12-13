@@ -2,8 +2,6 @@ local nnoremap = vim.keymap.nnoremap
 
 require("telescope").load_extension "harpoon"
 
-nnoremap("<C-w>", require("harpoon.ui").toggle_quick_menu)
-
 nnoremap("<leader>a", require("harpoon.mark").add_file)
 
 nnoremap("<leader>1", function()

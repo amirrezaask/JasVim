@@ -16,12 +16,22 @@ require("packer").init {
   compile_path = vim.fn.stdpath "data" .. "/site/plugin/packer_compiled.lua",
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "solid" }
+      return require("packer.util").float { border = "rounded" }
     end,
   },
 }
 
-local use = require("packer").use
+local _configs = {}
+
+local use = function(spec)
+  if type(spec) == "table" then
+    if spec.config then
+      table.insert(_configs, spec.config)
+      spec.config = nil
+    end
+  end
+  require("packer").use(spec)
+end
 
 use "wbthomason/packer.nvim"
 use "lewis6991/impatient.nvim"
@@ -38,7 +48,7 @@ use {
   as = "catppuccin",
 }
 
-require "plugins.colorscheme"
+require "amirreza.plugins.colorscheme"
 -- Comment
 use {
   "numToStr/Comment.nvim",
@@ -59,7 +69,7 @@ use {
   },
 
   config = function()
-    require "plugins.telescope"
+    require "amirreza.plugins.telescope"
   end,
 }
 
@@ -81,7 +91,7 @@ use {
     "nvim-treesitter/nvim-treesitter-context",
   },
   config = function()
-    require "plugins.treesitter"
+    require "amirreza.plugins.treesitter"
   end,
 }
 
@@ -114,7 +124,7 @@ use {
   },
 
   config = function()
-    require "plugins.lsp"
+    require "amirreza.plugins.lsp"
   end,
 }
 
@@ -175,14 +185,6 @@ use {
 }
 
 use {
-  "junegunn/gv.vim",
-}
-
-use {
-  "cohama/agit.vim",
-}
-
-use {
   "tpope/vim-fugitive",
   config = function()
     vim.keymap.set("n", "<leader>g", "<cmd>Git<cr>")
@@ -193,7 +195,7 @@ use {
 use {
   "fatih/vim-go",
   config = function()
-    require "plugins.go"
+    require "amirreza.plugins.go"
   end,
 }
 
@@ -203,7 +205,7 @@ use {
     "nvim-lua/plenary.nvim",
   },
   config = function()
-    require "plugins.harpoon"
+    require "amirreza.plugins.harpoon"
   end,
 }
 
@@ -226,7 +228,7 @@ use {
 use {
   "mrjones2014/smart-splits.nvim",
   config = function()
-    require "plugins.smart-splits"
+    require "amirreza.plugins.smart-splits"
   end,
 }
 
@@ -250,17 +252,14 @@ use {
     vim.keymap.set({ "n", "t" }, "<C-`>", "<cmd>ToggleTerm<CR>", {})
   end,
 }
-use {
-  "nvim-tree/nvim-tree.lua",
-  config = function()
-    require("nvim-tree").setup()
-
-    vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
-  end,
-}
 
 if packer_bootstrap then
   require("packer").sync()
 end
 
+require("packer").install()
 pcall(require, "impatient")
+
+for _, cfg in ipairs(_configs) do
+  cfg()
+end

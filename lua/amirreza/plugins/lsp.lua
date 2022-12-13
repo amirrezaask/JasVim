@@ -87,12 +87,14 @@ require("null-ls").setup {
   },
 }
 
-local mason = {}
+local mason = {
+  name = "amirreza",
+}
 
 function mason.ensure_installed(to_install)
   for _, pkg in ipairs(to_install) do
     if not require("mason-registry").is_installed(pkg) then
-      require("mason.api.command").MasonInstall(pkg)
+      require("mason.api.command").MasonInstall { pkg }
     end
   end
 end
@@ -106,7 +108,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format()
   end,
 })
-
-vim.diagnostic.config {
-  signs = false,
-}
