@@ -46,10 +46,16 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
-ok, _ = pcall(require, "treesitter-context")
+local ok, _ = pcall(require, "treesitter-context")
 
 if not ok then
   return
 end
 
 require("treesitter-context").setup {}
+
+require("nvim-treesitter.configs").setup {
+  context_commentstring = {
+    enable = true,
+  },
+}

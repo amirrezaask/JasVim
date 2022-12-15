@@ -49,12 +49,18 @@ use {
 }
 
 require "amirreza.plugins.colorscheme"
+
 -- Comment
 use {
   "numToStr/Comment.nvim",
   config = function()
     require("Comment").setup()
   end,
+}
+
+-- Indent blanklines
+use {
+  "lukas-reineke/indent-blankline.nvim",
 }
 
 -- Telescope
@@ -73,15 +79,6 @@ use {
   end,
 }
 
--- Statusline
-use {
-  "nvim-lualine/lualine.nvim",
-  requires = { "kyazdani42/nvim-web-devicons", opt = true },
-  config = function()
-    require("lualine").setup {}
-  end,
-}
-
 -- Treesitter
 use {
   "nvim-treesitter/nvim-treesitter",
@@ -89,44 +86,68 @@ use {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "p00f/nvim-ts-rainbow",
     "nvim-treesitter/nvim-treesitter-context",
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
     require "amirreza.plugins.treesitter"
   end,
 }
 
--- LSP Zero
+-- Mason
 use {
-  "VonHeikemen/lsp-zero.nvim",
+  "williamboman/mason.nvim",
   requires = {
-    -- LSP Support
-    { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+  },
+  config = function()
+    require "amirreza.plugins.mason"
+  end,
+}
 
-    -- Autocompletion
-    { "hrsh7th/nvim-cmp" },
+-- Lsp configurations
+use {
+  "neovim/nvim-lspconfig",
+  config = function()
+    require "amirreza.plugins.lsp"
+  end,
+}
+
+-- Icons
+use "kyazdani42/nvim-web-devicons"
+
+-- trouble all errors, warning in one place
+use {
+  "folke/trouble.nvim",
+  config = function()
+    require("trouble").setup {}
+  end,
+}
+
+-- Autocompletion
+use {
+  "hrsh7th/nvim-cmp",
+  requires = {
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
     { "saadparwaiz1/cmp_luasnip" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-nvim-lua" },
-
-    -- Snippets
-    { "L3MON4D3/LuaSnip" },
-    { "rafamadriz/friendly-snippets" },
-
-    -- Json Schemas
-    { "b0o/schemastore.nvim" },
-
-    -- Null LS
-    { "jose-elias-alvarez/null-ls.nvim" },
   },
-
   config = function()
-    require "amirreza.plugins.lsp"
+    require "amirreza.plugins.cmp"
   end,
 }
+
+-- Snippets
+use { "L3MON4D3/LuaSnip", requires = {
+  { "rafamadriz/friendly-snippets" },
+} }
+
+-- Json Schemas
+use { "b0o/schemastore.nvim" }
+
+-- Null ls
+use { "jose-elias-alvarez/null-ls.nvim" }
 
 -- Automatically create directory when you create a new file in a directory that
 -- does not exists.
@@ -138,14 +159,14 @@ use "sheerun/vim-polyglot"
 -- toggle a window to be maximized, like tmux zoom
 use "szw/vim-maximizer"
 
--- Support Kitty terminal syntax
+-- Support Kitty terminal config syntax
 use "fladson/vim-kitty"
 
+-- Support for helm template syntax
 use "towolf/vim-helm"
 
+-- surrounding text objects
 use "tpope/vim-surround"
-
-use "junegunn/vim-easy-align"
 
 -- Preview quickfix list item.
 use "kevinhwang91/nvim-bqf"
@@ -163,6 +184,7 @@ use {
   end,
 }
 
+-- Better UI for neovim default UI components like input box or selecting
 use {
   "stevearc/dressing.nvim",
   config = function()
@@ -184,6 +206,7 @@ use {
   end,
 }
 
+-- Git integration
 use {
   "tpope/vim-fugitive",
   config = function()
@@ -199,6 +222,7 @@ use {
   end,
 }
 
+-- Harpoon
 use {
   "ThePrimeagen/harpoon",
   requires = {
@@ -210,11 +234,6 @@ use {
 }
 
 use "ThePrimeagen/vim-be-good"
-
-use "milisims/nvim-luaref"
-use "nanotee/luv-vimdocs"
-
-use "Glench/Vim-Jinja2-Syntax"
 
 use {
   "rust-lang/rust.vim",
@@ -235,6 +254,7 @@ use {
 use {
   "ziglang/zig.vim",
 }
+
 use {
   "akinsho/toggleterm.nvim",
   config = function()
@@ -251,6 +271,14 @@ use {
 
     vim.keymap.set({ "n", "t" }, "<C-`>", "<cmd>ToggleTerm<CR>", {})
   end,
+
+  -- Which key
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+    end,
+  },
 }
 
 if packer_bootstrap then

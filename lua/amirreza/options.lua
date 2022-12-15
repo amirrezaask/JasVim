@@ -50,8 +50,22 @@ if vim.version().major >= 0 and vim.version().minor >= 8 then
   vim.opt.laststatus = 3 -- if supported use global statusline
 end
 
+function StatusLineMode()
+  local mode = vim.api.nvim_get_mode().mode
+  if mode == "n" then
+    return "Normal"
+  elseif mode == "i" then
+    return "Insert"
+  elseif mode == "v" then
+    return "Visual"
+  elseif mode == "c" then
+    return "Command"
+  end
+  return "Some Mode"
+end
+
 -- Simple statusline
-vim.opt.statusline = "%m%r%h%w%f %y"
+vim.opt.statusline = '[%{luaeval("StatusLineMode()")}] %m%r%h%w%f%= %l:%c %y'
 
 -- Netrw
 vim.g.netrw_browse_split = 0

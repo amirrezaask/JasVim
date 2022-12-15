@@ -1,28 +1,9 @@
-local lsp = require "lsp-zero"
+local lspconfig = require "lspconfig"
 
-lsp.preset "recommended"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
-lsp.set_preferences {
-  suggest_lsp_servers = false,
-}
-
-lsp.nvim_workspace {
-  library = vim.api.nvim_get_runtime_file("", true),
-}
-
-lsp.ensure_installed {
-  "gopls",
-  "rust_analyzer",
-  "sumneko_lua",
-  "clangd",
-  "jsonls",
-  "intelephense",
-  "phpactor",
-  "pyright",
-  "jedi_language_server",
-}
-
-lsp.on_attach(function(_, bufnr)
+local function on_attach(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   local buffer = { buffer = bufnr }
   local nnoremap = vim.keymap.nnoremap
@@ -43,9 +24,25 @@ lsp.on_attach(function(_, bufnr)
   nnoremap("C", vim.lsp.buf.code_action, buffer)
   nnoremap("<C-s>", vim.lsp.buf.signature_help, buffer)
   inoremap("<C-s>", vim.lsp.buf.signature_help, buffer)
-end)
+end
 
-lsp.configure("sumneko_lua", {
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    on_attach(client, bufnr)
+  end,
+})
+
+lspconfig["gopls"].setup {}
+lspconfig["rust_analyzer"].setup {}
+lspconfig["clangd"].setup {}
+lspconfig["intelephense"].setup {}
+lspconfig["phpactor"].setup {}
+lspconfig["pyright"].setup {}
+lspconfig["jedi_language_server"].setup {}
+
+lspconfig["sumneko_lua"].setup {
   settings = {
     Lua = {
       diagnostics = {
@@ -60,23 +57,18 @@ lsp.configure("sumneko_lua", {
       },
     },
   },
-})
+}
 
-lsp.configure("jsonls", {
+lspconfig["jsonls"].setup {
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
       validate = { enable = true },
     },
   },
-})
-
-lsp.setup()
-
-local null_opts = lsp.build_options("null-ls", {})
+}
 
 require("null-ls").setup {
-  on_attach = null_opts.on_attach,
   sources = {
     require("null-ls").builtins.code_actions.gitsigns,
     require("null-ls").builtins.diagnostics.gitlint,
@@ -86,20 +78,6 @@ require("null-ls").setup {
     require("null-ls").builtins.formatting.goimports,
   },
 }
-
-local mason = {
-  name = "amirreza",
-}
-
-function mason.ensure_installed(to_install)
-  for _, pkg in ipairs(to_install) do
-    if not require("mason-registry").is_installed(pkg) then
-      require("mason.api.command").MasonInstall { pkg }
-    end
-  end
-end
-
-mason.ensure_installed { "gitlint", "stylua", "golangci-lint", "goimports", "gofumpt", "yamlfmt" }
 
 -- Lua autoformat
 vim.api.nvim_create_autocmd("BufWritePre", {
