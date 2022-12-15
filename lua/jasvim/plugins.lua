@@ -48,7 +48,7 @@ use {
   as = "catppuccin",
 }
 
-require "amirreza.plugins.colorscheme"
+require "jasvim.plugins.colorscheme"
 
 -- Comment
 use {
@@ -75,7 +75,7 @@ use {
   },
 
   config = function()
-    require "amirreza.plugins.telescope"
+    require "jasvim.plugins.telescope"
   end,
 }
 
@@ -89,7 +89,7 @@ use {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    require "amirreza.plugins.treesitter"
+    require "jasvim.plugins.treesitter"
   end,
 }
 
@@ -100,7 +100,7 @@ use {
     { "williamboman/mason-lspconfig.nvim" },
   },
   config = function()
-    require "amirreza.plugins.mason"
+    require "jasvim.plugins.mason"
   end,
 }
 
@@ -108,7 +108,7 @@ use {
 use {
   "neovim/nvim-lspconfig",
   config = function()
-    require "amirreza.plugins.lsp"
+    require "jasvim.plugins.lsp"
   end,
 }
 
@@ -134,7 +134,7 @@ use {
     { "hrsh7th/cmp-nvim-lua" },
   },
   config = function()
-    require "amirreza.plugins.cmp"
+    require "jasvim.plugins.cmp"
   end,
 }
 
@@ -218,7 +218,7 @@ use {
 use {
   "fatih/vim-go",
   config = function()
-    require "amirreza.plugins.go"
+    require "jasvim.plugins.go"
   end,
 }
 
@@ -229,7 +229,7 @@ use {
     "nvim-lua/plenary.nvim",
   },
   config = function()
-    require "amirreza.plugins.harpoon"
+    require "jasvim.plugins.harpoon"
   end,
 }
 
@@ -247,7 +247,7 @@ use {
 use {
   "mrjones2014/smart-splits.nvim",
   config = function()
-    require "amirreza.plugins.smart-splits"
+    require "jasvim.plugins.smart-splits"
   end,
 }
 
