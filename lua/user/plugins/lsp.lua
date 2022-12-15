@@ -79,9 +79,13 @@ require("null-ls").setup {
   },
 }
 
--- Lua autoformat
+local autoformat_patterns = {
+  "*.rs",
+  "*.lua",
+}
+
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.lua",
+  pattern = autoformat_patterns,
   callback = function(_)
     vim.lsp.buf.format()
   end,
