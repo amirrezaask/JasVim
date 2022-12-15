@@ -58,6 +58,15 @@ use {
   end,
 }
 
+-- Statusline
+use {
+  "nvim-lualine/lualine.nvim",
+  requires = { "kyazdani42/nvim-web-devicons", opt = true },
+  config = function()
+    require("lualine").setup {}
+  end,
+}
+
 -- Indent blanklines
 use {
   "lukas-reineke/indent-blankline.nvim",
