@@ -1,5 +1,8 @@
 # JasVim
 ## How to install
+```sh
+git clone https://github.com/amirrezaask/JasVim.git ~/.config/nvim
+```
 
 ## Features
 - IDE features using `LSP`
