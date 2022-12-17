@@ -1,5 +1,9 @@
+local has, _ = pcall(require, "nvim-treesitter")
+if not has then
+  return
+end
 require("nvim-treesitter.configs").setup {
-  ensure_installed = "all",
+  ensure_installed = { "json", "yaml", "c", "cpp", "lua", "rust", "go", "python", "php" },
   context_commentstring = {
     enable = true,
   },
@@ -48,3 +52,5 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
+
+require("treesitter-context").setup {}

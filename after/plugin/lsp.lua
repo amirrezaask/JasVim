@@ -1,9 +1,14 @@
+local has, _ = pcall(require, "lsp-zero")
+if not has then
+  return
+end
+
 local lsp = require "lsp-zero"
 
 lsp.preset "recommended"
 
 lsp.set_preferences {
-  suggest_lsp_servers = true,
+  suggest_lsp_servers = false,
   sign_icons = {
     error = "E",
     warn = "W",
@@ -12,9 +17,10 @@ lsp.set_preferences {
   },
 }
 lsp.ensure_installed {
-  "gopls",
-  "sumneko_lua",
-  "rust_analyzer",
+  "gopls", -- Golang
+  "sumneko_lua", -- Lua
+  "rust_analyzer", -- Rust
+  "zls", -- Zig
 }
 
 lsp.on_attach(function(_, bufnr)
