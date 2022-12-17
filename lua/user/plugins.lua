@@ -49,20 +49,13 @@ use {
   end,
 }
 
-use "bluz71/vim-nightfly-colors"
 use { "rose-pine/neovim", as = "rose-pine" }
-use {
-  "catppuccin/nvim",
-  as = "catppuccin",
-  config = function()
-    vim.g.catppuccin_flavour = "macchiato"
-  end,
-}
+use { "catppuccin/nvim", as = "catppuccin" }
 
 -- Set the colorscheme
 use(function()
   pcall(function()
-    vim.cmd.colorscheme "catppuccin"
+    vim.cmd.colorscheme "catppuccin-mocha"
   end)
 end)
 
@@ -78,7 +71,14 @@ use {
 use {
   "nvim-lualine/lualine.nvim",
   config = function()
-    require("lualine").setup {}
+    require("lualine").setup {
+      options = {
+        icons_enabled = false,
+        theme = "auto",
+        component_separators = "|",
+        section_separators = "",
+      },
+    }
   end,
 }
 
@@ -99,7 +99,7 @@ use {
   },
 
   config = function()
-    require "user.plugins.telescope"
+    require "user.telescope"
   end,
 }
 
@@ -109,11 +109,17 @@ use {
   requires = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "p00f/nvim-ts-rainbow",
-    "nvim-treesitter/nvim-treesitter-context",
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    require "user.plugins.treesitter"
+    require "user.treesitter"
+  end,
+}
+
+use {
+  "nvim-treesitter/nvim-treesitter-context",
+  config = function()
+    require("treesitter-context").setup {}
   end,
 }
 
@@ -142,9 +148,12 @@ use {
 
     -- Null ls
     { "jose-elias-alvarez/null-ls.nvim" },
+
+    -- Fidget , standalone UI for lsp progress
+    { "j-hui/fidget.nvim" },
   },
   config = function()
-    require "user.plugins.lsp"
+    require "user.lsp"
   end,
 }
 
@@ -199,7 +208,15 @@ use {
 use {
   "lewis6991/gitsigns.nvim",
   config = function()
-    require("gitsigns").setup {}
+    require("gitsigns").setup {
+      signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+      },
+    }
   end,
 }
 
@@ -207,6 +224,9 @@ use {
   "tpope/vim-fugitive",
   config = function()
     vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+    vim.api.nvim_create_user_command("Gp", function()
+      vim.cmd.Git "push"
+    end, {})
   end,
 }
 
@@ -216,33 +236,22 @@ use {
   config = function()
     vim.g.go_gopls_enabled = 0
     vim.g.go_template_autocreate = 0
-
     local go_group = vim.api.nvim_create_augroup("go", {})
-
     vim.api.nvim_create_autocmd("BufEnter", {
       pattern = "*.go",
       group = go_group,
       callback = function(meta)
         local buffer = { buffer = meta.bufnr, remap = true }
-        local nnoremap = vim.keymap.nnoremap
-        nnoremap("<leader>lat", "<cmd>GoAddTag<CR>", buffer)
-        nnoremap("<leader>lrt", "<cmd>GoRmTag<CR>", buffer)
-        nnoremap("<leader>lfs", "<cmd>GoFillStruct<CR>", buffer)
+        vim.keymap.set("n", "<leader>lat", "<cmd>GoAddTag<CR>", buffer)
+        vim.keymap.set("n", "<leader>lrt", "<cmd>GoRmTag<CR>", buffer)
+        vim.keymap.set("n", "<leader>lfs", "<cmd>GoFillStruct<CR>", buffer)
       end,
     })
   end,
 }
 
-use "ThePrimeagen/vim-be-good"
-
-use {
-  "rust-lang/rust.vim",
-}
-
-use {
-  "ziglang/zig.vim",
-}
-
+use { "rust-lang/rust.vim" }
+use { "ziglang/zig.vim" }
 use {
   "akinsho/toggleterm.nvim",
   config = function()
@@ -265,7 +274,7 @@ use {
   "folke/zen-mode.nvim",
   config = function()
     require("zen-mode").setup {}
-    vim.keymap.nnoremap("<leader>z", vim.cmd.ZenMode)
+    vim.keymap.set("n", "<leader>z", vim.cmd.ZenMode)
   end,
 }
 
