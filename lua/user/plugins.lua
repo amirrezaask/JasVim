@@ -29,26 +29,42 @@ local use = function(spec)
       table.insert(_configs, spec.config)
       spec.config = nil
     end
+  elseif type(spec) == "function" then
+    table.insert(_configs, spec)
+    return
   end
   require("packer").use(spec)
 end
 
 use "wbthomason/packer.nvim"
 use "lewis6991/impatient.nvim"
-
-use "folke/tokyonight.nvim"
-use "ellisonleao/gruvbox.nvim"
-use "bluz71/vim-nightfly-colors"
+use "NTBBloodbath/doom-one.nvim"
 use "navarasu/onedark.nvim"
-use "rose-pine/neovim"
-use "EdenEast/nightfox.nvim"
-use "bluz71/vim-moonfly-colors"
+use {
+  "folke/tokyonight.nvim",
+  config = function()
+    require("tokyonight").setup {
+      style = "night",
+    }
+  end,
+}
+
+use "bluz71/vim-nightfly-colors"
+use { "rose-pine/neovim", as = "rose-pine" }
 use {
   "catppuccin/nvim",
   as = "catppuccin",
+  config = function()
+    vim.g.catppuccin_flavour = "macchiato"
+  end,
 }
 
-require "user.plugins.colorscheme"
+-- Set the colorscheme
+use(function()
+  pcall(function()
+    vim.cmd.colorscheme "catppuccin"
+  end)
+end)
 
 -- Comment
 use {
@@ -61,7 +77,6 @@ use {
 -- Statusline
 use {
   "nvim-lualine/lualine.nvim",
-  requires = { "kyazdani42/nvim-web-devicons", opt = true },
   config = function()
     require("lualine").setup {}
   end,
@@ -102,62 +117,36 @@ use {
   end,
 }
 
--- Mason
 use {
-  "williamboman/mason.nvim",
+  "VonHeikemen/lsp-zero.nvim",
   requires = {
+    -- LSP Support
+    { "neovim/nvim-lspconfig" },
+    { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-  },
-  config = function()
-    require "user.plugins.mason"
-  end,
-}
 
--- Lsp configurations
-use {
-  "neovim/nvim-lspconfig",
-  config = function()
-    require "user.plugins.lsp"
-  end,
-}
-
--- Icons
-use "kyazdani42/nvim-web-devicons"
-
--- trouble all errors, warning in one place
-use {
-  "folke/trouble.nvim",
-  config = function()
-    require("trouble").setup {}
-  end,
-}
-
--- Autocompletion
-use {
-  "hrsh7th/nvim-cmp",
-  requires = {
+    -- Autocompletion
+    { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
     { "saadparwaiz1/cmp_luasnip" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-nvim-lua" },
-    { "onsails/lspkind.nvim" },
+
+    -- Snippets
+    { "L3MON4D3/LuaSnip" },
+    { "rafamadriz/friendly-snippets" },
+
+    -- Json langauge server schemas
+    { "b0o/schemastore.nvim" },
+
+    -- Null ls
+    { "jose-elias-alvarez/null-ls.nvim" },
   },
   config = function()
-    require "user.plugins.cmp"
+    require "user.plugins.lsp"
   end,
 }
-
--- Snippets
-use { "L3MON4D3/LuaSnip", requires = {
-  { "rafamadriz/friendly-snippets" },
-} }
-
--- Json Schemas
-use { "b0o/schemastore.nvim" }
-
--- Null ls
-use { "jose-elias-alvarez/null-ls.nvim" }
 
 -- Automatically create directory when you create a new file in a directory that
 -- does not exists.
@@ -165,9 +154,6 @@ use "pbrisbin/vim-mkdir"
 
 -- Support for many filetypes.
 use "sheerun/vim-polyglot"
-
--- toggle a window to be maximized, like tmux zoom
-use "szw/vim-maximizer"
 
 -- Support Kitty terminal config syntax
 use "fladson/vim-kitty"
@@ -209,6 +195,7 @@ use {
   end,
 }
 
+-- Git stuff
 use {
   "lewis6991/gitsigns.nvim",
   config = function()
@@ -216,11 +203,10 @@ use {
   end,
 }
 
--- Git integration
 use {
   "tpope/vim-fugitive",
   config = function()
-    vim.keymap.set("n", "<leader>g", "<cmd>Git<cr>")
+    vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
   end,
 }
 
@@ -228,18 +214,22 @@ use {
 use {
   "fatih/vim-go",
   config = function()
-    require "user.plugins.go"
-  end,
-}
+    vim.g.go_gopls_enabled = 0
+    vim.g.go_template_autocreate = 0
 
--- Harpoon
-use {
-  "ThePrimeagen/harpoon",
-  requires = {
-    "nvim-lua/plenary.nvim",
-  },
-  config = function()
-    require "user.plugins.harpoon"
+    local go_group = vim.api.nvim_create_augroup("go", {})
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*.go",
+      group = go_group,
+      callback = function(meta)
+        local buffer = { buffer = meta.bufnr, remap = true }
+        local nnoremap = vim.keymap.nnoremap
+        nnoremap("<leader>lat", "<cmd>GoAddTag<CR>", buffer)
+        nnoremap("<leader>lrt", "<cmd>GoRmTag<CR>", buffer)
+        nnoremap("<leader>lfs", "<cmd>GoFillStruct<CR>", buffer)
+      end,
+    })
   end,
 }
 
@@ -247,18 +237,6 @@ use "ThePrimeagen/vim-be-good"
 
 use {
   "rust-lang/rust.vim",
-}
-
-use {
-  "simrat39/rust-tools.nvim",
-}
-
--- Tmux integration, look here for tmux part https://github.com/mrjones2014/smart-splits.nvim#tmux-integration
-use {
-  "mrjones2014/smart-splits.nvim",
-  config = function()
-    require "user.plugins.smart-splits"
-  end,
 }
 
 use {
@@ -281,14 +259,14 @@ use {
 
     vim.keymap.set({ "n", "t" }, "<C-`>", "<cmd>ToggleTerm<CR>", {})
   end,
+}
 
-  -- Which key
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup()
-    end,
-  },
+use {
+  "folke/zen-mode.nvim",
+  config = function()
+    require("zen-mode").setup {}
+    vim.keymap.nnoremap("<leader>z", vim.cmd.ZenMode)
+  end,
 }
 
 if packer_bootstrap then

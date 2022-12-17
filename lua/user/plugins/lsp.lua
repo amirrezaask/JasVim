@@ -1,9 +1,14 @@
-local lspconfig = require "lspconfig"
+local lsp = require "lsp-zero"
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+lsp.preset "recommended"
 
-local function on_attach(_, bufnr)
+lsp.ensure_installed {
+  "gopls",
+  "sumneko_lua",
+  "rust_analyzer",
+}
+
+lsp.on_attach(function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   local buffer = { buffer = bufnr }
   local nnoremap = vim.keymap.nnoremap
@@ -24,25 +29,9 @@ local function on_attach(_, bufnr)
   nnoremap("C", vim.lsp.buf.code_action, buffer)
   nnoremap("<C-s>", vim.lsp.buf.signature_help, buffer)
   inoremap("<C-s>", vim.lsp.buf.signature_help, buffer)
-end
+end)
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    on_attach(client, bufnr)
-  end,
-})
-
-lspconfig["gopls"].setup {}
-lspconfig["rust_analyzer"].setup {}
-lspconfig["clangd"].setup {}
-lspconfig["intelephense"].setup {}
-lspconfig["phpactor"].setup {}
-lspconfig["pyright"].setup {}
-lspconfig["jedi_language_server"].setup {}
-
-lspconfig["sumneko_lua"].setup {
+lsp.configure("sumneko_lua", {
   settings = {
     Lua = {
       diagnostics = {
@@ -57,26 +46,12 @@ lspconfig["sumneko_lua"].setup {
       },
     },
   },
-}
+})
 
-lspconfig["jsonls"].setup {
-  settings = {
-    json = {
-      schemas = require("schemastore").json.schemas(),
-      validate = { enable = true },
-    },
-  },
-}
+lsp.setup()
 
-require("null-ls").setup {
-  sources = {
-    require("null-ls").builtins.code_actions.gitsigns,
-    require("null-ls").builtins.diagnostics.gitlint,
-    require("null-ls").builtins.diagnostics.golangci_lint,
-    require("null-ls").builtins.diagnostics.trail_space.with { disabled_filetypes = { "NvimTree" } },
-    require("null-ls").builtins.formatting.stylua,
-    require("null-ls").builtins.formatting.goimports,
-  },
+vim.diagnostic.config {
+  virtual_text = true,
 }
 
 local autoformat_patterns = {
@@ -90,3 +65,29 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format()
   end,
 })
+
+require("null-ls").setup {
+  sources = {
+    require("null-ls").builtins.code_actions.gitsigns,
+    require("null-ls").builtins.diagnostics.gitlint,
+    require("null-ls").builtins.diagnostics.golangci_lint,
+    require("null-ls").builtins.diagnostics.trail_space.with { disabled_filetypes = { "NvimTree" } },
+    require("null-ls").builtins.formatting.stylua,
+    require("null-ls").builtins.formatting.goimports,
+  },
+}
+
+local mason_ensure_installed = { "gitlint", "stylua", "golangci-lint", "goimports", "gofumpt", "yamlfmt" }
+for _, pkg in ipairs(mason_ensure_installed) do
+  if not require("mason-registry").is_installed(pkg) then
+    require("mason.api.command").MasonInstall { pkg }
+  end
+end
+
+local virtual_text = true
+vim.api.nvim_create_user_command("VirtualTextToggle", function()
+  virtual_text = not virtual_text
+  vim.diagnostic.config {
+    virtual_text = virtual_text,
+  }
+end, {})
