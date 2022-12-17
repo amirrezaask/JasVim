@@ -24,13 +24,3 @@ use {
 2. For setting up the plugin and any configuration about it the conventional way is to put it
 in `after/plugin/<plugin name>.lua`
 
-## Screenshots
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/0.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/1.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/2.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/3.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/4.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/5.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/6.png)
-![Screenshot](https://raw.github.com/amirrezaask/jasvim/master/screenshots/7.png)
-
