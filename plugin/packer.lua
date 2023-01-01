@@ -18,6 +18,7 @@ require("packer").startup {
 
     use { "folke/tokyonight.nvim" }
     use { "rose-pine/neovim", as = "rose-pine" }
+    use { "navarasu/onedark.nvim" }
     use { "catppuccin/nvim", as = "catppuccin" }
 
     use { "numToStr/Comment.nvim" } -- Comment code with ease
@@ -33,16 +34,10 @@ require("packer").startup {
       },
     }
     -- Treesitter
-    use {
-      "nvim-treesitter/nvim-treesitter",
-      requires = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "p00f/nvim-ts-rainbow",
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        "nvim-treesitter/playground",
-        "nvim-treesitter/nvim-treesitter-context",
-      },
-    }
+    use { "nvim-treesitter/nvim-treesitter" }
+    use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" }
+    use "nvim-treesitter/nvim-treesitter-context"
+
     use {
       "VonHeikemen/lsp-zero.nvim",
       requires = {
@@ -71,7 +66,6 @@ require("packer").startup {
       },
     }
     use "pbrisbin/vim-mkdir" -- Automatically create directory if not exists
-    use "sheerun/vim-polyglot" -- Support for many filetypes.
     use "fladson/vim-kitty" -- Support Kitty terminal config syntax
     use "towolf/vim-helm" -- Support for helm template syntax
     use "tpope/vim-surround" -- surrounding text objects
