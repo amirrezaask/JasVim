@@ -65,6 +65,7 @@ require("packer").startup {
         { "j-hui/fidget.nvim" },
       },
     }
+    use "stevearc/oil.nvim" -- File manager like a BOSS
     use "pbrisbin/vim-mkdir" -- Automatically create directory if not exists
     use "fladson/vim-kitty" -- Support Kitty terminal config syntax
     use "towolf/vim-helm" -- Support for helm template syntax
